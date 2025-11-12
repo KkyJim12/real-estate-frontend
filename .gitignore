@@ -23,8 +23,3 @@ logs
 .env.*
 !.env.example
 
-# Data storage
-data/
-
-# Uploaded files
-public/uploads/
