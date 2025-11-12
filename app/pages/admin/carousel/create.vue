@@ -1,0 +1,136 @@
+<template>
+  <AdminLayout>
+    <div class="max-w-5xl mx-auto px-6 py-8">
+      <div class="mb-6">
+        <button
+          @click="navigateTo('/admin/carousel')"
+          class="flex items-center text-gray-600 hover:text-gray-800 font-medium transition-colors"
+        >
+          <Icon name="fa-solid:arrow-left" class="mr-2" />
+          Back to Carousel
+        </button>
+      </div>
+
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Add New Slide</h1>
+        <p class="text-gray-600">Create a new carousel slide</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+        <form @submit.prevent="saveSlide" class="space-y-6">
+          <ImageUpload
+            v-model="form.image"
+            label="Slide Image"
+            placeholder="Enter image URL or upload an image"
+          />
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Title (Optional)</label>
+            <input
+              v-model="form.title"
+              type="text"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+              placeholder="Enter slide title..."
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Description (Optional)</label>
+            <textarea
+              v-model="form.description"
+              rows="3"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+              placeholder="Enter slide description..."
+            ></textarea>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Display Order</label>
+              <input
+                v-model.number="form.order"
+                type="number"
+                min="0"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                placeholder="0"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Status</label>
+              <select
+                v-model="form.active"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+              >
+                <option :value="true">Active</option>
+                <option :value="false">Inactive</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex gap-4 pt-6 border-t border-gray-200">
+            <button
+              type="submit"
+              :disabled="saving"
+              class="flex items-center px-6 py-3 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white font-semibold rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <Icon v-if="!saving" name="fa-solid:save" class="mr-2" />
+              <Icon v-else name="fa-solid:spinner" class="mr-2 animate-spin" />
+              {{ saving ? 'Saving...' : 'Save Slide' }}
+            </button>
+            <button
+              type="button"
+              @click="navigateTo('/admin/carousel')"
+              :disabled="saving"
+              class="flex items-center px-6 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </AdminLayout>
+</template>
+
+<script setup lang="ts">
+definePageMeta({
+  middleware: 'auth',
+});
+
+const form = ref({
+  image: '',
+  title: '',
+  description: '',
+  order: 0,
+  active: true,
+});
+
+const saving = ref(false);
+
+const saveSlide = async () => {
+  if (!form.value.image) {
+    alert('Please enter an image URL');
+    return;
+  }
+
+  saving.value = true;
+  try {
+    await $fetch('/api/carousel', {
+      method: 'POST',
+      body: form.value,
+    });
+    navigateTo('/admin/carousel');
+  } catch (error: any) {
+    console.error('Failed to save slide:', error);
+    if (error.statusCode === 401) {
+      alert('Session expired. Please login again.');
+      navigateTo('/admin/login');
+    } else {
+      alert(`Failed to save slide: ${error.data?.message || error.message || 'Unknown error'}`);
+    }
+  } finally {
+    saving.value = false;
+  }
+};
+</script>

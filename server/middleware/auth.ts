@@ -1,8 +1,11 @@
 export default defineEventHandler((event) => {
   const url = getRequestURL(event);
   
-  // Only protect /api/articles routes (not auth routes)
-  if (url.pathname.startsWith('/api/articles')) {
+  // Protect /api/articles, /api/carousel, and /api/upload routes (not auth routes)
+  const protectedRoutes = ['/api/articles', '/api/carousel', '/api/upload'];
+  const isProtected = protectedRoutes.some(route => url.pathname.startsWith(route));
+  
+  if (isProtected) {
     const session = getCookie(event, 'admin-session');
     
     if (session !== 'authenticated') {

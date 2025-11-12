@@ -34,23 +34,11 @@
             />
           </div>
 
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Featured Image URL</label>
-            <input
-              v-model="form.image"
-              type="url"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
-              placeholder="https://example.com/image.jpg"
-            />
-            <div v-if="form.image" class="mt-4">
-              <p class="text-sm text-gray-600 mb-2">Image Preview:</p>
-              <img
-                :src="form.image"
-                alt="Preview"
-                class="w-full h-80 object-cover rounded-lg border border-gray-200"
-              />
-            </div>
-          </div>
+          <ImageUpload
+            v-model="form.image"
+            label="Featured Image"
+            placeholder="Enter image URL or upload an image"
+          />
 
           <div>
             <label class="block text-sm font-semibold text-gray-700 mb-2">Article Content</label>

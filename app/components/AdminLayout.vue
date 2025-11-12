@@ -1,41 +1,71 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <nav class="bg-gradient-to-r from-[#1d1d39] to-[#2d2d49] text-white shadow-xl sticky top-0 z-50">
-      <div class="max-w-7xl mx-auto px-6 py-4">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-4">
-            <div class="flex items-center justify-center w-10 h-10 bg-[#ecbc85] rounded-lg">
-              <Icon name="fa-solid:user-shield" class="text-xl text-white" />
-            </div>
-            <div>
-              <h1 class="text-xl font-bold">Admin Panel</h1>
-              <p class="text-xs text-gray-300">Content Management System</p>
-            </div>
+  <div class="min-h-screen bg-gray-50 flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gradient-to-b from-[#1d1d39] to-[#2d2d49] text-white fixed h-full shadow-2xl z-40">
+      <div class="p-6">
+        <div class="flex items-center space-x-3 mb-8">
+          <div class="flex items-center justify-center w-12 h-12 bg-[#ecbc85] rounded-xl">
+            <Icon name="fa-solid:user-shield" class="text-2xl text-white" />
           </div>
-          <div class="flex gap-3">
-            <button
-              @click="navigateTo('/')"
-              class="flex items-center px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
-            >
-              <Icon name="fa-solid:home" class="mr-2" />
-              <span class="text-sm font-medium">View Site</span>
-            </button>
-            <button
-              @click="handleLogout"
-              class="flex items-center px-4 py-2 bg-red-500/20 hover:bg-red-500/30 rounded-lg transition-colors"
-            >
-              <Icon name="fa-solid:sign-out-alt" class="mr-2" />
-              <span class="text-sm font-medium">Logout</span>
-            </button>
+          <div>
+            <h1 class="text-xl font-bold">Admin Panel</h1>
+            <p class="text-xs text-gray-400">CMS</p>
           </div>
         </div>
+
+        <nav class="space-y-2">
+          <NuxtLink
+            to="/admin/articles"
+            class="flex items-center px-4 py-3 rounded-lg transition-colors hover:bg-white/10"
+            :class="{ 'bg-[#ecbc85] text-white': isActive('/admin/articles') }"
+          >
+            <Icon name="fa-solid:newspaper" class="mr-3 text-lg" />
+            <span class="font-medium">Articles</span>
+          </NuxtLink>
+
+          <NuxtLink
+            to="/admin/carousel"
+            class="flex items-center px-4 py-3 rounded-lg transition-colors hover:bg-white/10"
+            :class="{ 'bg-[#ecbc85] text-white': isActive('/admin/carousel') }"
+          >
+            <Icon name="fa-solid:images" class="mr-3 text-lg" />
+            <span class="font-medium">Carousel</span>
+          </NuxtLink>
+        </nav>
       </div>
-    </nav>
-    <slot />
+
+      <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-white/10">
+        <button
+          @click="navigateTo('/')"
+          class="flex items-center w-full px-4 py-2 mb-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+        >
+          <Icon name="fa-solid:home" class="mr-2" />
+          <span class="text-sm font-medium">View Site</span>
+        </button>
+        <button
+          @click="handleLogout"
+          class="flex items-center w-full px-4 py-2 bg-red-500/20 hover:bg-red-500/30 rounded-lg transition-colors"
+        >
+          <Icon name="fa-solid:sign-out-alt" class="mr-2" />
+          <span class="text-sm font-medium">Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 ml-64">
+      <slot />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+const route = useRoute();
+
+const isActive = (path: string) => {
+  return route.path.startsWith(path);
+};
+
 const handleLogout = async () => {
   if (confirm('Are you sure you want to logout?')) {
     try {

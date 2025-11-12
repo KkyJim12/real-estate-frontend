@@ -25,3 +25,6 @@ logs
 
 # Data storage
 data/
+
+# Uploaded files
+public/uploads/
