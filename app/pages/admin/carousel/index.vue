@@ -1,15 +1,15 @@
 <template>
   <AdminLayout>
-    <div class="max-w-7xl mx-auto px-6 py-8">
-      <div class="mb-8">
-        <div class="flex justify-between items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
+      <div class="mb-6 sm:mb-8">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
           <div>
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Carousel Management</h1>
-            <p class="text-gray-600">Manage homepage carousel slides</p>
+            <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 sm:mb-2">Carousel Management</h1>
+            <p class="text-sm sm:text-base text-gray-600">Manage homepage carousel slides</p>
           </div>
           <button
             @click="navigateTo('/admin/carousel/create')"
-            class="flex items-center px-6 py-3 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white font-semibold rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+            class="flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-200 whitespace-nowrap"
           >
             <Icon name="fa-solid:plus" class="mr-2" />
             Add Slide
@@ -37,7 +37,7 @@
         </button>
       </div>
 
-      <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         <div
           v-for="slide in sortedSlides"
           :key="slide.id"
@@ -59,22 +59,22 @@
               Order: {{ slide.order }}
             </div>
           </div>
-          <div class="p-4">
-            <h3 class="text-lg font-bold text-gray-800 mb-2">{{ slide.title || 'Untitled' }}</h3>
-            <p class="text-gray-600 text-sm mb-4 line-clamp-2">{{ slide.description || 'No description' }}</p>
+          <div class="p-3 sm:p-4">
+            <h3 class="text-base sm:text-lg font-bold text-gray-800 mb-2">{{ slide.title || 'Untitled' }}</h3>
+            <p class="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">{{ slide.description || 'No description' }}</p>
             <div class="flex gap-2">
               <button
                 @click="navigateTo(`/admin/carousel/edit/${slide.id}`)"
-                class="flex-1 flex items-center justify-center px-4 py-2 bg-blue-50 text-blue-600 font-medium rounded-lg hover:bg-blue-100 transition-colors"
+                class="flex-1 flex items-center justify-center px-3 sm:px-4 py-2 bg-blue-50 text-blue-600 text-sm font-medium rounded-lg hover:bg-blue-100 transition-colors"
               >
-                <Icon name="fa-solid:edit" class="mr-2" />
-                Edit
+                <Icon name="fa-solid:edit" class="mr-1 sm:mr-2 text-sm" />
+                <span class="hidden sm:inline">Edit</span>
               </button>
               <button
                 @click="deleteSlide(slide.id)"
-                class="flex items-center justify-center px-4 py-2 bg-red-50 text-red-600 font-medium rounded-lg hover:bg-red-100 transition-colors"
+                class="flex items-center justify-center px-3 sm:px-4 py-2 bg-red-50 text-red-600 font-medium rounded-lg hover:bg-red-100 transition-colors"
               >
-                <Icon name="fa-solid:trash" />
+                <Icon name="fa-solid:trash" class="text-sm" />
               </button>
             </div>
           </div>

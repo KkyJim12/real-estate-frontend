@@ -1,6 +1,6 @@
 <template>
   <AdminLayout>
-    <div class="max-w-5xl mx-auto px-6 py-8">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
       <div class="mb-6">
         <button
           @click="navigateTo('/admin/carousel')"
@@ -11,9 +11,9 @@
         </button>
       </div>
 
-      <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">Edit Slide</h1>
-        <p class="text-gray-600">Update carousel slide details</p>
+      <div class="mb-6 sm:mb-8">
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 sm:mb-2">Edit Slide</h1>
+        <p class="text-sm sm:text-base text-gray-600">Update carousel slide details</p>
       </div>
 
       <div v-if="loading" class="bg-white rounded-xl shadow-sm border border-gray-200 p-16 text-center">
@@ -21,8 +21,8 @@
         <p class="text-gray-500">Loading slide...</p>
       </div>
 
-      <div v-else-if="form.image" class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-        <form @submit.prevent="updateSlide" class="space-y-6">
+      <div v-else-if="form.image" class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-8">
+        <form @submit.prevent="updateSlide" class="space-y-5 sm:space-y-6">
           <ImageUpload
             v-model="form.image"
             label="Slide Image"
@@ -73,11 +73,11 @@
             </div>
           </div>
 
-          <div class="flex gap-4 pt-6 border-t border-gray-200">
+          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-6 border-t border-gray-200">
             <button
               type="submit"
               :disabled="saving || loading"
-              class="flex items-center px-6 py-3 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white font-semibold rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              class="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Icon v-if="!saving" name="fa-solid:save" class="mr-2" />
               <Icon v-else name="fa-solid:spinner" class="mr-2 animate-spin" />
@@ -87,7 +87,7 @@
               type="button"
               @click="navigateTo('/admin/carousel')"
               :disabled="saving"
-              class="flex items-center px-6 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50"
+              class="flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50"
             >
               Cancel
             </button>

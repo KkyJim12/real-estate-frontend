@@ -1,15 +1,15 @@
 <template>
   <AdminLayout>
-    <div class="max-w-7xl mx-auto px-6 py-8">
-      <div class="mb-8">
-        <div class="flex justify-between items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
+      <div class="mb-6 sm:mb-8">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
           <div>
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">News Articles</h1>
-            <p class="text-gray-600">Manage your news articles and content</p>
+            <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 sm:mb-2">News Articles</h1>
+            <p class="text-sm sm:text-base text-gray-600">Manage your news articles and content</p>
           </div>
           <button
             @click="navigateTo('/admin/articles/create')"
-            class="flex items-center px-6 py-3 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white font-semibold rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+            class="flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-200 whitespace-nowrap"
           >
             <Icon name="fa-solid:plus" class="mr-2" />
             Create Article
@@ -37,34 +37,34 @@
         </button>
       </div>
 
-      <div v-else class="grid grid-cols-1 gap-6">
+      <div v-else class="grid grid-cols-1 gap-4 sm:gap-6">
         <div
           v-for="article in articles"
           :key="article.id"
           class="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow overflow-hidden"
         >
-          <div class="flex gap-6 p-6">
+          <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6">
             <div v-if="article.image" class="flex-shrink-0">
               <img
                 :src="article.image"
                 :alt="article.title"
-                class="w-64 h-40 object-cover rounded-lg"
+                class="w-full sm:w-48 md:w-64 h-48 sm:h-32 md:h-40 object-cover rounded-lg"
               />
             </div>
             <div class="flex-1 min-w-0">
-              <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ article.title }}</h2>
-              <div class="text-gray-600 mb-4 line-clamp-3" v-html="article.content"></div>
-              <div class="flex items-center gap-3 mt-4">
+              <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3">{{ article.title }}</h2>
+              <div class="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3" v-html="article.content"></div>
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 mt-3 sm:mt-4">
                 <button
                   @click="navigateTo(`/admin/articles/edit/${article.id}`)"
-                  class="flex items-center px-4 py-2 bg-blue-50 text-blue-600 font-medium rounded-lg hover:bg-blue-100 transition-colors"
+                  class="flex items-center justify-center px-4 py-2 bg-blue-50 text-blue-600 font-medium rounded-lg hover:bg-blue-100 transition-colors"
                 >
                   <Icon name="fa-solid:edit" class="mr-2" />
                   Edit
                 </button>
                 <button
                   @click="deleteArticle(article.id)"
-                  class="flex items-center px-4 py-2 bg-red-50 text-red-600 font-medium rounded-lg hover:bg-red-100 transition-colors"
+                  class="flex items-center justify-center px-4 py-2 bg-red-50 text-red-600 font-medium rounded-lg hover:bg-red-100 transition-colors"
                 >
                   <Icon name="fa-solid:trash" class="mr-2" />
                   Delete
