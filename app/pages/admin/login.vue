@@ -65,13 +65,6 @@
             </span>
           </button>
         </form>
-
-        <div class="mt-6 pt-6 border-t border-gray-200">
-          <div class="bg-blue-50 rounded-lg p-3 text-center">
-            <p class="text-xs text-gray-600 mb-1">Demo Credentials</p>
-            <p class="text-sm font-mono text-gray-800">admin / admin123</p>
-          </div>
-        </div>
       </div>
     </div>
   </div>
