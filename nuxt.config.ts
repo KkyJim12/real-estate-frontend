@@ -13,6 +13,9 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  image: {
+    domains: ["emeraldbaypattaya.com", "picsum.photos"],
+  },
   fonts: {
     families: [
       {

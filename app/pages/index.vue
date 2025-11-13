@@ -12,6 +12,8 @@
         class="w-16 sm:w-20"
         src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/logo-new.png"
         alt="Emerald Bay Pattaya"
+        loading="eager"
+        format="webp"
       />
 
       <!-- Language & Phone -->
@@ -51,6 +53,8 @@
             class="w-16 sm:w-20"
             src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/logo-new.png"
             alt="Emerald Bay Pattaya"
+            loading="eager"
+            format="webp"
           />
 
           <!-- Language & Phone -->
@@ -129,6 +133,8 @@
           class="w-28"
           src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/logo-new.png"
           alt="Emerald Bay Pattaya"
+          loading="eager"
+          format="webp"
         />
       </div>
 
@@ -173,7 +179,14 @@
       }"
     >
       <div class="w-full h-full relative">
-        <img :src="item" alt="Carousel slide" class="absolute inset-0 w-full h-full object-cover" />
+        <NuxtImg 
+          :src="item" 
+          alt="Carousel slide" 
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          format="webp"
+          quality="80"
+        />
       </div>
     </UCarousel>
 
@@ -237,16 +250,28 @@
         </div>
       </div>
       <div class="lg:col-span-5 order-1 lg:order-2 flex justify-center">
-        <NuxtImg class="w-3/5 lg:w-full h-64 sm:h-80 lg:h-full object-cover rounded-lg lg:rounded-none"
-          src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/img-ramada.png" alt="Ramada Emerald Bay" />
+        <NuxtImg 
+          class="w-3/5 lg:w-full h-64 sm:h-80 lg:h-full object-cover rounded-lg lg:rounded-none"
+          src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/img-ramada.png" 
+          alt="Ramada Emerald Bay"
+          loading="lazy"
+          format="webp"
+          quality="80"
+        />
       </div>
     </div>
 
     <!-- Convilla -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-x-20">
       <div class="lg:col-span-5 order-1 flex justify-center lg:justify-start">
-        <NuxtImg class="w-3/5 lg:w-full h-64 sm:h-80 lg:h-full object-cover rounded-lg lg:rounded-none"
-          src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/img-villa.png" alt="CONVILLA" />
+        <NuxtImg 
+          class="w-3/5 lg:w-full h-64 sm:h-80 lg:h-full object-cover rounded-lg lg:rounded-none"
+          src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/img-villa.png" 
+          alt="CONVILLA"
+          loading="lazy"
+          format="webp"
+          quality="80"
+        />
       </div>
       <div class="lg:col-span-7 order-2">
         <div
