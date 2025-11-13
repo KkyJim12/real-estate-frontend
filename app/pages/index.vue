@@ -101,7 +101,44 @@
             </div>
         </div>
     </div>
-    <footer class="bg-[#1d1d39] h-96 pb-40"></footer>
+    <footer class="bg-[#1d1d39] h-96 pb-40 px-96 py-16">
+        <div class="grid grid-cols-12">
+            <div class="col-span-4">
+                <div class="flex flex-col space-y-5">
+                    <p class="text-white font-bold text-2xl">CONTACT US</p>
+                    <div class="flex flex-col space-y-3 text-sm">
+                        <div class="flex items-center space-x-3">
+                            <Icon name="fa-solid:phone" class="text-white rotate-100 text-lg" />
+                            <a class="text-white group-hover:text-[#ecbc85]" href="#">(+66) 61-610-9888</a>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <Icon name="fa-solid:envelope" class="text-white text-lg" />
+                            <a class="text-white group-hover:text-[#ecbc85]" href="#">(+66) 61-610-9888</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-4">
+                <div class="flex flex-col space-y-5">
+                    <p class="text-white font-bold text-2xl">LOCATION</p>
+                    <div class="flex flex-col space-y-1 text-sm">
+                        <p class="text-white">XJ Development Co., Ltd. (HQ)</p>
+                        <p class="text-white">11/1 AIA Sathorn Tower, 10th Floor, Unit S10016</p>
+                        <p class="text-white">South Sathorn Road, Yannawa Sub-Disctrict,</p>
+                        <p class="text-white">Sathon District, Bangkok 10120</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-4">
+                <div class="flex space-x-6 items-center">
+                    <Icon name="fa-brands:facebook" class="text-white text-3xl" />
+                    <Icon name="fa-brands:line" class="text-white text-3xl" />
+                    <Icon name="fa-brands:instagram" class="text-white text-3xl" />
+                    <Icon name="fa-brands:youtube" class="text-white text-3xl" />
+                </div>
+            </div>
+        </div>
+    </footer>
 </template>
 
 <script setup lang="ts">
