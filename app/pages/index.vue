@@ -157,11 +157,11 @@
   </nav>
 
   <!-- Carousel -->
-  <div class="pt-14 lg:pt-0 w-full">
+  <div class="w-full">
     <!-- Loading State -->
     <div
       v-if="loading"
-      class="w-full h-[50vh] sm:h-[60vh] lg:h-screen bg-gray-200 flex items-center justify-center"
+      class="w-full h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-7rem)] bg-gray-200 flex items-center justify-center"
     >
       <div class="text-center">
         <Icon name="fa-solid:spinner" class="text-4xl text-gray-400 animate-spin mb-4" />
@@ -178,7 +178,7 @@
       :autoplay="{ delay: 4000 }"
       arrows
       dots
-      class="w-full h-[50vh] sm:h-[60vh] lg:h-screen overflow-hidden"
+      class="w-full h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-7rem)] overflow-hidden"
       :ui="{
         root: 'relative w-full h-full',
         viewport: 'w-full h-full overflow-hidden',
@@ -196,7 +196,7 @@
     <!-- Empty State -->
     <div
       v-else
-      class="w-full h-[50vh] sm:h-[60vh] lg:h-screen bg-gray-100 flex items-center justify-center"
+      class="w-full h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-7rem)] bg-gray-100 flex items-center justify-center"
     >
       <div class="text-center px-4">
         <Icon name="fa-solid:images" class="text-6xl text-gray-300 mb-4" />
