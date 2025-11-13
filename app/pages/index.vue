@@ -17,7 +17,7 @@
       <!-- Language & Phone -->
       <div class="flex items-center space-x-3">
         <a href="tel:+66616109888" class="text-white">
-          <Icon name="fa-solid:phone" class="text-xl" />
+          <Icon name="fa-solid:phone" class="text-xl rotate-100 mt-1" />
         </a>
         <div class="flex items-center space-x-1 text-white text-xs">
           <span>EN</span>
@@ -62,7 +62,7 @@
           <!-- Language & Phone -->
           <div class="flex items-center space-x-3">
             <a href="tel:+66616109888" class="text-white">
-              <Icon name="fa-solid:phone" class="text-xl" />
+              <Icon name="fa-solid:phone" class="text-xl rotate-100 mt-1" />
             </a>
             <div class="flex items-center space-x-1 text-white text-xs">
               <span>EN</span>
