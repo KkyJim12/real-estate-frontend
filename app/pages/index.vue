@@ -1,42 +1,165 @@
 <template>
-  <!-- Navigation -->
-  <nav class="hidden lg:block h-auto lg:h-28 px-4 sm:px-8 lg:px-60 bg-[#1d1d39] py-4 items-center py-10">
-    <div class="flex flex-col lg:flex-row items-center justify-between lg:relative gap-4 lg:gap-0">
+  <!-- Mobile/Tablet Navigation Header -->
+  <nav class="lg:hidden fixed top-0 left-0 right-0 bg-[#1d1d39] z-50 px-4 py-3">
+    <div class="flex items-center justify-between">
+      <!-- Hamburger Menu Button -->
+      <button @click="mobileMenuOpen = true" class="text-white p-2">
+        <Icon name="fa-solid:bars" class="text-2xl" />
+      </button>
+
+      <!-- Logo -->
+      <NuxtImg
+        class="w-16 sm:w-20"
+        src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/logo-new.png"
+        alt="Emerald Bay Pattaya"
+      />
+
+      <!-- Language & Phone -->
+      <div class="flex items-center space-x-3">
+        <a href="tel:+66616109888" class="text-white">
+          <Icon name="fa-solid:phone" class="text-xl" />
+        </a>
+        <div class="flex items-center space-x-1 text-white text-xs">
+          <span>EN</span>
+          <span>/</span>
+          <span>TH</span>
+          <span>/</span>
+          <span>中文</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile/Tablet Menu Overlay -->
+  <Transition
+    enter-active-class="transition-opacity duration-300"
+    enter-from-class="opacity-0"
+    enter-to-class="opacity-100"
+    leave-active-class="transition-opacity duration-300"
+    leave-from-class="opacity-100"
+    leave-to-class="opacity-0"
+  >
+    <div
+      v-if="mobileMenuOpen"
+      class="lg:hidden fixed inset-0 bg-[#2d2d49]/95 backdrop-blur-sm z-50"
+      @click="mobileMenuOpen = false"
+    >
+      <div class="flex flex-col h-full">
+        <!-- Menu Header -->
+        <div class="flex items-center justify-between px-4 py-3 border-b border-white/10">
+          <!-- Close Button -->
+          <button @click="mobileMenuOpen = false" class="text-white p-2">
+            <Icon name="fa-solid:times" class="text-2xl" />
+          </button>
+
+          <!-- Logo -->
+          <NuxtImg
+            class="w-16 sm:w-20"
+            src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/logo-new.png"
+            alt="Emerald Bay Pattaya"
+          />
+
+          <!-- Language & Phone -->
+          <div class="flex items-center space-x-3">
+            <a href="tel:+66616109888" class="text-white">
+              <Icon name="fa-solid:phone" class="text-xl" />
+            </a>
+            <div class="flex items-center space-x-1 text-white text-xs">
+              <span>EN</span>
+              <span>/</span>
+              <span>TH</span>
+              <span>/</span>
+              <span>中文</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu Items -->
+        <nav class="flex-1 px-6 py-8">
+          <ul class="space-y-6">
+            <li>
+              <a
+                href="#home"
+                @click="mobileMenuOpen = false"
+                class="text-white/70 hover:text-white text-xl font-light tracking-wider transition-colors block"
+              >
+                HOME
+              </a>
+            </li>
+            <li>
+              <a
+                href="#portfolio"
+                @click="mobileMenuOpen = false"
+                class="text-white/70 hover:text-white text-xl font-light tracking-wider transition-colors block"
+              >
+                PORTFOLIO
+              </a>
+            </li>
+            <li>
+              <a
+                href="#ramada"
+                @click="mobileMenuOpen = false"
+                class="text-white/70 hover:text-white text-xl font-light tracking-wider transition-colors block"
+              >
+                RAMADA EMERALDBAY
+              </a>
+            </li>
+            <li>
+              <a
+                href="#convilla"
+                @click="mobileMenuOpen = false"
+                class="text-white/70 hover:text-white text-xl font-light tracking-wider transition-colors block"
+              >
+                CONVILLA EMERALDBAY
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </Transition>
+
+  <!-- Desktop Navigation -->
+  <nav class="hidden lg:flex h-28 px-60 bg-[#1d1d39] items-center">
+    <div class="flex items-center justify-between relative w-full">
       <!-- Left Section - Contact Info -->
-      <div
-        class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 w-full lg:w-auto justify-center lg:justify-start">
+      <div class="flex items-center gap-6">
         <div class="flex space-x-2 items-center group cursor-pointer">
-          <Icon name="fa-brands:facebook" class="text-white text-xl sm:text-2xl" />
-          <a class="text-white group-hover:text-[#ecbc85] text-xs sm:text-sm" href="#">emeraldbaypattaya</a>
+          <Icon name="fa-brands:facebook" class="text-white text-2xl" />
+          <a class="text-white group-hover:text-[#ecbc85] text-sm" href="#">emeraldbaypattaya</a>
         </div>
 
         <div class="flex space-x-2 items-center group cursor-pointer">
-          <Icon name="fa-solid:phone" class="text-white text-lg sm:text-xl rotate-100" />
-          <a class="text-white group-hover:text-[#ecbc85] text-xs sm:text-sm" href="#">(+66) 61-610-9888</a>
+          <Icon name="fa-solid:phone" class="text-white text-xl rotate-100" />
+          <a class="text-white group-hover:text-[#ecbc85] text-sm" href="#">(+66) 61-610-9888</a>
         </div>
       </div>
 
       <!-- Center - Logo -->
-      <div class="lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2 order-first lg:order-none">
-        <NuxtImg class="w-20 sm:w-24 lg:w-28"
-          src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/logo-new.png" alt="Emerald Bay Pattaya" />
+      <div class="absolute left-1/2 transform -translate-x-1/2">
+        <NuxtImg
+          class="w-28"
+          src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/logo-new.png"
+          alt="Emerald Bay Pattaya"
+        />
       </div>
 
       <!-- Right Section - Language -->
-      <div class="flex items-center space-x-2 sm:space-x-3">
-        <Icon name="fa-solid:globe" class="text-white text-lg sm:text-xl" />
-        <a class="text-white hover:text-[#ecbc85] text-xs sm:text-sm" href="#">EN</a>
+      <div class="flex items-center space-x-3">
+        <Icon name="fa-solid:globe" class="text-white text-xl" />
+        <a class="text-white hover:text-[#ecbc85] text-sm" href="#">EN</a>
         <span class="text-white">/</span>
-        <a class="text-white hover:text-[#ecbc85] text-xs sm:text-sm" href="#">TH</a>
+        <a class="text-white hover:text-[#ecbc85] text-sm" href="#">TH</a>
         <span class="text-white">/</span>
-        <a class="text-white hover:text-[#ecbc85] text-xs sm:text-sm" href="#">中文</a>
+        <a class="text-white hover:text-[#ecbc85] text-sm" href="#">中文</a>
       </div>
     </div>
   </nav>
 
   <!-- Carousel -->
-  <UCarousel v-slot="{ item }" :items="items" loop :autoplay="{ delay: 4000 }" arrows dots
-    class="w-full h-[50vh] sm:h-[60vh] lg:h-[calc(100vh-7rem)] overflow-hidden" :ui="{
+  <div class="pt-14 lg:pt-0">
+    <UCarousel v-slot="{ item }" :items="items" loop :autoplay="{ delay: 4000 }" arrows dots
+      class="w-full h-[50vh] sm:h-[60vh] lg:h-[calc(100vh-7rem)] overflow-hidden" :ui="{
       container: 'h-full overflow-hidden',
       item: 'h-full flex-shrink-0 overflow-hidden',
       dots: 'absolute bottom-4 sm:bottom-6 left-0 right-0 flex justify-center space-x-2 sm:space-x-3 z-20',
@@ -46,6 +169,7 @@
       <img :src="item" alt="" class="object-cover w-full h-full rounded-none" />
     </div>
   </UCarousel>
+  </div>
 
   <!-- About Us Section -->
   <div
@@ -223,9 +347,24 @@
 </template>
 
 <script setup lang="ts">
+const mobileMenuOpen = ref(false);
+
 const items = [
-  "https://picsum.photos/1920/1080?random=1",
-  "https://picsum.photos/1920/1080?random=2",
-  "https://picsum.photos/1920/1080?random=3",
+  'https://picsum.photos/1920/1080?random=1',
+  'https://picsum.photos/1920/1080?random=2',
+  'https://picsum.photos/1920/1080?random=3',
 ];
+
+// Close menu on escape key
+onMounted(() => {
+  const handleEscape = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      mobileMenuOpen.value = false;
+    }
+  };
+  window.addEventListener('keydown', handleEscape);
+  onUnmounted(() => {
+    window.removeEventListener('keydown', handleEscape);
+  });
+});
 </script>
