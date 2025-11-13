@@ -6,13 +6,13 @@
           <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[#ecbc85] to-[#d4a574] rounded-full mb-4">
             <Icon name="fa-solid:user-shield" class="text-3xl text-white" />
           </div>
-          <h1 class="text-3xl font-bold text-gray-800 mb-2">Admin Panel</h1>
-          <p class="text-gray-500">Sign in to manage your content</p>
+          <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ $t('admin.login.title') }}</h1>
+          <p class="text-gray-500">{{ $t('admin.login.subtitle') }}</p>
         </div>
 
         <form @submit.prevent="handleLogin" class="space-y-5">
           <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Username</label>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">{{ $t('admin.login.username') }}</label>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <Icon name="fa-solid:user" class="text-gray-400" />
@@ -21,14 +21,14 @@
                 v-model="form.username"
                 type="text"
                 class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
-                placeholder="Enter your username"
+                :placeholder="$t('admin.login.usernamePlaceholder')"
                 required
               />
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Password</label>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">{{ $t('admin.login.password') }}</label>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <Icon name="fa-solid:lock" class="text-gray-400" />
@@ -37,7 +37,7 @@
                 v-model="form.password"
                 type="password"
                 class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
-                placeholder="Enter your password"
+                :placeholder="$t('admin.login.passwordPlaceholder')"
                 required
               />
             </div>
@@ -57,11 +57,11 @@
           >
             <span v-if="!loading" class="flex items-center justify-center">
               <Icon name="fa-solid:sign-in-alt" class="mr-2" />
-              Sign In
+              {{ $t('admin.login.signIn') }}
             </span>
             <span v-else class="flex items-center justify-center">
               <Icon name="fa-solid:spinner" class="mr-2 animate-spin" />
-              Signing in...
+              {{ $t('admin.login.signingIn') }}
             </span>
           </button>
         </form>
@@ -96,7 +96,8 @@ const handleLogin = async () => {
       navigateTo('/admin/articles');
     }
   } catch (err: any) {
-    error.value = err.data?.message || err.message || 'Invalid username or password';
+    const { $t } = useNuxtApp();
+    error.value = err.data?.message || err.message || $t('admin.login.error');
   } finally {
     loading.value = false;
   }

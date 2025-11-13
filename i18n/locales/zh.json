@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "home": "首页",
+    "portfolio": "作品集",
+    "ramada": "华美达翡翠湾",
+    "convilla": "康维拉翡翠湾",
+    "contact": "联系我们",
+    "location": "位置",
+    "follow": "关注我们"
+  },
+  "home": {
+    "aboutTitle": "关于我们",
+    "aboutText1": "在翡翠湾芭提雅重新充电您的幸福...",
+    "aboutText2": "豪华度假公寓位于最佳位置，提供步行距离",
+    "aboutText3": "在超过25莱的独特绿荫中享受宁静舒适",
+    "businessTitle": "我们的业务"
+  },
+  "ramada": {
+    "title": "华美达翡翠湾",
+    "text1": "黄金地段的宁静魅力",
+    "text2": "完美舒适王国的新投资宝藏",
+    "text3": "和隐私",
+    "viewMore": "查看更多"
+  },
+  "convilla": {
+    "title": "康维拉",
+    "text1": "同步中的独特性",
+    "text2": "公寓的新维度",
+    "text3": "为您带来前所未有的体验",
+    "text4": "公寓和别墅的最佳融合",
+    "text5": "创造生活的新定义：\"康维拉\"",
+    "viewMore": "查看更多"
+  },
+  "footer": {
+    "contactTitle": "联系我们",
+    "locationTitle": "位置",
+    "followTitle": "关注我们",
+    "company": "XJ开发有限公司（总部）",
+    "address1": "11/1 AIA沙吞大厦10楼S10016单元",
+    "address2": "南沙吞路，延那瓦分区",
+    "address3": "沙吞区，曼谷10120",
+    "copyright": "翡翠湾芭提雅。保留所有权利。"
+  },
+  "bottomBar": {
+    "tel": "电话",
+    "line": "LINE",
+    "register": "注册"
+  },
+  "carousel": {
+    "loading": "加载中...",
+    "noSlides": "没有可用的轮播图"
+  },
+  "admin": {
+    "login": {
+      "title": "管理面板",
+      "subtitle": "登录以管理您的内容",
+      "username": "用户名",
+      "password": "密码",
+      "usernamePlaceholder": "输入您的用户名",
+      "passwordPlaceholder": "输入您的密码",
+      "signIn": "登录",
+      "signingIn": "登录中...",
+      "error": "用户名或密码无效"
+    }
+  }
+}

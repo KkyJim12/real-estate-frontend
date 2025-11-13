@@ -17,15 +17,9 @@
       <!-- Language & Phone -->
       <div class="flex items-center space-x-3">
         <a href="tel:+66616109888" class="text-white">
-          <Icon name="fa-solid:phone" class="text-xl rotate-100 mt-1" />
+          <Icon name="fa-solid:phone" class="text-xl" />
         </a>
-        <div class="flex items-center space-x-1 text-white text-xs">
-          <span>EN</span>
-          <span>/</span>
-          <span>TH</span>
-          <span>/</span>
-          <span>中文</span>
-        </div>
+        <LanguageSwitcher />
       </div>
     </div>
   </nav>
@@ -62,15 +56,9 @@
           <!-- Language & Phone -->
           <div class="flex items-center space-x-3">
             <a href="tel:+66616109888" class="text-white">
-              <Icon name="fa-solid:phone" class="text-xl rotate-100 mt-1" />
+              <Icon name="fa-solid:phone" class="text-xl" />
             </a>
-            <div class="flex items-center space-x-1 text-white text-xs">
-              <span>EN</span>
-              <span>/</span>
-              <span>TH</span>
-              <span>/</span>
-              <span>中文</span>
-            </div>
+            <LanguageSwitcher />
           </div>
         </div>
 
@@ -83,7 +71,7 @@
                 @click="mobileMenuOpen = false"
                 class="text-white/70 hover:text-white text-xl font-light tracking-wider transition-colors block"
               >
-                HOME
+                {{ $t('nav.home') }}
               </a>
             </li>
             <li>
@@ -92,7 +80,7 @@
                 @click="mobileMenuOpen = false"
                 class="text-white/70 hover:text-white text-xl font-light tracking-wider transition-colors block"
               >
-                PORTFOLIO
+                {{ $t('nav.portfolio') }}
               </a>
             </li>
             <li>
@@ -101,7 +89,7 @@
                 @click="mobileMenuOpen = false"
                 class="text-white/70 hover:text-white text-xl font-light tracking-wider transition-colors block"
               >
-                RAMADA EMERALDBAY
+                {{ $t('nav.ramada') }}
               </a>
             </li>
             <li>
@@ -110,7 +98,7 @@
                 @click="mobileMenuOpen = false"
                 class="text-white/70 hover:text-white text-xl font-light tracking-wider transition-colors block"
               >
-                CONVILLA EMERALDBAY
+                {{ $t('nav.convilla') }}
               </a>
             </li>
           </ul>
@@ -147,11 +135,7 @@
       <!-- Right Section - Language -->
       <div class="flex items-center space-x-3">
         <Icon name="fa-solid:globe" class="text-white text-xl" />
-        <a class="text-white hover:text-[#ecbc85] text-sm" href="#">EN</a>
-        <span class="text-white">/</span>
-        <a class="text-white hover:text-[#ecbc85] text-sm" href="#">TH</a>
-        <span class="text-white">/</span>
-        <a class="text-white hover:text-[#ecbc85] text-sm" href="#">中文</a>
+        <LanguageSwitcher />
       </div>
     </div>
   </nav>
@@ -165,7 +149,7 @@
     >
       <div class="text-center">
         <Icon name="fa-solid:spinner" class="text-4xl text-gray-400 animate-spin mb-4" />
-        <p class="text-gray-500">Loading...</p>
+        <p class="text-gray-500">{{ $t('carousel.loading') }}</p>
       </div>
     </div>
 
@@ -200,7 +184,7 @@
     >
       <div class="text-center px-4">
         <Icon name="fa-solid:images" class="text-6xl text-gray-300 mb-4" />
-        <p class="text-gray-500 text-lg">No carousel slides available</p>
+        <p class="text-gray-500 text-lg">{{ $t('carousel.noSlides') }}</p>
       </div>
     </div>
   </div>
@@ -209,14 +193,12 @@
   <div
     class="py-10 sm:py-16 lg:py-20 flex flex-col items-center justify-center space-y-4 sm:space-y-6 px-4 sm:px-8 lg:px-96">
     <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#36384f] text-center">
-      ABOUT US
+      {{ $t('home.aboutTitle') }}
     </h2>
     <p class="text-sm sm:text-base lg:text-xl text-[#2c3c51] text-center max-w-4xl">
-      <span class="block mb-2">Recharge your happiness upon perfection at...EMERALD BAY PATTAYA</span>
-      <span class="block mb-2">the luxurious resort condominium on the best location that offers
-        walking-distance</span>
-      <span class="block">convenience amidst serene comfort among unique greenery shade over 25
-        rai area.</span>
+      <span class="block mb-2">{{ $t('home.aboutText1') }}</span>
+      <span class="block mb-2">{{ $t('home.aboutText2') }}</span>
+      <span class="block">{{ $t('home.aboutText3') }}</span>
     </p>
   </div>
 
@@ -225,7 +207,7 @@
     <div class="flex items-center w-full">
       <hr class="flex-grow border-t-2 sm:border-t-3 border-[#ecbc85]" />
       <h2 class="px-3 sm:px-6 text-xl sm:text-3xl lg:text-4xl font-bold text-[#36384f] whitespace-nowrap">
-        OUR BUSINESS
+        {{ $t('home.businessTitle') }}
       </h2>
       <hr class="flex-grow border-t-2 sm:border-t-3 border-[#ecbc85]" />
     </div>
@@ -239,19 +221,18 @@
         <div
           class="flex flex-col justify-center lg:items-start items-center h-full space-y-4 sm:space-y-6 lg:space-y-8 w-full text-center lg:text-left">
           <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#36384f]">
-            RAMADA EMERALD BAY
+            {{ $t('ramada.title') }}
           </h2>
           <hr class="border-t-2 sm:border-t-3 border-[#ecbc85] w-4/5 sm:w-4/5" />
           <p class="text-sm sm:text-base lg:text-xl text-[#2c3c51]">
-            <span class="block mb-2">The allure of silence on the prime spot.</span>
-            <span class="block mb-2">The new treasure of investment on the kingdom of perfect
-              ease</span>
-            <span class="block">and privacy.</span>
+            <span class="block mb-2">{{ $t('ramada.text1') }}</span>
+            <span class="block mb-2">{{ $t('ramada.text2') }}</span>
+            <span class="block">{{ $t('ramada.text3') }}</span>
           </p>
           <NuxtLink
             class="bg-[#36364e] w-60 sm:w-48 lg:w-40 py-2 sm:py-3 flex justify-center text-white text-base sm:text-lg lg:text-xl duration-200 hover:bg-[#ecbc85]"
             to="/">
-            VIEW MORE
+            {{ $t('ramada.viewMore') }}
           </NuxtLink>
         </div>
       </div>
@@ -271,20 +252,20 @@
         <div
           class="flex flex-col justify-center lg:items-start items-center h-full space-y-4 sm:space-y-6 lg:space-y-8 w-full">
           <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#36384f]">
-            CONVILLA
+            {{ $t('convilla.title') }}
           </h2>
           <hr class="border-t-2 sm:border-t-3 border-[#ecbc85] w-3/5 sm:w-4/5" />
           <p class="text-sm sm:text-base lg:text-xl text-[#2c3c51] text-center lg:text-left">
-            <span class="block mb-2">Uniqueness in synchronicity.</span>
-            <span class="block mb-2">A new dimension of condominium</span>
-            <span class="block mb-2">that brings more to you than ever.</span>
-            <span class="block mt-4 sm:mt-6 lg:mt-8 mb-2">The best convergence of condo and villa,</span>
-            <span class="block">to create the new definition of living: "CONVILLA".</span>
+            <span class="block mb-2">{{ $t('convilla.text1') }}</span>
+            <span class="block mb-2">{{ $t('convilla.text2') }}</span>
+            <span class="block mb-2">{{ $t('convilla.text3') }}</span>
+            <span class="block mt-4 sm:mt-6 lg:mt-8 mb-2">{{ $t('convilla.text4') }}</span>
+            <span class="block">{{ $t('convilla.text5') }}</span>
           </p>
           <NuxtLink
             class="bg-[#36364e] w-60 sm:w-48 lg:w-40 py-2 sm:py-3 flex justify-center text-white text-base sm:text-lg lg:text-xl duration-200 hover:bg-[#ecbc85]"
             to="/">
-            VIEW MORE
+            {{ $t('convilla.viewMore') }}
           </NuxtLink>
         </div>
       </div>
@@ -297,7 +278,7 @@
       <!-- Contact Us -->
       <div class="sm:col-span-2 lg:col-span-4">
         <div class="flex flex-col space-y-4 sm:space-y-5">
-          <p class="text-white font-bold text-xl sm:text-2xl">CONTACT US</p>
+          <p class="text-white font-bold text-xl sm:text-2xl">{{ $t('footer.contactTitle') }}</p>
           <div class="flex flex-col space-y-3 text-sm sm:text-base">
             <div class="flex items-center space-x-3">
               <Icon name="fa-solid:phone" class="text-white rotate-100 text-base sm:text-lg" />
@@ -318,14 +299,12 @@
       <!-- Location -->
       <div class="sm:col-span-2 lg:col-span-4">
         <div class="flex flex-col space-y-4 sm:space-y-5">
-          <p class="text-white font-bold text-xl sm:text-2xl">LOCATION</p>
+          <p class="text-white font-bold text-xl sm:text-2xl">{{ $t('footer.locationTitle') }}</p>
           <div class="flex flex-col space-y-1 text-xs sm:text-sm">
-            <p class="text-white">XJ Development Co., Ltd. (HQ)</p>
-            <p class="text-white">
-              11/1 AIA Sathorn Tower, 10th Floor, Unit S10016
-            </p>
-            <p class="text-white">South Sathorn Road, Yannawa Sub-District,</p>
-            <p class="text-white">Sathorn District, Bangkok 10120</p>
+            <p class="text-white">{{ $t('footer.company') }}</p>
+            <p class="text-white">{{ $t('footer.address1') }}</p>
+            <p class="text-white">{{ $t('footer.address2') }}</p>
+            <p class="text-white">{{ $t('footer.address3') }}</p>
           </div>
         </div>
       </div>
@@ -333,7 +312,7 @@
       <!-- Social Media -->
       <div class="sm:col-span-2 lg:col-span-4">
         <div class="flex flex-col space-y-4 sm:space-y-5">
-          <p class="text-white font-bold text-xl sm:text-2xl">FOLLOW US</p>
+          <p class="text-white font-bold text-xl sm:text-2xl">{{ $t('footer.followTitle') }}</p>
           <div class="flex space-x-4 sm:space-x-6 items-center">
             <a href="#" class="text-white hover:text-[#ecbc85] transition-colors">
               <Icon name="fa-brands:facebook" class="text-2xl sm:text-3xl" />
@@ -360,21 +339,21 @@
       <a href="tel:+66616109888"
         class="flex flex-col items-center justify-center space-y-1 hover:bg-white/10 transition-colors">
         <Icon name="fa-solid:phone" class="text-white text-2xl" />
-        <span class="text-white text-xs font-semibold tracking-wider">TEL</span>
+        <span class="text-white text-xs font-semibold tracking-wider">{{ $t('bottomBar.tel') }}</span>
       </a>
 
       <!-- Line Button -->
       <a href="https://line.me/ti/p/~emeraldbaypattaya" target="_blank"
         class="flex flex-col items-center justify-center space-y-1 hover:bg-white/10 transition-colors border-x border-white/10">
         <Icon name="fa-brands:line" class="text-white text-2xl" />
-        <span class="text-white text-xs font-semibold tracking-wider">LINE</span>
+        <span class="text-white text-xs font-semibold tracking-wider">{{ $t('bottomBar.line') }}</span>
       </a>
 
       <!-- Register Button -->
       <a href="#register"
         class="flex flex-col items-center justify-center space-y-1 hover:bg-white/10 transition-colors">
         <Icon name="fa-solid:edit" class="text-white text-2xl" />
-        <span class="text-white text-xs font-semibold tracking-wider">REGISTER</span>
+        <span class="text-white text-xs font-semibold tracking-wider">{{ $t('bottomBar.register') }}</span>
       </a>
     </div>
   </div>
