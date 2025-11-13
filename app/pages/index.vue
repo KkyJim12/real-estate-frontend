@@ -157,11 +157,11 @@
   </nav>
 
   <!-- Carousel -->
-  <div class="pt-14 lg:pt-0">
+  <div class="pt-14 lg:pt-0 w-full">
     <!-- Loading State -->
     <div
       v-if="loading"
-      class="w-full h-[50vh] sm:h-[60vh] lg:h-[calc(100vh-7rem)] bg-gray-200 flex items-center justify-center"
+      class="w-full h-[50vh] sm:h-[60vh] lg:h-screen bg-gray-200 flex items-center justify-center"
     >
       <div class="text-center">
         <Icon name="fa-solid:spinner" class="text-4xl text-gray-400 animate-spin mb-4" />
@@ -178,23 +178,23 @@
       :autoplay="{ delay: 4000 }"
       arrows
       dots
-      class="w-full h-[50vh] sm:h-[60vh] lg:h-[calc(100vh-7rem)] overflow-hidden"
+      class="w-full h-[50vh] sm:h-[60vh] lg:h-screen"
       :ui="{
-        container: 'h-full overflow-hidden',
-        item: 'h-full flex-shrink-0 overflow-hidden',
+        container: 'w-full h-full',
+        item: 'w-full h-full',
         dots: 'absolute bottom-4 sm:bottom-6 left-0 right-0 flex justify-center space-x-2 sm:space-x-3 z-20',
         dot: 'h-1 w-8 sm:w-10 rounded-sm bg-[#ecbc85]/50 data-[active=true]:bg-[#ecbc85] transition-colors duration-300',
       }"
     >
-      <div class="relative w-full h-full">
-        <img :src="item" alt="" class="object-cover w-full h-full rounded-none" />
+      <div class="w-full h-full">
+        <img :src="item" alt="Carousel slide" class="w-full h-full object-cover" />
       </div>
     </UCarousel>
 
     <!-- Empty State -->
     <div
       v-else
-      class="w-full h-[50vh] sm:h-[60vh] lg:h-[calc(100vh-7rem)] bg-gray-100 flex items-center justify-center"
+      class="w-full h-[50vh] sm:h-[60vh] lg:h-screen bg-gray-100 flex items-center justify-center"
     >
       <div class="text-center px-4">
         <Icon name="fa-solid:images" class="text-6xl text-gray-300 mb-4" />
