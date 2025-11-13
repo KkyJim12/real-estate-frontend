@@ -178,16 +178,18 @@
       :autoplay="{ delay: 4000 }"
       arrows
       dots
-      class="w-full h-[50vh] sm:h-[60vh] lg:h-screen"
+      class="w-full h-[50vh] sm:h-[60vh] lg:h-screen overflow-hidden"
       :ui="{
-        container: 'w-full h-full',
-        item: 'w-full h-full',
+        root: 'relative w-full h-full',
+        viewport: 'w-full h-full overflow-hidden',
+        container: 'flex h-full w-full',
+        item: 'min-w-full h-full flex-shrink-0',
         dots: 'absolute bottom-4 sm:bottom-6 left-0 right-0 flex justify-center space-x-2 sm:space-x-3 z-20',
         dot: 'h-1 w-8 sm:w-10 rounded-sm bg-[#ecbc85]/50 data-[active=true]:bg-[#ecbc85] transition-colors duration-300',
       }"
     >
-      <div class="w-full h-full">
-        <img :src="item" alt="Carousel slide" class="w-full h-full object-cover" />
+      <div class="w-full h-full relative">
+        <img :src="item" alt="Carousel slide" class="absolute inset-0 w-full h-full object-cover" />
       </div>
     </UCarousel>
 
