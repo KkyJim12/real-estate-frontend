@@ -20,6 +20,7 @@
     "@tiptap/extension-underline": "^3.10.5",
     "@tiptap/starter-kit": "^3.10.5",
     "@tiptap/vue-3": "^3.10.5",
+    "@vercel/blob": "^2.0.0",
     "nuxt": "^4.2.1",
     "tailwindcss": "^4.1.17",
     "vue": "^3.5.24",

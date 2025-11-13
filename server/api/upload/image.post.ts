@@ -1,3 +1,4 @@
+import { put } from '@vercel/blob';
 import fs from 'fs';
 import path from 'path';
 
@@ -11,10 +12,8 @@ const ensureUploadDir = () => {
 
 export default defineEventHandler(async (event) => {
   try {
-    ensureUploadDir();
-
     const form = await readMultipartFormData(event);
-    
+
     if (!form || form.length === 0) {
       throw createError({
         statusCode: 400,
@@ -23,7 +22,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const file = form[0];
-    
+
     if (!file.filename || !file.data) {
       throw createError({
         statusCode: 400,
@@ -40,21 +39,50 @@ export default defineEventHandler(async (event) => {
       });
     }
 
+    // Validate file size (max 5MB)
+    if (file.data.length > 5 * 1024 * 1024) {
+      throw createError({
+        statusCode: 400,
+        message: 'File size must be less than 5MB',
+      });
+    }
+
     // Generate unique filename
     const timestamp = Date.now();
     const ext = path.extname(file.filename);
     const filename = `${timestamp}${ext}`;
-    const filepath = path.join(uploadsDir, filename);
 
-    // Save file
-    fs.writeFileSync(filepath, file.data);
+    // Check if Vercel Blob is configured
+    const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
 
-    // Return URL
-    return {
-      success: true,
-      url: `/uploads/${filename}`,
-      filename: filename,
-    };
+    if (blobToken) {
+      // Use Vercel Blob
+      console.log('Uploading to Vercel Blob...');
+      const blob = await put(filename, file.data, {
+        access: 'public',
+        contentType: file.type,
+      });
+
+      return {
+        success: true,
+        url: blob.url,
+        filename: filename,
+        storage: 'vercel-blob',
+      };
+    } else {
+      // Fallback to local storage
+      console.log('Uploading to local storage...');
+      ensureUploadDir();
+      const filepath = path.join(uploadsDir, filename);
+      fs.writeFileSync(filepath, file.data);
+
+      return {
+        success: true,
+        url: `/uploads/${filename}`,
+        filename: filename,
+        storage: 'local',
+      };
+    }
   } catch (error: any) {
     console.error('Upload error:', error);
     throw createError({
