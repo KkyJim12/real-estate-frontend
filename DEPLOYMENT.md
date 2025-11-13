@@ -8,18 +8,35 @@
 
 ### Setup Steps
 
-#### 1. Create Vercel Blob Store
+#### 1. Create Vercel Stores
+
+**A. Create Vercel KV (Redis) Store**
 1. Go to your [Vercel Dashboard](https://vercel.com/dashboard)
 2. Navigate to **Storage** → **Create Database**
+3. Select **KV** (Redis) storage
+4. Create a new KV store
+5. Connect it to your project
+6. The environment variables will be automatically added
+
+**B. Create Vercel Blob Store**
+1. In the same **Storage** section
+2. Click **Create Database** again
 3. Select **Blob** storage
 4. Create a new Blob store
-5. Copy the `BLOB_READ_WRITE_TOKEN` from the store settings
+5. Connect it to your project
+6. Copy the `BLOB_READ_WRITE_TOKEN` from the store settings
 
 #### 2. Configure Environment Variables
-In your Vercel project settings, add the following environment variable:
+The following environment variables should be automatically added when you connect the stores:
 
 ```
-BLOB_READ_WRITE_TOKEN=vercel_blob_xxxxxxxxxxxxx
+# Vercel KV (automatically added)
+KV_REST_API_URL=https://...
+KV_REST_API_TOKEN=...
+KV_REST_API_READ_ONLY_TOKEN=...
+
+# Vercel Blob (automatically added)
+BLOB_READ_WRITE_TOKEN=vercel_blob_...
 ```
 
 #### 3. Deploy
@@ -45,6 +62,9 @@ vercel
 
 | Variable | Description | Required |
 |----------|-------------|----------|
+| `KV_REST_API_URL` | Vercel KV REST API URL | Yes (for Vercel) |
+| `KV_REST_API_TOKEN` | Vercel KV REST API token | Yes (for Vercel) |
+| `KV_REST_API_READ_ONLY_TOKEN` | Vercel KV read-only token | Yes (for Vercel) |
 | `BLOB_READ_WRITE_TOKEN` | Vercel Blob storage token | Yes (for Vercel) |
 | `NODE_ENV` | Environment (development/production) | No |
 
@@ -68,12 +88,9 @@ vercel
 - Verify the site is using HTTPS (required for secure cookies)
 
 **Data not persisting:**
-- JSON file storage is not recommended for production
-- Consider migrating to a database like:
-  - Vercel Postgres
-  - MongoDB Atlas
-  - Supabase
-  - PlanetScale
+- Make sure Vercel KV is properly connected
+- Check if KV environment variables are set
+- Verify the KV store is active in Vercel dashboard
 
 ## Local Development
 
@@ -87,11 +104,11 @@ vercel
 
 For a production-ready application, consider:
 
-1. **Database**: Replace JSON files with a proper database
-2. **Authentication**: Implement proper user management with hashed passwords
-3. **Image Optimization**: Add image compression and optimization
-4. **CDN**: Use a CDN for static assets
-5. **Backup**: Implement automated backups for data
-6. **Monitoring**: Add error tracking (Sentry, LogRocket, etc.)
-7. **Rate Limiting**: Add rate limiting for API endpoints
-8. **CORS**: Configure CORS properly for your domain
+1. **Authentication**: Implement proper user management with hashed passwords
+2. **Image Optimization**: Add image compression and optimization
+3. **CDN**: Use a CDN for static assets
+4. **Backup**: Implement automated backups for Vercel KV data
+5. **Monitoring**: Add error tracking (Sentry, LogRocket, etc.)
+6. **Rate Limiting**: Add rate limiting for API endpoints
+7. **CORS**: Configure CORS properly for your domain
+8. **Database Migration**: For larger datasets, consider migrating to Vercel Postgres

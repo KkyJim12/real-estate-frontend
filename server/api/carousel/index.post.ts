@@ -1,22 +1,5 @@
-import fs from 'fs';
-import path from 'path';
-
-const carouselFile = path.join(process.cwd(), 'data', 'carousel.json');
-
-const ensureDataDir = () => {
-  const dataDir = path.join(process.cwd(), 'data');
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-  if (!fs.existsSync(carouselFile)) {
-    fs.writeFileSync(carouselFile, JSON.stringify([]));
-  }
-};
-
 export default defineEventHandler(async (event) => {
   try {
-    ensureDataDir();
-
     const body = await readBody(event);
 
     const newSlide = {
@@ -30,13 +13,11 @@ export default defineEventHandler(async (event) => {
       updatedAt: new Date().toISOString(),
     };
 
-    const data = fs.readFileSync(carouselFile, 'utf-8');
-    const slides = JSON.parse(data || '[]');
-    slides.push(newSlide);
-    fs.writeFileSync(carouselFile, JSON.stringify(slides, null, 2));
+    await db.create('carousel', newSlide);
 
     return newSlide;
   } catch (error: any) {
+    console.error('Error saving slide:', error);
     throw createError({
       statusCode: 500,
       message: error.message || 'Failed to create slide',

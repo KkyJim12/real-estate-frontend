@@ -1,26 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-
-const carouselFile = path.join(process.cwd(), 'data', 'carousel.json');
-
-const ensureDataDir = () => {
-  const dataDir = path.join(process.cwd(), 'data');
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-  if (!fs.existsSync(carouselFile)) {
-    fs.writeFileSync(carouselFile, JSON.stringify([]));
-  }
-};
-
 export default defineEventHandler(async () => {
-  ensureDataDir();
-
   try {
-    const data = fs.readFileSync(carouselFile, 'utf-8');
-    const slides = JSON.parse(data);
+    const slides = await db.getAll('carousel');
     return slides;
   } catch (error) {
+    console.error('Error fetching carousel:', error);
     return [];
   }
 });
