@@ -105,6 +105,15 @@
                 {{ $t('nav.convilla') }}
               </a>
             </li>
+            <li>
+              <NuxtLink
+                to="/articles"
+                @click="mobileMenuOpen = false"
+                class="text-white/70 hover:text-white text-xl font-light tracking-wider transition-colors block"
+              >
+                {{ $t('nav.news') }}
+              </NuxtLink>
+            </li>
           </ul>
         </nav>
       </div>
