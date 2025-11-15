@@ -9,6 +9,10 @@ export default defineEventHandler(async (event) => {
       title: body.title || '',
       image: body.image || '',
       content: body.content || '',
+      excerpt: body.excerpt || '',
+      author: body.author || '',
+      status: body.status || 'published',
+      publishedAt: body.publishedAt || new Date().toISOString(),
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };

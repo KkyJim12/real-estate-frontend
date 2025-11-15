@@ -7,8 +7,12 @@ export default defineEventHandler(async (event) => {
       title: body.title,
       image: body.image,
       content: body.content,
+      excerpt: body.excerpt,
+      author: body.author,
+      status: body.status,
+      publishedAt: body.publishedAt,
       updatedAt: new Date().toISOString(),
-    });
+    } as any);
 
     if (!updated) {
       throw createError({
