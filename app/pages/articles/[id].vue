@@ -171,47 +171,84 @@ useHead(() => ({
 
 <style scoped>
 .article-content :deep(h1) {
-  @apply text-3xl font-bold mt-8 mb-4 text-gray-900;
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #111827;
 }
 
 .article-content :deep(h2) {
-  @apply text-2xl font-bold mt-6 mb-3 text-gray-900;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #111827;
 }
 
 .article-content :deep(h3) {
-  @apply text-xl font-bold mt-4 mb-2 text-gray-900;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #111827;
 }
 
 .article-content :deep(p) {
-  @apply mb-4 text-gray-700 leading-relaxed;
+  margin-bottom: 1rem;
+  color: #374151;
+  line-height: 1.75;
 }
 
 .article-content :deep(ul),
 .article-content :deep(ol) {
-  @apply mb-4 ml-6;
+  margin-bottom: 1rem;
+  margin-left: 1.5rem;
 }
 
 .article-content :deep(li) {
-  @apply mb-2 text-gray-700;
+  margin-bottom: 0.5rem;
+  color: #374151;
 }
 
 .article-content :deep(a) {
-  @apply text-[#ecbc85] hover:underline;
+  color: #ecbc85;
+  text-decoration: none;
+}
+
+.article-content :deep(a:hover) {
+  text-decoration: underline;
 }
 
 .article-content :deep(img) {
-  @apply rounded-lg my-6 shadow-md;
+  border-radius: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .article-content :deep(blockquote) {
-  @apply border-l-4 border-[#ecbc85] pl-4 italic my-6 text-gray-600;
+  border-left: 4px solid #ecbc85;
+  padding-left: 1rem;
+  font-style: italic;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #4b5563;
 }
 
 .article-content :deep(code) {
-  @apply bg-gray-100 px-2 py-1 rounded text-sm;
+  background-color: #f3f4f6;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
 }
 
 .article-content :deep(pre) {
-  @apply bg-gray-100 p-4 rounded-lg overflow-x-auto my-6;
+  background-color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 </style>
