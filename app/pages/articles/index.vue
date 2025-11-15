@@ -1,23 +1,15 @@
 <template>
   <div class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <SiteNavigation />
+
     <!-- Header -->
-    <header class="bg-[#1d1d39] text-white py-16 px-4">
+    <header class="bg-[#1d1d39] text-white py-16 px-4 mt-14 lg:mt-0">
       <div class="max-w-6xl mx-auto text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ $t('articles.title') }}</h1>
         <p class="text-lg md:text-xl text-white/80">{{ $t('articles.subtitle') }}</p>
       </div>
     </header>
-
-    <!-- Navigation -->
-    <div class="bg-white shadow-sm py-4 px-4 sticky top-0 z-40">
-      <div class="max-w-6xl mx-auto flex items-center justify-between">
-        <NuxtLink to="/" class="flex items-center space-x-2 text-gray-600 hover:text-[#ecbc85] transition-colors">
-          <Icon name="fa-solid:arrow-left" />
-          <span>{{ $t('nav.home') }}</span>
-        </NuxtLink>
-        <LanguageSwitcher />
-      </div>
-    </div>
 
     <!-- Loading State -->
     <div v-if="loading" class="max-w-6xl mx-auto px-4 py-16">
@@ -28,7 +20,7 @@
     </div>
 
     <!-- Articles Grid -->
-    <div v-else-if="articles.length > 0" class="max-w-6xl mx-auto px-4 py-12">
+    <div v-else-if="articles.length > 0" class="max-w-6xl mx-auto px-4 py-12 pb-28 lg:pb-12">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <article
           v-for="article in articles"
@@ -82,6 +74,9 @@
         <p class="text-gray-500 text-lg">{{ $t('articles.noArticles') }}</p>
       </div>
     </div>
+
+    <!-- Mobile Bottom Bar -->
+    <MobileBottomBar />
   </div>
 </template>
 

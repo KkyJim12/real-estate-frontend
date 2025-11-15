@@ -1,15 +1,17 @@
 <template>
   <div class="min-h-screen bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-sm py-4 px-4 sticky top-0 z-40">
-      <div class="max-w-4xl mx-auto flex items-center justify-between">
+    <SiteNavigation />
+
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b border-gray-200 py-4 px-4 mt-14 lg:mt-0">
+      <div class="max-w-4xl mx-auto">
         <NuxtLink to="/articles" class="flex items-center space-x-2 text-gray-600 hover:text-[#ecbc85] transition-colors">
           <Icon name="fa-solid:arrow-left" />
           <span>{{ $t('articles.backToList') }}</span>
         </NuxtLink>
-        <LanguageSwitcher />
       </div>
-    </nav>
+    </div>
 
     <!-- Loading State -->
     <div v-if="loading" class="max-w-4xl mx-auto px-4 py-16">
@@ -20,7 +22,7 @@
     </div>
 
     <!-- Article Content -->
-    <article v-else-if="article" class="max-w-4xl mx-auto px-4 py-12">
+    <article v-else-if="article" class="max-w-4xl mx-auto px-4 py-12 pb-28 lg:pb-12">
       <!-- Featured Image -->
       <div v-if="article.featuredImage" class="mb-8 rounded-lg overflow-hidden shadow-lg">
         <NuxtImg
@@ -113,6 +115,9 @@
         </NuxtLink>
       </div>
     </div>
+
+    <!-- Mobile Bottom Bar -->
+    <MobileBottomBar />
   </div>
 </template>
 

@@ -330,6 +330,41 @@ https://www.linkedin.com/sharing/share-offsite/?url=${articleUrl}
 3. Test with different content
 4. Check for conflicting styles
 
+## Homepage News Section
+
+The homepage displays the latest 3 articles in a featured section.
+
+### Features
+- ✅ Shows 3 most recent published articles
+- ✅ Card layout with images
+- ✅ Title, excerpt, and date
+- ✅ "View All News" button
+- ✅ Loading and empty states
+- ✅ Responsive grid layout
+- ✅ Multi-language support
+
+### Implementation
+
+Located in `app/pages/index.vue` before the footer:
+
+```vue
+<script setup>
+const latestArticles = ref([]);
+const loadingArticles = ref(true);
+
+const loadLatestArticles = async () => {
+  const data = await $fetch('/api/public/articles');
+  latestArticles.value = data.slice(0, 3); // Get latest 3
+};
+</script>
+```
+
+### Styling
+- Background: Light gray (`bg-gray-50`)
+- Cards: White with shadow
+- Grid: 1/2/3 columns responsive
+- Hover: Shadow increase + image zoom
+
 ## Future Enhancements
 
 ### Potential Features
@@ -342,6 +377,7 @@ https://www.linkedin.com/sharing/share-offsite/?url=${articleUrl}
 - [ ] Article views counter
 - [ ] RSS feed
 - [ ] Newsletter subscription
+- [ ] Article categories on homepage
 
 ## Resources
 

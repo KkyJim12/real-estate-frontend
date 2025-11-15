@@ -74,5 +74,10 @@
     "publishedOn": "Published on",
     "by": "by",
     "relatedArticles": "Related Articles"
+  },
+  "news": {
+    "title": "LATEST NEWS",
+    "subtitle": "Stay informed with our latest updates and announcements",
+    "viewAll": "View All News"
   }
 }

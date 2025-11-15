@@ -1,159 +1,6 @@
 <template>
-  <!-- Mobile/Tablet Navigation Header -->
-  <nav class="lg:hidden fixed top-0 left-0 right-0 bg-[#1d1d39] z-50 px-4 py-3">
-    <div class="flex items-center justify-between">
-      <!-- Hamburger Menu Button -->
-      <button @click="mobileMenuOpen = true" class="text-white p-2">
-        <Icon name="fa-solid:bars" class="text-2xl" />
-      </button>
-
-      <!-- Logo -->
-      <NuxtImg
-        class="w-16 sm:w-20"
-        src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/logo-new.png"
-        alt="Emerald Bay Pattaya"
-        loading="eager"
-        format="webp"
-      />
-
-      <!-- Language & Phone -->
-      <div class="flex items-center space-x-3">
-        <a href="tel:+66616109888" class="text-white">
-          <Icon name="fa-solid:phone" class="text-xl" />
-        </a>
-        <LanguageSwitcher />
-      </div>
-    </div>
-  </nav>
-
-  <!-- Mobile/Tablet Menu Overlay -->
-  <Transition
-    enter-active-class="transition-opacity duration-300"
-    enter-from-class="opacity-0"
-    enter-to-class="opacity-100"
-    leave-active-class="transition-opacity duration-300"
-    leave-from-class="opacity-100"
-    leave-to-class="opacity-0"
-  >
-    <div
-      v-if="mobileMenuOpen"
-      class="lg:hidden fixed inset-0 bg-[#2d2d49]/95 backdrop-blur-sm z-50"
-      @click="mobileMenuOpen = false"
-    >
-      <div class="flex flex-col h-full">
-        <!-- Menu Header -->
-        <div class="flex items-center justify-between px-4 py-3 border-b border-white/10">
-          <!-- Close Button -->
-          <button @click="mobileMenuOpen = false" class="text-white p-2">
-            <Icon name="fa-solid:times" class="text-2xl" />
-          </button>
-
-          <!-- Logo -->
-          <NuxtImg
-            class="w-16 sm:w-20"
-            src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/logo-new.png"
-            alt="Emerald Bay Pattaya"
-            loading="eager"
-            format="webp"
-          />
-
-          <!-- Language & Phone -->
-          <div class="flex items-center space-x-3">
-            <a href="tel:+66616109888" class="text-white">
-              <Icon name="fa-solid:phone" class="text-xl" />
-            </a>
-            <LanguageSwitcher />
-          </div>
-        </div>
-
-        <!-- Menu Items -->
-        <nav class="flex-1 px-6 py-8">
-          <ul class="space-y-6">
-            <li>
-              <a
-                href="#home"
-                @click="mobileMenuOpen = false"
-                class="text-white/70 hover:text-white text-xl font-light tracking-wider transition-colors block"
-              >
-                {{ $t('nav.home') }}
-              </a>
-            </li>
-            <li>
-              <a
-                href="#portfolio"
-                @click="mobileMenuOpen = false"
-                class="text-white/70 hover:text-white text-xl font-light tracking-wider transition-colors block"
-              >
-                {{ $t('nav.portfolio') }}
-              </a>
-            </li>
-            <li>
-              <a
-                href="#ramada"
-                @click="mobileMenuOpen = false"
-                class="text-white/70 hover:text-white text-xl font-light tracking-wider transition-colors block"
-              >
-                {{ $t('nav.ramada') }}
-              </a>
-            </li>
-            <li>
-              <a
-                href="#convilla"
-                @click="mobileMenuOpen = false"
-                class="text-white/70 hover:text-white text-xl font-light tracking-wider transition-colors block"
-              >
-                {{ $t('nav.convilla') }}
-              </a>
-            </li>
-            <li>
-              <NuxtLink
-                to="/articles"
-                @click="mobileMenuOpen = false"
-                class="text-white/70 hover:text-white text-xl font-light tracking-wider transition-colors block"
-              >
-                {{ $t('nav.news') }}
-              </NuxtLink>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </Transition>
-
-  <!-- Desktop Navigation -->
-  <nav class="hidden lg:flex h-28 px-60 bg-[#1d1d39] items-center">
-    <div class="flex items-center justify-between relative w-full">
-      <!-- Left Section - Contact Info -->
-      <div class="flex items-center gap-6">
-        <div class="flex space-x-2 items-center group cursor-pointer">
-          <Icon name="fa-brands:facebook" class="text-white text-2xl" />
-          <a class="text-white group-hover:text-[#ecbc85] text-sm" href="#">emeraldbaypattaya</a>
-        </div>
-
-        <div class="flex space-x-2 items-center group cursor-pointer">
-          <Icon name="fa-solid:phone" class="text-white text-xl rotate-100" />
-          <a class="text-white group-hover:text-[#ecbc85] text-sm" href="#">(+66) 61-610-9888</a>
-        </div>
-      </div>
-
-      <!-- Center - Logo -->
-      <div class="absolute left-1/2 transform -translate-x-1/2">
-        <NuxtImg
-          class="w-28"
-          src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/logo-new.png"
-          alt="Emerald Bay Pattaya"
-          loading="eager"
-          format="webp"
-        />
-      </div>
-
-      <!-- Right Section - Language -->
-      <div class="flex items-center space-x-3">
-        <Icon name="fa-solid:globe" class="text-white text-xl" />
-        <LanguageSwitcher />
-      </div>
-    </div>
-  </nav>
+  <!-- Navigation -->
+  <SiteNavigation />
 
   <!-- Carousel -->
   <div class="w-full">
@@ -306,6 +153,89 @@
     </div>
   </div>
 
+  <!-- Latest News Section -->
+  <div class="bg-gray-50 py-16 sm:py-20 lg:py-24 px-4 sm:px-8 lg:px-96">
+    <!-- Section Header -->
+    <div class="flex flex-col items-center mb-12">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#36384f] mb-4 text-center">
+        {{ $t('news.title') }}
+      </h2>
+      <p class="text-base sm:text-lg text-gray-600 text-center max-w-2xl mb-8">
+        {{ $t('news.subtitle') }}
+      </p>
+      <hr class="border-t-2 border-[#ecbc85] w-24" />
+    </div>
+
+    <!-- Loading State -->
+    <div v-if="loadingArticles" class="text-center py-12">
+      <Icon name="fa-solid:spinner" class="text-4xl text-gray-400 animate-spin mb-4" />
+      <p class="text-gray-500">{{ $t('articles.loading') }}</p>
+    </div>
+
+    <!-- Articles Grid -->
+    <div v-else-if="latestArticles.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      <article
+        v-for="article in latestArticles"
+        :key="article.id"
+        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+      >
+        <NuxtLink :to="`/articles/${article.id}`" class="block">
+          <!-- Article Image -->
+          <div class="relative h-48 bg-gray-200 overflow-hidden">
+            <NuxtImg
+              v-if="article.featuredImage"
+              :src="article.featuredImage"
+              :alt="article.title"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+              format="webp"
+              quality="80"
+            />
+            <div v-else class="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#1d1d39] to-[#36364e]">
+              <Icon name="fa-solid:newspaper" class="text-6xl text-white/30" />
+            </div>
+          </div>
+
+          <!-- Article Content -->
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-3 line-clamp-2 hover:text-[#ecbc85] transition-colors">
+              {{ article.title }}
+            </h3>
+            
+            <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+              {{ article.excerpt || stripHtml(article.content) }}
+            </p>
+
+            <div class="flex items-center justify-between text-sm text-gray-500">
+              <span>{{ formatDate(article.publishedAt || article.createdAt) }}</span>
+              <span class="text-[#ecbc85] font-semibold flex items-center space-x-1">
+                <span>{{ $t('articles.readMore') }}</span>
+                <Icon name="fa-solid:arrow-right" class="text-xs" />
+              </span>
+            </div>
+          </div>
+        </NuxtLink>
+      </article>
+    </div>
+
+    <!-- View All Button -->
+    <div v-if="latestArticles.length > 0" class="text-center">
+      <NuxtLink
+        to="/articles"
+        class="inline-flex items-center space-x-2 bg-[#36364e] text-white px-8 py-3 rounded-lg hover:bg-[#ecbc85] transition-colors duration-200 text-lg font-semibold"
+      >
+        <span>{{ $t('news.viewAll') }}</span>
+        <Icon name="fa-solid:arrow-right" />
+      </NuxtLink>
+    </div>
+
+    <!-- Empty State -->
+    <div v-else-if="!loadingArticles" class="text-center py-12">
+      <Icon name="fa-solid:newspaper" class="text-6xl text-gray-300 mb-4" />
+      <p class="text-gray-500 text-lg">{{ $t('articles.noArticles') }}</p>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="bg-[#1d1d39] px-4 sm:px-8 lg:px-96 py-12 sm:py-16 lg:py-20">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-24">
@@ -366,37 +296,15 @@
     </div>
   </footer>
 
-  <!-- Mobile/Tablet Bottom Bar -->
-  <div class="lg:hidden fixed bottom-0 left-0 right-0 bg-[#1d1d39] shadow-2xl z-50 border-t border-white/10">
-    <div class="grid grid-cols-3 h-20">
-      <!-- Tel Button -->
-      <a href="tel:+66616109888"
-        class="flex flex-col items-center justify-center space-y-1 hover:bg-white/10 transition-colors">
-        <Icon name="fa-solid:phone" class="text-white text-2xl" />
-        <span class="text-white text-xs font-semibold tracking-wider">{{ $t('bottomBar.tel') }}</span>
-      </a>
-
-      <!-- Line Button -->
-      <a href="https://line.me/ti/p/~emeraldbaypattaya" target="_blank"
-        class="flex flex-col items-center justify-center space-y-1 hover:bg-white/10 transition-colors border-x border-white/10">
-        <Icon name="fa-brands:line" class="text-white text-2xl" />
-        <span class="text-white text-xs font-semibold tracking-wider">{{ $t('bottomBar.line') }}</span>
-      </a>
-
-      <!-- Register Button -->
-      <a href="#register"
-        class="flex flex-col items-center justify-center space-y-1 hover:bg-white/10 transition-colors">
-        <Icon name="fa-solid:edit" class="text-white text-2xl" />
-        <span class="text-white text-xs font-semibold tracking-wider">{{ $t('bottomBar.register') }}</span>
-      </a>
-    </div>
-  </div>
+  <!-- Mobile Bottom Bar -->
+  <MobileBottomBar />
 </template>
 
 <script setup lang="ts">
-const mobileMenuOpen = ref(false);
 const carouselSlides = ref<any[]>([]);
 const loading = ref(true);
+const latestArticles = ref<any[]>([]);
+const loadingArticles = ref(true);
 
 // Fetch carousel slides from backend
 const loadCarousel = async () => {
@@ -421,23 +329,67 @@ const loadCarousel = async () => {
   }
 };
 
+// Fetch latest articles
+const loadLatestArticles = async () => {
+  loadingArticles.value = true;
+  try {
+    const data: any = await $fetch('/api/public/articles');
+    // Get only the latest 3 articles
+    latestArticles.value = data.slice(0, 3);
+  } catch (error) {
+    console.error('Failed to load articles:', error);
+    latestArticles.value = [];
+  } finally {
+    loadingArticles.value = false;
+  }
+};
+
 // Computed property to get carousel items (just the image URLs)
 const items = computed(() => {
   return carouselSlides.value.map((slide) => slide.image);
 });
 
-// Close menu on escape key
+// Format date
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+};
+
+// Strip HTML tags for excerpt
+const stripHtml = (html: string) => {
+  if (!html) return '';
+  if (process.client) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  }
+  return html.replace(/<[^>]*>/g, '');
+};
+
 onMounted(() => {
   loadCarousel();
-  
-  const handleEscape = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      mobileMenuOpen.value = false;
-    }
-  };
-  window.addEventListener('keydown', handleEscape);
-  onUnmounted(() => {
-    window.removeEventListener('keydown', handleEscape);
-  });
+  loadLatestArticles();
 });
 </script>
+
+<style scoped>
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style>
