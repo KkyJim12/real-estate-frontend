@@ -99,12 +99,61 @@
                   <Icon name="fa-solid:edit" />
                   <span>Edit</span>
                 </button>
+                <button
+                  @click="confirmDelete(project)"
+                  class="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 text-sm font-medium rounded-lg hover:bg-red-100 transition-colors"
+                >
+                  <Icon name="fa-solid:trash" />
+                  <span>Delete</span>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Delete Confirmation Modal -->
+    <UModal v-model="showDeleteModal">
+      <UCard>
+        <template #header>
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-semibold text-gray-900">Delete Project</h3>
+            <button
+              @click="showDeleteModal = false"
+              class="text-gray-400 hover:text-gray-600"
+            >
+              <Icon name="fa-solid:times" class="text-xl" />
+            </button>
+          </div>
+        </template>
+
+        <div class="py-4">
+          <p class="text-gray-600">
+            Are you sure you want to delete "<strong>{{ projectToDelete?.title }}</strong>"? This action cannot be undone.
+          </p>
+        </div>
+
+        <template #footer>
+          <div class="flex justify-end gap-3">
+            <button
+              @click="showDeleteModal = false"
+              class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              @click="deleteProject"
+              :disabled="deleting"
+              class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors flex items-center gap-2"
+            >
+              <Icon v-if="deleting" name="fa-solid:spinner" class="animate-spin" />
+              <span>{{ deleting ? 'Deleting...' : 'Delete' }}</span>
+            </button>
+          </div>
+        </template>
+      </UCard>
+    </UModal>
   </AdminLayout>
 </template>
 
@@ -115,6 +164,9 @@ definePageMeta({
 
 const projects = ref<any[]>([]);
 const loading = ref(true);
+const showDeleteModal = ref(false);
+const projectToDelete = ref<any>(null);
+const deleting = ref(false);
 
 const loadProjects = async () => {
   loading.value = true;
@@ -134,6 +186,30 @@ const formatDate = (dateString: string) => {
     month: 'short',
     day: 'numeric',
   });
+};
+
+const confirmDelete = (project: any) => {
+  projectToDelete.value = project;
+  showDeleteModal.value = true;
+};
+
+const deleteProject = async () => {
+  if (!projectToDelete.value) return;
+
+  deleting.value = true;
+  try {
+    await $fetch(`/api/projects/${projectToDelete.value.id}`, {
+      method: 'DELETE',
+    });
+    projects.value = projects.value.filter((p) => p.id !== projectToDelete.value.id);
+    showDeleteModal.value = false;
+    projectToDelete.value = null;
+  } catch (error) {
+    console.error('Failed to delete project:', error);
+    alert('Failed to delete project');
+  } finally {
+    deleting.value = false;
+  }
 };
 
 onMounted(() => {
