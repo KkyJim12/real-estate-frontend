@@ -84,72 +84,64 @@
 
   <!-- Business Items -->
   <div class="flex flex-col space-y-12 sm:space-y-16 lg:space-y-20 px-4 sm:px-8 lg:px-96 pb-16 sm:pb-24 lg:pb-32">
-    <!-- Ramada Emerald Bay -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-x-20">
-      <div class="lg:col-span-7 order-2 lg:order-1">
+    <!-- Dynamic Projects -->
+    <div
+      v-for="(project, index) in projects"
+      :key="project.id"
+      class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-x-20"
+    >
+      <!-- Content (Left on even, Right on odd) -->
+      <div
+        :class="[
+          'lg:col-span-7',
+          index % 2 === 0 ? 'order-2 lg:order-1' : 'order-2'
+        ]"
+      >
         <div
-          class="flex flex-col justify-center lg:items-start items-center h-full space-y-4 sm:space-y-6 lg:space-y-8 w-full text-center lg:text-left">
+          class="flex flex-col justify-center lg:items-start items-center h-full space-y-4 sm:space-y-6 lg:space-y-8 w-full text-center lg:text-left"
+        >
           <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#36384f]">
-            {{ $t('ramada.title') }}
+            {{ project.title }}
           </h2>
           <hr class="border-t-2 sm:border-t-3 border-[#ecbc85] w-4/5 sm:w-4/5" />
-          <p class="text-sm sm:text-base lg:text-xl text-[#2c3c51]">
-            <span class="block mb-2">{{ $t('ramada.text1') }}</span>
-            <span class="block mb-2">{{ $t('ramada.text2') }}</span>
-            <span class="block">{{ $t('ramada.text3') }}</span>
+          <p class="text-sm sm:text-base lg:text-xl text-[#2c3c51] whitespace-pre-line">
+            {{ project.description }}
           </p>
           <NuxtLink
+            :to="project.link || '/'"
             class="bg-[#36364e] w-60 sm:w-48 lg:w-40 py-2 sm:py-3 flex justify-center text-white text-base sm:text-lg lg:text-xl duration-200 hover:bg-[#ecbc85]"
-            to="/">
+          >
             {{ $t('ramada.viewMore') }}
           </NuxtLink>
         </div>
       </div>
-      <div class="lg:col-span-5 order-1 lg:order-2 flex justify-center">
-        <NuxtImg 
+
+      <!-- Image (Right on even, Left on odd) -->
+      <div
+        :class="[
+          'lg:col-span-5',
+          index % 2 === 0 ? 'order-1 lg:order-2 flex justify-center' : 'order-1 flex justify-center lg:justify-start'
+        ]"
+      >
+        <NuxtImg
+          v-if="project.image"
           class="w-3/5 lg:w-full h-64 sm:h-80 lg:h-full object-cover rounded-lg lg:rounded-none"
-          src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/img-ramada.png" 
-          alt="Ramada Emerald Bay"
+          :src="project.image"
+          :alt="project.title"
           loading="lazy"
           format="webp"
           quality="80"
         />
+        <div v-else class="w-3/5 lg:w-full h-64 sm:h-80 lg:h-full bg-gray-200 rounded-lg lg:rounded-none flex items-center justify-center">
+          <Icon name="fa-solid:building" class="text-6xl text-gray-400" />
+        </div>
       </div>
     </div>
 
-    <!-- Convilla -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-x-20">
-      <div class="lg:col-span-5 order-1 flex justify-center lg:justify-start">
-        <NuxtImg 
-          class="w-3/5 lg:w-full h-64 sm:h-80 lg:h-full object-cover rounded-lg lg:rounded-none"
-          src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/img-villa.png" 
-          alt="CONVILLA"
-          loading="lazy"
-          format="webp"
-          quality="80"
-        />
-      </div>
-      <div class="lg:col-span-7 order-2">
-        <div
-          class="flex flex-col justify-center lg:items-start items-center h-full space-y-4 sm:space-y-6 lg:space-y-8 w-full">
-          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#36384f]">
-            {{ $t('convilla.title') }}
-          </h2>
-          <hr class="border-t-2 sm:border-t-3 border-[#ecbc85] w-3/5 sm:w-4/5" />
-          <p class="text-sm sm:text-base lg:text-xl text-[#2c3c51] text-center lg:text-left">
-            <span class="block mb-2">{{ $t('convilla.text1') }}</span>
-            <span class="block mb-2">{{ $t('convilla.text2') }}</span>
-            <span class="block mb-2">{{ $t('convilla.text3') }}</span>
-            <span class="block mt-4 sm:mt-6 lg:mt-8 mb-2">{{ $t('convilla.text4') }}</span>
-            <span class="block">{{ $t('convilla.text5') }}</span>
-          </p>
-          <NuxtLink
-            class="bg-[#36364e] w-60 sm:w-48 lg:w-40 py-2 sm:py-3 flex justify-center text-white text-base sm:text-lg lg:text-xl duration-200 hover:bg-[#ecbc85]"
-            to="/">
-            {{ $t('convilla.viewMore') }}
-          </NuxtLink>
-        </div>
-      </div>
+    <!-- Empty State -->
+    <div v-if="projects.length === 0 && !loadingProjects" class="text-center py-12">
+      <Icon name="fa-solid:building" class="text-6xl text-gray-300 mb-4" />
+      <p class="text-gray-500 text-lg">No projects available</p>
     </div>
   </div>
 
@@ -305,6 +297,8 @@ const carouselSlides = ref<any[]>([]);
 const loading = ref(true);
 const latestArticles = ref<any[]>([]);
 const loadingArticles = ref(true);
+const projects = ref<any[]>([]);
+const loadingProjects = ref(true);
 
 // Fetch carousel slides from backend
 const loadCarousel = async () => {
@@ -344,6 +338,20 @@ const loadLatestArticles = async () => {
   }
 };
 
+// Fetch projects
+const loadProjects = async () => {
+  loadingProjects.value = true;
+  try {
+    const data: any = await $fetch('/api/public/projects');
+    projects.value = data;
+  } catch (error) {
+    console.error('Failed to load projects:', error);
+    projects.value = [];
+  } finally {
+    loadingProjects.value = false;
+  }
+};
+
 // Computed property to get carousel items (just the image URLs)
 const items = computed(() => {
   return carouselSlides.value.map((slide) => slide.image);
@@ -373,6 +381,7 @@ const stripHtml = (html: string) => {
 onMounted(() => {
   loadCarousel();
   loadLatestArticles();
+  loadProjects();
 });
 </script>
 

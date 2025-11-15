@@ -55,6 +55,16 @@
           </NuxtLink>
 
           <NuxtLink
+            to="/admin/projects"
+            @click="mobileMenuOpen = false"
+            class="flex items-center px-4 py-3 rounded-lg transition-colors hover:bg-white/10"
+            :class="{ 'bg-[#ecbc85] text-white': isActive('/admin/projects') }"
+          >
+            <Icon name="fa-solid:building" class="mr-3 text-lg" />
+            <span class="font-medium">Projects</span>
+          </NuxtLink>
+
+          <NuxtLink
             to="/admin/carousel"
             @click="mobileMenuOpen = false"
             class="flex items-center px-4 py-3 rounded-lg transition-colors hover:bg-white/10"
