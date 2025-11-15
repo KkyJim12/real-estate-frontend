@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    const article = await db.get('articles', id);
+    const article = await db.getById('articles', id);
     
     if (!article) {
       throw createError({
@@ -17,8 +17,8 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    // Only return published articles
-    if (article.status !== 'published') {
+    // Only return published articles (or articles without status for backward compatibility)
+    if (article.status && article.status !== 'published') {
       throw createError({
         statusCode: 404,
         message: 'Article not found',
