@@ -8,15 +8,15 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    const project = await db.get('projects', id);
-    if (!project) {
+    const deleted = await db.delete('projects', id);
+    
+    if (!deleted) {
       throw createError({
         statusCode: 404,
         message: 'Project not found',
       });
     }
 
-    await db.delete('projects', id);
     return { success: true, message: 'Project deleted successfully' };
   } catch (error: any) {
     console.error('Error deleting project:', error);

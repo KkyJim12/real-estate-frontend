@@ -9,27 +9,19 @@ export default defineEventHandler(async (event) => {
     }
 
     const body = await readBody(event);
-    const existingProject = await db.get('projects', id);
+    
+    const updatedProject = await db.update('projects', id, {
+      ...body,
+      updatedAt: new Date().toISOString(),
+    } as any);
 
-    if (!existingProject) {
+    if (!updatedProject) {
       throw createError({
         statusCode: 404,
         message: 'Project not found',
       });
     }
 
-    const updatedProject = {
-      ...existingProject,
-      title: body.title ?? existingProject.title,
-      description: body.description ?? existingProject.description,
-      image: body.image ?? existingProject.image,
-      link: body.link ?? existingProject.link,
-      order: body.order ?? existingProject.order,
-      active: body.active ?? existingProject.active,
-      updatedAt: new Date().toISOString(),
-    };
-
-    await db.set('projects', id, updatedProject);
     return updatedProject;
   } catch (error: any) {
     console.error('Error updating project:', error);

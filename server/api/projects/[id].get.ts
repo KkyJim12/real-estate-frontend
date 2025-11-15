@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    const project = await db.get('projects', id);
+    const project = await db.getById('projects', id);
     
     if (!project) {
       throw createError({

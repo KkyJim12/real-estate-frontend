@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
       updatedAt: new Date().toISOString(),
     };
 
-    await db.set('projects', project.id, project);
+    await db.create('projects', project);
     return project;
   } catch (error: any) {
     console.error('Error creating project:', error);
