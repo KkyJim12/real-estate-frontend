@@ -108,7 +108,7 @@
             {{ project.description }}
           </p>
           <NuxtLink
-            :to="project.link || '/'"
+            :to="project.link && project.link !== '/' ? project.link : `/projects/${project.id}`"
             class="bg-[#36364e] w-60 sm:w-48 lg:w-40 py-2 sm:py-3 flex justify-center text-white text-base sm:text-lg lg:text-xl duration-200 hover:bg-[#ecbc85]"
           >
             {{ $t('ramada.viewMore') }}
