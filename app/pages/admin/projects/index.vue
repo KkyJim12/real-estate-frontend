@@ -114,46 +114,57 @@
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <UModal v-model="showDeleteModal">
-      <UCard>
-        <template #header>
-          <div class="flex items-center justify-between">
-            <h3 class="text-lg font-semibold text-gray-900">Delete Project</h3>
-            <button
-              @click="showDeleteModal = false"
-              class="text-gray-400 hover:text-gray-600"
-            >
-              <Icon name="fa-solid:times" class="text-xl" />
-            </button>
-          </div>
-        </template>
+    <Teleport to="body">
+      <Transition
+        enter-active-class="transition-opacity duration-200"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="transition-opacity duration-200"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+      >
+        <div
+          v-if="showDeleteModal"
+          class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+          @click.self="showDeleteModal = false"
+        >
+          <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 transform transition-all">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-semibold text-gray-900">Delete Project</h3>
+              <button
+                @click="showDeleteModal = false"
+                class="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <Icon name="fa-solid:times" class="text-xl" />
+              </button>
+            </div>
 
-        <div class="py-4">
-          <p class="text-gray-600">
-            Are you sure you want to delete "<strong>{{ projectToDelete?.title }}</strong>"? This action cannot be undone.
-          </p>
+            <div class="mb-6">
+              <p class="text-gray-600">
+                Are you sure you want to delete "<strong>{{ projectToDelete?.title }}</strong>"? This action cannot be undone.
+              </p>
+            </div>
+
+            <div class="flex justify-end gap-3">
+              <button
+                @click="showDeleteModal = false"
+                class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                @click="deleteProject"
+                :disabled="deleting"
+                class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors flex items-center gap-2"
+              >
+                <Icon v-if="deleting" name="fa-solid:spinner" class="animate-spin" />
+                <span>{{ deleting ? 'Deleting...' : 'Delete' }}</span>
+              </button>
+            </div>
+          </div>
         </div>
-
-        <template #footer>
-          <div class="flex justify-end gap-3">
-            <button
-              @click="showDeleteModal = false"
-              class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
-            >
-              Cancel
-            </button>
-            <button
-              @click="deleteProject"
-              :disabled="deleting"
-              class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors flex items-center gap-2"
-            >
-              <Icon v-if="deleting" name="fa-solid:spinner" class="animate-spin" />
-              <span>{{ deleting ? 'Deleting...' : 'Delete' }}</span>
-            </button>
-          </div>
-        </template>
-      </UCard>
-    </UModal>
+      </Transition>
+    </Teleport>
   </AdminLayout>
 </template>
 
