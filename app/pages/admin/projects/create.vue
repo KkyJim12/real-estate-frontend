@@ -1,6 +1,6 @@
 <template>
   <AdminLayout>
-    <div class="max-w-4xl">
+    <div class="p-6 max-w-4xl">
       <!-- Header -->
       <div class="mb-6">
         <NuxtLink
@@ -10,7 +10,7 @@
           <Icon name="fa-solid:arrow-left" />
           <span>Back to Projects</span>
         </NuxtLink>
-        <h1 class="text-3xl font-bold text-gray-900">Create Project</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Create Project</h1>
         <p class="text-gray-600 mt-1">Add a new business project</p>
       </div>
 
@@ -98,17 +98,17 @@
         </div>
 
         <!-- Actions -->
-        <div class="flex justify-end space-x-3 pt-4 border-t">
+        <div class="flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t">
           <NuxtLink
             to="/admin/projects"
-            class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
+            class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 text-center"
           >
             Cancel
           </NuxtLink>
           <button
             type="submit"
             :disabled="saving"
-            class="px-6 py-2 bg-[#ecbc85] text-white rounded-lg hover:bg-[#d4a574] disabled:opacity-50 flex items-center space-x-2"
+            class="px-6 py-2 bg-[#ecbc85] text-white rounded-lg hover:bg-[#d4a574] disabled:opacity-50 flex items-center justify-center space-x-2"
           >
             <Icon v-if="saving" name="fa-solid:spinner" class="animate-spin" />
             <span>{{ saving ? 'Creating...' : 'Create Project' }}</span>

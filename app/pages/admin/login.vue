@@ -93,7 +93,7 @@ const handleLogin = async () => {
     });
 
     if (response.success) {
-      navigateTo('/admin/articles');
+      navigateTo('/admin/projects');
     }
   } catch (err: any) {
     const { $t } = useNuxtApp();
@@ -108,7 +108,7 @@ onMounted(async () => {
   try {
     const response: any = await $fetch('/api/auth/check');
     if (response.authenticated) {
-      navigateTo('/admin/articles');
+      navigateTo('/admin/projects');
     }
   } catch (err) {
     // Not authenticated, stay on login page

@@ -1,8 +1,8 @@
 export default defineEventHandler((event) => {
   const url = getRequestURL(event);
   
-  // Protect /api/articles, /api/carousel, and /api/upload routes (not auth routes)
-  const protectedRoutes = ['/api/articles', '/api/carousel', '/api/upload'];
+  // Protect /api/articles, /api/carousel, /api/projects, and /api/upload routes (not auth or public routes)
+  const protectedRoutes = ['/api/articles', '/api/carousel', '/api/projects', '/api/upload'];
   const isProtected = protectedRoutes.some(route => url.pathname.startsWith(route));
   
   if (isProtected) {

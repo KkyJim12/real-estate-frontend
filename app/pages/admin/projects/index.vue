@@ -1,15 +1,15 @@
 <template>
   <AdminLayout>
-    <div class="space-y-6">
+    <div class="p-6 space-y-6">
       <!-- Header -->
-      <div class="flex items-center justify-between">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 class="text-3xl font-bold text-gray-900">Projects</h1>
+          <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Projects</h1>
           <p class="text-gray-600 mt-1">Manage your business projects</p>
         </div>
         <NuxtLink
           to="/admin/projects/create"
-          class="bg-[#ecbc85] text-white px-6 py-3 rounded-lg hover:bg-[#d4a574] transition-colors flex items-center space-x-2"
+          class="bg-[#ecbc85] text-white px-6 py-3 rounded-lg hover:bg-[#d4a574] transition-colors flex items-center space-x-2 whitespace-nowrap"
         >
           <Icon name="fa-solid:plus" />
           <span>Create Project</span>
@@ -24,7 +24,8 @@
 
       <!-- Projects List -->
       <div v-else-if="projects.length > 0" class="bg-white rounded-lg shadow overflow-hidden">
-        <table class="min-w-full divide-y divide-gray-200">
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-gray-50">
             <tr>
               <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -98,6 +99,7 @@
             </tr>
           </tbody>
         </table>
+        </div>
       </div>
 
       <!-- Empty State -->
@@ -117,31 +119,44 @@
 
     <!-- Delete Confirmation Modal -->
     <UModal v-model="showDeleteModal">
-      <div class="p-6">
-        <h3 class="text-lg font-semibold text-gray-900 mb-4">Delete Project</h3>
-        <p class="text-gray-600 mb-6">
-          Are you sure you want to delete "{{ projectToDelete?.title }}"? This action cannot be undone.
-        </p>
-        <div class="flex justify-end space-x-3">
-          <button
-            @click="showDeleteModal = false"
-            class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
-          >
-            Cancel
-          </button>
-          <button
-            @click="deleteProject"
-            :disabled="deleting"
-            class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50"
-          >
-            <span v-if="!deleting">Delete</span>
-            <span v-else class="flex items-center space-x-2">
-              <Icon name="fa-solid:spinner" class="animate-spin" />
-              <span>Deleting...</span>
-            </span>
-          </button>
+      <UCard>
+        <template #header>
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-semibold text-gray-900">Delete Project</h3>
+            <button
+              @click="showDeleteModal = false"
+              class="text-gray-400 hover:text-gray-600"
+            >
+              <Icon name="fa-solid:times" class="text-xl" />
+            </button>
+          </div>
+        </template>
+
+        <div class="py-4">
+          <p class="text-gray-600">
+            Are you sure you want to delete "<strong>{{ projectToDelete?.title }}</strong>"? This action cannot be undone.
+          </p>
         </div>
-      </div>
+
+        <template #footer>
+          <div class="flex justify-end gap-3">
+            <button
+              @click="showDeleteModal = false"
+              class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              @click="deleteProject"
+              :disabled="deleting"
+              class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors flex items-center gap-2"
+            >
+              <Icon v-if="deleting" name="fa-solid:spinner" class="animate-spin" />
+              <span>{{ deleting ? 'Deleting...' : 'Delete' }}</span>
+            </button>
+          </div>
+        </template>
+      </UCard>
     </UModal>
   </AdminLayout>
 </template>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-// Redirect to login page
+// Redirect to projects page
 definePageMeta({
   middleware: 'auth'
 });
 
 onMounted(() => {
-  navigateTo('/admin/login');
+  navigateTo('/admin/projects');
 });
 </script>
 
