@@ -1,12 +1,14 @@
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id');
   const body = await readBody(event);
+  console.log('Carousel PUT - Received body:', body);
 
   try {
     const updated = await db.update('carousel', id!, {
       image: body.image,
       title: body.title,
       description: body.description,
+      videoLink: body.videoLink,
       order: body.order,
       active: body.active,
       updatedAt: new Date().toISOString(),

@@ -1,12 +1,14 @@
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event);
+    console.log('Carousel POST - Received body:', body);
 
     const newSlide = {
       id: Date.now().toString(),
       image: body.image || '',
       title: body.title || '',
       description: body.description || '',
+      videoLink: body.videoLink || '',
       order: body.order || 0,
       active: body.active !== undefined ? body.active : true,
       createdAt: new Date().toISOString(),

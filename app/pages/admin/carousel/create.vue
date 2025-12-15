@@ -44,6 +44,17 @@
             ></textarea>
           </div>
 
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Video Link (Optional)</label>
+            <input
+              v-model="form.videoLink"
+              type="url"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+              placeholder="Enter YouTube or video URL (e.g., https://www.youtube.com/watch?v=...)"
+            />
+            <p class="text-sm text-gray-500 mt-1">This video will be linked to the "Watch Video" button on the homepage</p>
+          </div>
+
           <div class="grid grid-cols-2 gap-6">
             <div>
               <label class="block text-sm font-semibold text-gray-700 mb-2">Display Order</label>
@@ -102,6 +113,7 @@ const form = ref({
   image: '',
   title: '',
   description: '',
+  videoLink: '',
   order: 0,
   active: true,
 });
@@ -114,11 +126,24 @@ const saveSlide = async () => {
     return;
   }
 
+  // Validate video link if provided
+  if (form.value.videoLink && form.value.videoLink.trim() && !isValidUrl(form.value.videoLink)) {
+    alert('Please enter a valid video URL (YouTube, Vimeo, etc.)');
+    return;
+  }
+
   saving.value = true;
   try {
+    const slideData = {
+      ...form.value,
+      videoLink: form.value.videoLink?.trim() || ''
+    };
+    
+    console.log('Saving slide data:', slideData);
+    
     await $fetch('/api/carousel', {
       method: 'POST',
-      body: form.value,
+      body: slideData,
     });
     navigateTo('/admin/carousel');
   } catch (error: any) {
@@ -131,6 +156,27 @@ const saveSlide = async () => {
     }
   } finally {
     saving.value = false;
+  }
+};
+
+// Validate URL format
+const isValidUrl = (string: string) => {
+  if (!string || string.trim() === '') return true; // Empty is valid (optional field)
+  
+  try {
+    const url = new URL(string.trim());
+    // Allow http, https protocols
+    return url.protocol === 'http:' || url.protocol === 'https:';
+  } catch (_) {
+    // If URL constructor fails, check if it's a common video URL pattern
+    const trimmed = string.trim();
+    const videoPatterns = [
+      /^https?:\/\/(www\.)?(youtube\.com|youtu\.be)/,
+      /^https?:\/\/(www\.)?vimeo\.com/,
+      /^https?:\/\/(www\.)?dailymotion\.com/,
+    ];
+    
+    return videoPatterns.some(pattern => pattern.test(trimmed));
   }
 };
 </script>
