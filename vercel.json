@@ -1,10 +1,6 @@
 {
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
   "framework": "nuxtjs",
-  "regions": ["iad1"],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  "buildCommand": "npm run build",
+  "installCommand": "npm ci",
+  "regions": ["iad1"]
 }

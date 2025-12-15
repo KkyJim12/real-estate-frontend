@@ -1,7 +1,11 @@
 import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
-  compatibilityDate: "2025-07-15",
-  devtools: { enabled: true },
+  compatibilityDate: "2024-12-15",
+  devtools: { enabled: false },
+  ssr: true,
+  nitro: {
+    preset: 'vercel'
+  },
   modules: [
     "@nuxt/fonts",
     "@nuxt/icon",
