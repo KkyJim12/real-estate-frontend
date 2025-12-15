@@ -148,12 +148,12 @@
           
           <div>
             <h3 class="text-sm font-medium text-gray-700 mb-2">Node Environment</h3>
-            <p class="text-sm text-gray-900">{{ process.env.NODE_ENV || 'development' }}</p>
+            <p class="text-sm text-gray-900">{{ nodeEnv }}</p>
           </div>
           
           <div>
             <h3 class="text-sm font-medium text-gray-700 mb-2">Platform</h3>
-            <p class="text-sm text-gray-900">{{ process.env.VERCEL ? 'Vercel' : 'Local' }}</p>
+            <p class="text-sm text-gray-900">{{ isVercel ? 'Vercel' : 'Local' }}</p>
           </div>
         </div>
       </div>
@@ -162,13 +162,35 @@
 </template>
 
 <script setup lang="ts">
-const migrating = ref(false);
-const migrationResults = ref<any[]>([]);
-const migrationStatus = ref<any>({});
+interface MigrationResult {
+  collection: string;
+  status: 'success' | 'error' | 'skipped';
+  message: string;
+  itemCount?: number;
+}
 
-// Check if we're in production
-const isProduction = computed(() => {
-  return process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
+interface MigrationStatus {
+  articles?: { itemCount: number };
+  carousel?: { itemCount: number };
+  projects?: { itemCount: number };
+}
+
+const migrating = ref(false);
+const migrationResults = ref<MigrationResult[]>([]);
+const migrationStatus = ref<MigrationStatus>({});
+
+// Get runtime config for environment detection
+const config = useRuntimeConfig();
+const isProduction = ref(false);
+const nodeEnv = ref('development');
+const isVercel = ref(false);
+
+// Check environment on client side
+onMounted(() => {
+  // Use a simple check that works in both client and server
+  isProduction.value = window.location.hostname !== 'localhost' && !window.location.hostname.includes('127.0.0.1');
+  nodeEnv.value = isProduction.value ? 'production' : 'development';
+  isVercel.value = window.location.hostname.includes('vercel.app');
 });
 
 const getStatusIcon = (status: string) => {
@@ -188,18 +210,24 @@ const loadMigrationStatus = async () => {
   try {
     // Load current data counts for display
     const [articles, carousel, projects] = await Promise.all([
-      $fetch('/api/public/articles'),
-      $fetch('/api/public/carousel'),
-      $fetch('/api/public/projects')
+      $fetch('/api/public/articles').catch(() => []),
+      $fetch('/api/public/carousel').catch(() => []),
+      $fetch('/api/public/projects').catch(() => [])
     ]);
 
     migrationStatus.value = {
-      articles: { itemCount: articles.length },
-      carousel: { itemCount: carousel.length },
-      projects: { itemCount: projects.length }
+      articles: { itemCount: Array.isArray(articles) ? articles.length : 0 },
+      carousel: { itemCount: Array.isArray(carousel) ? carousel.length : 0 },
+      projects: { itemCount: Array.isArray(projects) ? projects.length : 0 }
     };
   } catch (error) {
     console.error('Failed to load migration status:', error);
+    // Set default values on error
+    migrationStatus.value = {
+      articles: { itemCount: 0 },
+      carousel: { itemCount: 0 },
+      projects: { itemCount: 0 }
+    };
   }
 };
 
@@ -237,7 +265,7 @@ const startMigration = async () => {
 };
 
 // Load initial status
-onMounted(() => {
-  loadMigrationStatus();
+onMounted(async () => {
+  await loadMigrationStatus();
 });
 </script>
