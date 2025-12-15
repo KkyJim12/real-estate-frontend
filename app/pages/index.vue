@@ -423,7 +423,7 @@
         
         <!-- Dynamic Title with Gradient Animation -->
         <h2 class="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
-          <span class="bg-gradient-to-r from-[#2c2c54] via-[#ecbc85] to-[#2c2c54] bg-clip-text text-transparent bg-300% animate-gradient-x">
+          <span class="bg-gradient-to-r from-[#2c2c54] via-[#ecbc85] to-[#2c2c54] bg-clip-text text-transparent bg-size-300 animate-gradient-x">
             {{ $t('news.title') }}
           </span>
         </h2>
@@ -578,7 +578,7 @@
         <!-- Enhanced View All Button -->
         <div class="text-center">
           <NuxtLink to="/articles"
-            class="group relative inline-flex items-center space-x-4 bg-gradient-to-r from-[#2c2c54] via-[#ecbc85] to-[#2c2c54] bg-300% text-white px-12 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-[#ecbc85]/30 hover:scale-105 transition-all duration-500 overflow-hidden animate-gradient-x">
+            class="group relative inline-flex items-center space-x-4 bg-gradient-to-r from-[#2c2c54] via-[#ecbc85] to-[#2c2c54] bg-size-300 text-white px-12 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-[#ecbc85]/30 hover:scale-105 transition-all duration-500 overflow-hidden animate-gradient-x">
             <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
             <span class="relative z-10">{{ $t('news.viewAll') }}</span>
             <Icon name="fa-solid:arrow-right" class="relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
@@ -919,7 +919,7 @@ onMounted(() => {
   animation: spin-slow 8s linear infinite;
 }
 
-.bg-300% {
+.bg-size-300 {
   background-size: 300% 300%;
 }
 
