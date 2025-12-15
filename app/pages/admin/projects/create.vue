@@ -194,6 +194,16 @@
               </div>
             </div>
 
+            <!-- Main Project Image -->
+            <div class="lg:col-span-2">
+              <ImageUpload
+                v-model="form.image"
+                label="Main Project Image *"
+                placeholder="Upload the main project image that will be displayed on the homepage"
+              />
+              <p class="text-sm text-gray-500 mt-1">This image will be displayed on the homepage projects section. Recommended: 800x600px or higher</p>
+            </div>
+
             <!-- Brochure Upload -->
             <div class="lg:col-span-2">
               <label class="block text-sm font-semibold text-gray-700 mb-2">Project Brochure</label>
@@ -250,23 +260,12 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <!-- Image Upload -->
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Hero Image *</label>
-                    <input
-                      type="file"
-                      @change="(e) => handleCarouselImageUpload(e, index)"
-                      accept="image/*"
-                      class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                    <ImageUpload
+                      v-model="carouselItem.image"
+                      label="Hero Image *"
+                      placeholder="Upload carousel image"
                     />
                     <p class="text-sm text-gray-500 mt-1">Recommended: 1920x1080px or higher</p>
-                    
-                    <!-- Image Preview -->
-                    <div v-if="carouselItem.image" class="mt-3">
-                      <img 
-                        :src="carouselItem.image" 
-                        alt="Carousel preview" 
-                        class="w-full h-32 object-cover rounded-lg border border-gray-200"
-                      />
-                    </div>
                   </div>
 
                   <!-- Carousel Details -->
@@ -547,6 +546,7 @@ const form = ref({
   expectedFinish: '',
   floors: null,
   units: null,
+  image: '', // Main project image for homepage
   facilities: [],
   neighborhoods: [{ number: '', name: '' }],
   brochure: null,
@@ -618,18 +618,7 @@ const removeCarouselItem = (index: number) => {
   });
 };
 
-const handleCarouselImageUpload = async (event: Event, carouselIndex: number) => {
-  const target = event.target as HTMLInputElement;
-  const file = target.files?.[0];
-  if (!file) return;
-
-  // Convert to base64 for preview (in production, upload to server)
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    form.value.heroCarousel[carouselIndex].image = e.target?.result as string;
-  };
-  reader.readAsDataURL(file);
-};
+// Carousel image upload is now handled by ImageUpload component
 
 // Gallery functions
 const addGalleryItem = () => {
@@ -662,6 +651,12 @@ const handleBrochureUpload = async (event: Event) => {
 };
 
 const handleSubmit = async () => {
+  // Validate main project image
+  if (!form.value.image?.trim()) {
+    alert('Please upload a main project image');
+    return;
+  }
+
   saving.value = true;
   try {
     // Clean up empty neighborhoods

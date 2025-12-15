@@ -7,9 +7,19 @@
         @change="handleFileUpload"
         multiple
         accept="image/*"
-        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+        :disabled="uploading"
+        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition disabled:opacity-50 disabled:cursor-not-allowed"
       />
       <p v-if="description" class="text-sm text-gray-500 mt-1">{{ description }}</p>
+      <p class="text-sm text-gray-500 mt-1">{{ images.length }}/{{ maxFiles }} images uploaded</p>
+    </div>
+
+    <!-- Error Message -->
+    <div v-if="error" class="p-3 bg-red-50 border-l-4 border-red-500 rounded-r-lg">
+      <div class="flex items-center">
+        <Icon name="fa-solid:exclamation-circle" class="text-red-500 mr-2" />
+        <p class="text-red-700 text-sm">{{ error }}</p>
+      </div>
     </div>
     
     <div v-if="images.length > 0" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
@@ -63,6 +73,7 @@ const images = computed({
 });
 
 const uploading = ref(false);
+const error = ref('');
 
 const handleFileUpload = async (event: Event) => {
   const target = event.target as HTMLInputElement;
@@ -78,27 +89,46 @@ const handleFileUpload = async (event: Event) => {
   }
 
   uploading.value = true;
+  error.value = '';
 
   try {
-    // Convert files to base64 for preview (in production, upload to server)
-    const imagePromises = filesToUpload.map(file => {
-      return new Promise<any>((resolve) => {
-        const reader = new FileReader();
-        reader.onload = (e) => resolve({
-          url: e.target?.result as string,
+    // Upload files to server
+    const uploadPromises = filesToUpload.map(async (file) => {
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        throw new Error(`${file.name} is not an image file`);
+      }
+
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        throw new Error(`${file.name} is too large (max 5MB)`);
+      }
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response: any = await $fetch('/api/upload/image', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.success && response.url) {
+        return {
+          url: response.url,
           name: file.name,
           size: file.size,
           type: file.type,
-        });
-        reader.readAsDataURL(file);
-      });
+        };
+      } else {
+        throw new Error(`Failed to upload ${file.name}`);
+      }
     });
 
-    const newImages = await Promise.all(imagePromises);
+    const newImages = await Promise.all(uploadPromises);
     images.value = [...images.value, ...newImages];
-  } catch (error) {
-    console.error('Error uploading images:', error);
-    alert('Failed to upload images');
+  } catch (err: any) {
+    console.error('Error uploading images:', err);
+    error.value = err.message || 'Failed to upload images';
   } finally {
     uploading.value = false;
     // Clear the input
