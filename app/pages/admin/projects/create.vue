@@ -1,6 +1,6 @@
 <template>
   <AdminLayout>
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
       <div class="mb-6">
         <button
           @click="navigateTo('/admin/projects')"
@@ -13,52 +13,341 @@
 
       <div class="mb-6 sm:mb-8">
         <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 sm:mb-2">Create New Project</h1>
-        <p class="text-sm sm:text-base text-gray-600">Fill in the details to create a new business project</p>
+        <p class="text-sm sm:text-base text-gray-600">Fill in the details to create a new real estate project</p>
       </div>
 
-      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-8">
-        <form @submit.prevent="handleSubmit" class="space-y-6 sm:space-y-8">
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Project Title *</label>
-            <input
-              v-model="form.title"
-              type="text"
-              required
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
-              placeholder="e.g., RAMADA EMERALD BAY"
-            />
-          </div>
+      <form @submit.prevent="handleSubmit" class="space-y-8">
+        <!-- Project Info Section -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+            <Icon name="fa-solid:info-circle" class="mr-2 text-[#ecbc85]" />
+            Project Information
+          </h2>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Project Title *</label>
+              <input
+                v-model="form.title"
+                type="text"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                placeholder="e.g., RAMADA EMERALD BAY"
+              />
+            </div>
 
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Description *</label>
-            <textarea
-              v-model="form.description"
-              required
-              rows="5"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition resize-none"
-              placeholder="Enter project description..."
-            ></textarea>
-            <p class="text-sm text-gray-500 mt-2">Use line breaks to separate paragraphs</p>
-          </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Developer *</label>
+              <input
+                v-model="form.developer"
+                type="text"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                placeholder="Developer name"
+              />
+            </div>
 
-          <ImageUpload
-            v-model="form.image"
-            label="Project Image *"
-            placeholder="Enter image URL or upload an image"
-            :required="true"
+            <div class="lg:col-span-2">
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Description *</label>
+              <textarea
+                v-model="form.description"
+                required
+                rows="4"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition resize-none"
+                placeholder="Enter project description..."
+              ></textarea>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Project Location *</label>
+              <input
+                v-model="form.location"
+                type="text"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                placeholder="Project address"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Project Area</label>
+              <input
+                v-model="form.area"
+                type="text"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                placeholder="e.g., 50,000 sqm"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Project Type *</label>
+              <select
+                v-model="form.projectType"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+              >
+                <option value="">Select project type</option>
+                <option value="residential">Residential</option>
+                <option value="commercial">Commercial</option>
+                <option value="mixed">Mixed Use</option>
+                <option value="industrial">Industrial</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Ownership Type</label>
+              <select
+                v-model="form.ownershipType"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+              >
+                <option value="">Select ownership type</option>
+                <option value="freehold">Freehold</option>
+                <option value="leasehold">Leasehold</option>
+                <option value="strata">Strata</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Construction Period</label>
+              <input
+                v-model="form.constructionPeriod"
+                type="text"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                placeholder="e.g., 2023-2025"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Expected Finish Period</label>
+              <input
+                v-model="form.expectedFinish"
+                type="text"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                placeholder="e.g., Q4 2025"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Number of Floors</label>
+              <input
+                v-model.number="form.floors"
+                type="number"
+                min="1"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                placeholder="Number of floors"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Number of Units/Buildings</label>
+              <input
+                v-model.number="form.units"
+                type="number"
+                min="1"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                placeholder="Total units or buildings"
+              />
+            </div>
+
+            <!-- Facilities Multi-Select -->
+            <div class="lg:col-span-2">
+              <FacilitiesSelector
+                v-model="form.facilities"
+                label="Facilities"
+                :facilities="availableFacilities"
+              />
+            </div>
+
+            <!-- Neighborhoods -->
+            <div class="lg:col-span-2">
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Neighborhoods</label>
+              <div class="space-y-3">
+                <div v-for="(neighborhood, index) in form.neighborhoods" :key="index" class="flex gap-3">
+                  <input
+                    v-model="neighborhood.number"
+                    type="text"
+                    placeholder="Number/Code"
+                    class="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                  />
+                  <input
+                    v-model="neighborhood.name"
+                    type="text"
+                    placeholder="Neighborhood name"
+                    class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                  />
+                  <button
+                    type="button"
+                    @click="removeNeighborhood(index)"
+                    class="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                  >
+                    <Icon name="fa-solid:trash" />
+                  </button>
+                </div>
+                <button
+                  type="button"
+                  @click="addNeighborhood"
+                  class="flex items-center px-4 py-2 text-[#ecbc85] hover:bg-[#ecbc85]/10 rounded-lg transition-colors"
+                >
+                  <Icon name="fa-solid:plus" class="mr-2" />
+                  Add Neighborhood
+                </button>
+              </div>
+            </div>
+
+            <!-- Brochure Upload -->
+            <div class="lg:col-span-2">
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Project Brochure</label>
+              <input
+                type="file"
+                @change="handleBrochureUpload"
+                accept=".pdf,.doc,.docx"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+              />
+              <p class="text-sm text-gray-500 mt-1">Upload PDF, DOC, or DOCX files</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Show Units Section -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+            <Icon name="fa-solid:home" class="mr-2 text-[#ecbc85]" />
+            Show Units
+          </h2>
+          
+          <div class="space-y-6">
+            <div v-for="(unit, index) in form.showUnits" :key="index" class="border border-gray-200 rounded-lg p-4">
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="font-semibold text-gray-800">Unit {{ index + 1 }}</h3>
+                <button
+                  type="button"
+                  @click="removeShowUnit(index)"
+                  class="text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors"
+                >
+                  <Icon name="fa-solid:trash" />
+                </button>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1">Room Type</label>
+                  <select
+                    v-model="unit.roomType"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                  >
+                    <option value="">Select room type</option>
+                    <option value="studio">Studio</option>
+                    <option value="1br">1 Bedroom</option>
+                    <option value="2br">2 Bedroom</option>
+                    <option value="3br">3 Bedroom</option>
+                    <option value="4br">4+ Bedroom</option>
+                    <option value="penthouse">Penthouse</option>
+                  </select>
+                </div>
+                
+                <div class="md:col-span-1">
+                  <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                  <textarea
+                    v-model="unit.description"
+                    rows="3"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition resize-none"
+                    placeholder="Unit description..."
+                  ></textarea>
+                </div>
+              </div>
+              
+              <div>
+                <MultiImageUpload
+                  v-model="unit.images"
+                  label="Unit Images"
+                  description="Upload multiple images for this unit"
+                  :max-files="8"
+                />
+              </div>
+            </div>
+            
+            <button
+              type="button"
+              @click="addShowUnit"
+              class="flex items-center px-4 py-2 text-[#ecbc85] hover:bg-[#ecbc85]/10 rounded-lg transition-colors"
+            >
+              <Icon name="fa-solid:plus" class="mr-2" />
+              Add Show Unit
+            </button>
+          </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+            <Icon name="fa-solid:images" class="mr-2 text-[#ecbc85]" />
+            Project Gallery
+          </h2>
+          
+          <div class="space-y-4">
+            <div v-for="(galleryItem, index) in form.gallery" :key="index" class="border border-gray-200 rounded-lg p-4">
+              <div class="flex justify-between items-center mb-3">
+                <h3 class="font-semibold text-gray-800">Gallery Item {{ index + 1 }}</h3>
+                <button
+                  type="button"
+                  @click="removeGalleryItem(index)"
+                  class="text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors"
+                >
+                  <Icon name="fa-solid:trash" />
+                </button>
+              </div>
+              
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1">Tag</label>
+                  <input
+                    v-model="galleryItem.tag"
+                    type="text"
+                    placeholder="e.g., Exterior, Interior, Amenities"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                  />
+                </div>
+                
+                <MultiImageUpload
+                  v-model="galleryItem.images"
+                  :label="`Images for ${galleryItem.tag || 'Gallery Item'}`"
+                  description="Upload multiple images for this gallery section"
+                  :max-files="12"
+                />
+              </div>
+            </div>
+            
+            <button
+              type="button"
+              @click="addGalleryItem"
+              class="flex items-center px-4 py-2 text-[#ecbc85] hover:bg-[#ecbc85]/10 rounded-lg transition-colors"
+            >
+              <Icon name="fa-solid:plus" class="mr-2" />
+              Add Gallery Item
+            </button>
+          </div>
+        </div>
+
+        <!-- Location Section -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+            <Icon name="fa-solid:map-marker-alt" class="mr-2 text-[#ecbc85]" />
+            Location
+          </h2>
+          
+          <MapSelector
+            v-model="form.coordinates"
+            label="Project Location on Map"
           />
+        </div>
 
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Link URL</label>
-            <input
-              v-model="form.link"
-              type="text"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
-              placeholder="e.g., /ramada or https://example.com"
-            />
-            <p class="text-sm text-gray-500 mt-2">Where the "View More" button should link to (default: /)</p>
-          </div>
-
+        <!-- Settings Section -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+            <Icon name="fa-solid:cog" class="mr-2 text-[#ecbc85]" />
+            Settings
+          </h2>
+          
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
               <label class="block text-sm font-semibold text-gray-700 mb-2">Display Order</label>
@@ -89,26 +378,27 @@
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="flex flex-col sm:flex-row justify-end gap-3 pt-6 border-t border-gray-200">
-            <button
-              type="button"
-              @click="navigateTo('/admin/projects')"
-              class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors text-center"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              :disabled="saving"
-              class="px-6 py-3 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-200 disabled:opacity-50 flex items-center justify-center gap-2"
-            >
-              <Icon v-if="saving" name="fa-solid:spinner" class="animate-spin" />
-              <span>{{ saving ? 'Creating...' : 'Create Project' }}</span>
-            </button>
-          </div>
-        </form>
-      </div>
+        <!-- Submit Buttons -->
+        <div class="flex flex-col sm:flex-row justify-end gap-3 pt-6">
+          <button
+            type="button"
+            @click="navigateTo('/admin/projects')"
+            class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors text-center"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            :disabled="saving"
+            class="px-6 py-3 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-200 disabled:opacity-50 flex items-center justify-center gap-2"
+          >
+            <Icon v-if="saving" name="fa-solid:spinner" class="animate-spin" />
+            <span>{{ saving ? 'Creating...' : 'Create Project' }}</span>
+          </button>
+        </div>
+      </form>
     </div>
   </AdminLayout>
 </template>
@@ -121,17 +411,100 @@ definePageMeta({
 const form = ref({
   title: '',
   description: '',
-  image: '',
-  link: '/',
+  developer: '',
+  location: '',
+  area: '',
+  projectType: '',
+  ownershipType: '',
+  constructionPeriod: '',
+  expectedFinish: '',
+  floors: null,
+  units: null,
+  facilities: [],
+  neighborhoods: [{ number: '', name: '' }],
+  brochure: null,
+  showUnits: [],
+  gallery: [],
+  coordinates: {
+    lat: null,
+    lng: null
+  },
   order: 0,
   active: true,
 });
 
 const saving = ref(false);
 
+const availableFacilities = [
+  'Swimming Pool', 'Gym', 'Playground', 'Security', 'Parking',
+  'Garden', 'BBQ Area', 'Function Room', 'Tennis Court', 'Sauna',
+  'Jacuzzi', 'Concierge', 'Elevator', 'CCTV', 'Clubhouse',
+  'Jogging Track', 'Children\'s Pool', 'Multi-purpose Hall',
+  'Reading Room', 'Yoga Studio', 'Badminton Court', 'Basketball Court',
+  'Putting Green', 'Rooftop Garden', 'Sky Lounge', 'Business Center',
+  'Meeting Room', 'Karaoke Room', 'Game Room', 'Laundry'
+];
+
+// Neighborhood functions
+const addNeighborhood = () => {
+  form.value.neighborhoods.push({ number: '', name: '' });
+};
+
+const removeNeighborhood = (index: number) => {
+  if (form.value.neighborhoods.length > 1) {
+    form.value.neighborhoods.splice(index, 1);
+  }
+};
+
+// Show Unit functions
+const addShowUnit = () => {
+  form.value.showUnits.push({
+    roomType: '',
+    description: '',
+    images: []
+  });
+};
+
+const removeShowUnit = (index: number) => {
+  form.value.showUnits.splice(index, 1);
+};
+
+// Gallery functions
+const addGalleryItem = () => {
+  form.value.gallery.push({
+    tag: '',
+    images: []
+  });
+};
+
+const removeGalleryItem = (index: number) => {
+  form.value.gallery.splice(index, 1);
+};
+
+// Brochure upload
+const handleBrochureUpload = async (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  const file = target.files?.[0];
+  if (!file) return;
+
+  // Convert to base64 or upload to server
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    form.value.brochure = {
+      name: file.name,
+      data: e.target?.result as string,
+      type: file.type
+    };
+  };
+  reader.readAsDataURL(file);
+};
+
 const handleSubmit = async () => {
   saving.value = true;
   try {
+    // Clean up empty neighborhoods
+    form.value.neighborhoods = form.value.neighborhoods.filter(n => n.number || n.name);
+    
     await $fetch('/api/projects', {
       method: 'POST',
       body: form.value,
