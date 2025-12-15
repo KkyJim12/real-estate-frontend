@@ -1,1 +1,46 @@
-[]
+[
+  {
+    "id": "1",
+    "title": "EMERALD BAY LUXURY RESIDENCES",
+    "description": "Experience unparalleled luxury in our flagship development.\nWhere sophistication meets comfort in perfect harmony.\n\nDiscover your dream home with breathtaking ocean views and world-class amenities.",
+    "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&h=1080&fit=crop",
+    "videoLink": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "order": 1,
+    "active": true,
+    "createdAt": "2024-12-15T08:00:00.000Z",
+    "updatedAt": "2024-12-15T08:00:00.000Z"
+  },
+  {
+    "id": "2",
+    "title": "SKYLINE TOWERS",
+    "description": "Reach new heights of luxury living.\nPanoramic city views from every residence.\n\nModern architecture meets timeless elegance in the heart of the city.",
+    "image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&h=1080&fit=crop",
+    "videoLink": "",
+    "order": 2,
+    "active": true,
+    "createdAt": "2024-12-15T08:05:00.000Z",
+    "updatedAt": "2024-12-15T08:05:00.000Z"
+  },
+  {
+    "id": "3",
+    "title": "GARDEN VILLAS COLLECTION",
+    "description": "Private sanctuaries surrounded by nature.\nExclusive villas with private gardens and pools.\n\nWhere tranquility meets luxury in perfect balance.",
+    "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&h=1080&fit=crop",
+    "videoLink": "",
+    "order": 3,
+    "active": true,
+    "createdAt": "2024-12-15T08:10:00.000Z",
+    "updatedAt": "2024-12-15T08:10:00.000Z"
+  },
+  {
+    "id": "4",
+    "title": "WATERFRONT ESTATES",
+    "description": "Exclusive waterfront living at its finest.\nDirect beach access and marina facilities.\n\nYour private paradise awaits on pristine shores.",
+    "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1920&h=1080&fit=crop",
+    "videoLink": "",
+    "order": 4,
+    "active": true,
+    "createdAt": "2024-12-15T08:15:00.000Z",
+    "updatedAt": "2024-12-15T08:15:00.000Z"
+  }
+]

@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "id": "1",
+    "title": "Luxury Real Estate Market Trends in 2024",
+    "content": "<p>The luxury real estate market continues to evolve with changing buyer preferences and economic conditions. In 2024, we're seeing increased demand for properties with home offices, sustainable features, and smart home technology.</p><p>Key trends include:</p><ul><li>Sustainable and eco-friendly developments</li><li>Smart home integration and automation</li><li>Wellness-focused amenities like spas and fitness centers</li><li>Private outdoor spaces and gardens</li><li>Flexible living spaces that can adapt to different needs</li></ul><p>Investors are particularly interested in properties that offer both luxury and functionality, with many seeking homes that can serve as both primary residences and investment opportunities.</p>",
+    "excerpt": "Explore the latest trends shaping the luxury real estate market in 2024, from sustainable features to smart home technology.",
+    "featuredImage": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop",
+    "author": "Sarah Johnson",
+    "status": "published",
+    "publishedAt": "2024-12-15T10:00:00.000Z",
+    "createdAt": "2024-12-15T09:30:00.000Z",
+    "updatedAt": "2024-12-15T10:00:00.000Z"
+  },
+  {
+    "id": "2",
+    "title": "Investment Opportunities in Emerging Markets",
+    "content": "<p>Emerging real estate markets present unique opportunities for savvy investors looking to diversify their portfolios. These markets often offer higher growth potential and attractive entry points compared to established markets.</p><p>When evaluating emerging markets, consider:</p><ul><li>Economic stability and growth projections</li><li>Infrastructure development plans</li><li>Government policies supporting real estate investment</li><li>Population growth and urbanization trends</li><li>Tourism and business development potential</li></ul><p>Our research team has identified several promising markets that show strong fundamentals and growth potential for the coming years.</p>",
+    "excerpt": "Discover lucrative investment opportunities in emerging real estate markets with high growth potential.",
+    "featuredImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop",
+    "author": "Michael Chen",
+    "status": "published",
+    "publishedAt": "2024-12-14T14:30:00.000Z",
+    "createdAt": "2024-12-14T14:00:00.000Z",
+    "updatedAt": "2024-12-14T14:30:00.000Z"
+  },
+  {
+    "id": "3",
+    "title": "Sustainable Architecture: The Future of Luxury Living",
+    "content": "<p>Sustainable architecture is no longer just a trend—it's becoming the standard for luxury developments. Modern buyers are increasingly conscious of their environmental impact and seek properties that align with their values.</p><p>Key sustainable features in luxury developments include:</p><ul><li>Solar panels and renewable energy systems</li><li>Rainwater harvesting and greywater recycling</li><li>Green roofs and living walls</li><li>Energy-efficient building materials and insulation</li><li>Smart climate control systems</li><li>Electric vehicle charging stations</li></ul><p>These features not only reduce environmental impact but also provide long-term cost savings for residents through reduced utility bills and maintenance costs.</p>",
+    "excerpt": "Learn how sustainable architecture is revolutionizing luxury real estate and creating environmentally conscious living spaces.",
+    "featuredImage": "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&h=600&fit=crop",
+    "author": "Emma Rodriguez",
+    "status": "published",
+    "publishedAt": "2024-12-13T16:45:00.000Z",
+    "createdAt": "2024-12-13T16:15:00.000Z",
+    "updatedAt": "2024-12-13T16:45:00.000Z"
+  },
+  {
+    "id": "4",
+    "title": "Smart Home Technology in Modern Developments",
+    "content": "<p>The integration of smart home technology has become a defining feature of modern luxury developments. From automated lighting and climate control to advanced security systems, technology is enhancing the living experience in unprecedented ways.</p><p>Popular smart home features include:</p><ul><li>Voice-controlled assistants and automation</li><li>Smart thermostats and energy management</li><li>Advanced security systems with facial recognition</li><li>Automated lighting and window treatments</li><li>Smart appliances and kitchen technology</li><li>Home theater and entertainment systems</li></ul><p>These technologies not only provide convenience and comfort but also improve energy efficiency and security, making them valuable investments for property owners.</p>",
+    "excerpt": "Explore how smart home technology is transforming modern luxury developments and enhancing resident experiences.",
+    "featuredImage": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
+    "author": "David Park",
+    "status": "published",
+    "publishedAt": "2024-12-12T11:20:00.000Z",
+    "createdAt": "2024-12-12T10:50:00.000Z",
+    "updatedAt": "2024-12-12T11:20:00.000Z"
+  },
+  {
+    "id": "5",
+    "title": "The Rise of Mixed-Use Developments",
+    "content": "<p>Mixed-use developments are reshaping urban landscapes by combining residential, commercial, and recreational spaces in single projects. This approach creates vibrant communities where residents can live, work, and play without extensive travel.</p><p>Benefits of mixed-use developments:</p><ul><li>Reduced commute times and transportation costs</li><li>Increased property values through convenience</li><li>Enhanced community interaction and social connections</li><li>Sustainable urban development and reduced sprawl</li><li>Diverse amenities and services within walking distance</li><li>24/7 activity creating safer, more vibrant neighborhoods</li></ul><p>Developers are increasingly adopting this model as it meets the evolving needs of modern urban dwellers who value convenience, sustainability, and community.</p>",
+    "excerpt": "Discover how mixed-use developments are creating vibrant communities that combine living, working, and entertainment spaces.",
+    "featuredImage": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+    "author": "Lisa Thompson",
+    "status": "published",
+    "publishedAt": "2024-12-11T09:15:00.000Z",
+    "createdAt": "2024-12-11T08:45:00.000Z",
+    "updatedAt": "2024-12-11T09:15:00.000Z"
+  }
+]
