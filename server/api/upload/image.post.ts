@@ -12,7 +12,10 @@ const ensureUploadDir = () => {
 
 export default defineEventHandler(async (event) => {
   try {
+    console.log('Upload API called');
+    
     const form = await readMultipartFormData(event);
+    console.log('Form data:', form?.length || 0, 'files');
 
     if (!form || form.length === 0) {
       throw createError({
@@ -21,9 +24,10 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    const file = form[0];
+    const file = form.find(item => item.name === 'file');
+    console.log('File found:', !!file, file?.filename, file?.type);
 
-    if (!file.filename || !file.data) {
+    if (!file || !file.filename || !file.data) {
       throw createError({
         statusCode: 400,
         message: 'Invalid file',
@@ -74,14 +78,24 @@ export default defineEventHandler(async (event) => {
       console.log('Uploading to local storage...');
       ensureUploadDir();
       const filepath = path.join(uploadsDir, filename);
-      fs.writeFileSync(filepath, file.data);
-
-      return {
-        success: true,
-        url: `/uploads/${filename}`,
-        filename: filename,
-        storage: 'local',
-      };
+      
+      try {
+        fs.writeFileSync(filepath, file.data);
+        console.log('File saved to:', filepath);
+        
+        return {
+          success: true,
+          url: `/uploads/${filename}`,
+          filename: filename,
+          storage: 'local',
+        };
+      } catch (writeError) {
+        console.error('Failed to write file:', writeError);
+        throw createError({
+          statusCode: 500,
+          message: 'Failed to save file to local storage',
+        });
+      }
     }
   } catch (error: any) {
     console.error('Upload error:', error);

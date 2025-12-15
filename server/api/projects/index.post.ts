@@ -20,6 +20,7 @@ export default defineEventHandler(async (event) => {
       // Arrays
       facilities: body.facilities || [],
       neighborhoods: body.neighborhoods || [],
+      heroCarousel: body.heroCarousel || [],
       showUnits: body.showUnits || [],
       gallery: body.gallery || [],
       

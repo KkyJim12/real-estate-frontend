@@ -7,7 +7,7 @@
       <div class="flex gap-2">
         <input
           v-model="imageUrl"
-          type="url"
+          type="text"
           class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
           :placeholder="placeholder"
           @input="handleUrlChange"
@@ -93,7 +93,9 @@ watch(() => props.modelValue, (newValue) => {
 
 const handleUrlChange = () => {
   error.value = '';
-  emit('update:modelValue', imageUrl.value);
+  const trimmedValue = imageUrl.value?.trim() || '';
+  imageUrl.value = trimmedValue;
+  emit('update:modelValue', trimmedValue);
 };
 
 const triggerFileInput = () => {
@@ -105,6 +107,8 @@ const handleFileChange = async (event: Event) => {
   const file = target.files?.[0];
 
   if (!file) return;
+
+  console.log('File selected:', file.name, file.type, file.size);
 
   // Validate file type
   if (!file.type.startsWith('image/')) {
@@ -124,15 +128,23 @@ const handleFileChange = async (event: Event) => {
   try {
     const formData = new FormData();
     formData.append('file', file);
+    
+    console.log('Uploading file...');
 
     const response: any = await $fetch('/api/upload/image', {
       method: 'POST',
       body: formData,
     });
 
+    console.log('Upload response:', response);
+
     if (response.success && response.url) {
-      imageUrl.value = response.url;
-      emit('update:modelValue', response.url);
+      const uploadedUrl = response.url.trim();
+      imageUrl.value = uploadedUrl;
+      emit('update:modelValue', uploadedUrl);
+      console.log('Image uploaded successfully:', uploadedUrl);
+    } else {
+      throw new Error('Upload failed: No URL returned');
     }
   } catch (err: any) {
     console.error('Upload failed:', err);

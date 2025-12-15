@@ -6,20 +6,22 @@
     <!-- Loading State -->
     <div v-if="loading" class="flex items-center justify-center min-h-screen">
       <div class="text-center">
-        <Icon name="fa-solid:spinner" class="text-5xl text-gray-400 animate-spin mb-4" />
-        <p class="text-gray-500 text-lg">Loading project...</p>
+        <div class="w-16 h-16 border-4 border-[#ecbc85]/30 border-t-[#ecbc85] rounded-full animate-spin mx-auto mb-4"></div>
+        <p class="text-gray-600 font-light">Loading project...</p>
       </div>
     </div>
 
     <!-- Error State -->
     <div v-else-if="!project" class="flex items-center justify-center min-h-screen">
-      <div class="text-center">
-        <Icon name="fa-solid:exclamation-circle" class="text-6xl text-red-400 mb-4" />
-        <h2 class="text-2xl font-bold text-gray-800 mb-2">Project Not Found</h2>
-        <p class="text-gray-600 mb-8">The project you're looking for doesn't exist or has been removed.</p>
+      <div class="text-center max-w-md mx-auto px-6">
+        <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
+          <Icon name="fa-solid:exclamation-triangle" class="text-2xl text-red-500" />
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Project Not Found</h2>
+        <p class="text-gray-600 mb-8">The project you're looking for doesn't exist.</p>
         <NuxtLink
           to="/"
-          class="inline-flex items-center space-x-2 bg-[#36364e] text-white px-8 py-3 rounded-lg hover:bg-[#ecbc85] transition-colors duration-200"
+          class="inline-flex items-center space-x-2 bg-[#2c2c54] text-white px-6 py-3 rounded-lg hover:bg-[#ecbc85] transition-colors"
         >
           <Icon name="fa-solid:arrow-left" />
           <span>Back to Home</span>
@@ -31,307 +33,374 @@
     <div v-else>
       <!-- Hero Section -->
       <section class="relative h-screen overflow-hidden">
-        <div class="absolute inset-0">
+        <!-- Background Image with Parallax Effect -->
+        <div class="absolute inset-0 hero-parallax">
           <NuxtImg
             :src="project.gallery?.[0]?.images?.[0]?.url || project.image || '/images/default-project.jpg'"
             :alt="project.title"
-            class="w-full h-full object-cover"
+            class="w-full h-full object-cover scale-110"
             loading="eager"
             format="webp"
-            quality="90"
+            quality="95"
           />
-          <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-        </div>
-        
-        <div class="relative z-10 flex items-center justify-center h-full">
-          <div class="text-center text-white px-4">
-            <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-wide">
-              {{ project.title }}
-            </h1>
-            <p class="text-xl md:text-2xl font-light opacity-90">
-              {{ project.developer }}
-            </p>
-          </div>
+          <!-- Sophisticated Gradient Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-br from-[#2c2c54]/80 via-black/40 to-[#2c2c54]/60"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+          <!-- Luxury Pattern Overlay -->
+          <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 25% 25%, #ecbc85 2px, transparent 2px), radial-gradient(circle at 75% 75%, #ecbc85 2px, transparent 2px); background-size: 100px 100px;"></div>
         </div>
 
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-          <Icon name="fa-solid:chevron-down" class="text-2xl" />
-        </div>
-      </section>
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-32 h-32 bg-[#ecbc85]/10 rounded-full blur-xl animate-float"></div>
+        <div class="absolute bottom-32 right-16 w-24 h-24 bg-white/5 rounded-full blur-lg animate-float-delayed"></div>
 
-      <!-- Concept Section -->
-      <section class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-          <h2 class="text-4xl font-bold text-gray-800 mb-8">CONCEPT</h2>
-          <div class="max-w-4xl mx-auto">
-            <p class="text-lg text-gray-600 leading-relaxed whitespace-pre-line">
-              {{ project.description }}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Project Info Section with Tabs -->
-      <section class="py-20 bg-[#2c2c54] text-white">
-        <div class="max-w-6xl mx-auto px-4">
-          <!-- Header -->
-          <div class="text-center mb-16">
-            <div class="flex items-center justify-center mb-6">
-              <div class="h-px bg-[#ecbc85] flex-1 max-w-32"></div>
-              <h2 class="text-4xl font-bold mx-8">PROJECT INFO</h2>
-              <div class="h-px bg-[#ecbc85] flex-1 max-w-32"></div>
+        <!-- Hero Content -->
+        <div class="relative z-10 flex items-center justify-center h-full px-6">
+          <div class="text-center text-white max-w-5xl mx-auto">
+            <!-- Luxury Badge with Animation -->
+            <div class="inline-flex items-center space-x-3 bg-gradient-to-r from-white/15 to-white/5 backdrop-blur-md border border-white/30 rounded-full px-6 py-3 mb-8 shadow-2xl luxury-badge">
+              <div class="w-3 h-3 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] rounded-full animate-pulse"></div>
+              <span class="text-sm font-semibold tracking-widest uppercase text-[#ecbc85]">{{ project.projectType || 'Luxury Development' }}</span>
+              <div class="w-px h-4 bg-white/30"></div>
+              <span class="text-xs text-white/80 uppercase tracking-wide">Premium Collection</span>
             </div>
-            <p class="text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Pattaya may be a seaside destination, but EMERALD BAY offers you so much more,
-              with complete facilities included in the project, you can relax more than ever before.
+
+            <!-- Main Title with Luxury Typography -->
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 tracking-tight luxury-title">
+              <span class="bg-gradient-to-r from-white via-white to-[#ecbc85] bg-clip-text text-transparent">
+                {{ project.title }}
+              </span>
+            </h1>
+            
+            <!-- Elegant Separator -->
+            <div class="flex items-center justify-center mb-8">
+              <div class="h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent w-32"></div>
+              <div class="mx-4 w-2 h-2 bg-[#ecbc85] rounded-full"></div>
+              <div class="h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent w-32"></div>
+            </div>
+
+            <!-- Developer & Location with Icons -->
+            <div class="space-y-4 mb-12">
+              <div class="flex items-center justify-center space-x-3">
+                <Icon name="fa-solid:building" class="text-[#ecbc85] text-lg" />
+                <p class="text-xl md:text-2xl font-light text-white/95">{{ project.developer }}</p>
+              </div>
+              <div class="flex items-center justify-center space-x-3">
+                <Icon name="fa-solid:map-marker-alt" class="text-[#ecbc85] text-lg" />
+                <p class="text-lg md:text-xl font-light text-white/85">{{ project.location }}</p>
+              </div>
+            </div>
+
+            <!-- Premium CTA Button -->
+            <button
+              @click="scrollToSection('details')"
+              class="group relative inline-flex items-center space-x-3 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white px-10 py-5 rounded-full font-bold text-lg shadow-2xl hover:shadow-[#ecbc85]/25 hover:scale-105 transition-all duration-500 luxury-button"
+            >
+              <span>Discover Excellence</span>
+              <Icon name="fa-solid:arrow-down" class="group-hover:translate-y-1 transition-transform duration-300" />
+              <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Elegant Scroll Indicator -->
+        <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-2">
+          <div class="text-white/60 text-sm font-light tracking-wide">Scroll to explore</div>
+          <div class="w-px h-8 bg-gradient-to-b from-white/60 to-transparent"></div>
+          <Icon name="fa-solid:chevron-down" class="text-white/60 text-sm animate-bounce" />
+        </div>
+      </section>
+
+      <!-- Project Overview -->
+      <section id="details" class="py-32 relative overflow-hidden">
+        <!-- Ultra-Modern Luxury Background -->
+        <div class="absolute inset-0">
+          <!-- Primary Gradient -->
+          <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-gray-50"></div>
+          
+          <!-- Sophisticated Mesh Gradient -->
+          <div class="absolute inset-0 bg-gradient-to-tr from-[#2c2c54]/5 via-transparent to-[#ecbc85]/10"></div>
+          
+          <!-- Luxury Geometric Pattern -->
+          <div class="absolute inset-0 opacity-[0.02]">
+            <div class="absolute inset-0" style="background-image: 
+              radial-gradient(circle at 25% 25%, #2c2c54 2px, transparent 2px),
+              radial-gradient(circle at 75% 75%, #ecbc85 1px, transparent 1px),
+              linear-gradient(45deg, transparent 49%, rgba(44, 44, 84, 0.1) 50%, transparent 51%),
+              linear-gradient(-45deg, transparent 49%, rgba(236, 188, 133, 0.1) 50%, transparent 51%);
+              background-size: 120px 120px, 80px 80px, 60px 60px, 60px 60px;
+              background-position: 0 0, 40px 40px, 0 0, 30px 30px;"></div>
+          </div>
+          
+          <!-- Floating Orbs -->
+          <div class="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-[#ecbc85]/10 via-[#ecbc85]/5 to-transparent rounded-full blur-3xl animate-float opacity-60"></div>
+          <div class="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-tl from-[#2c2c54]/8 via-[#2c2c54]/4 to-transparent rounded-full blur-3xl animate-float-delayed opacity-40"></div>
+          <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-r from-[#ecbc85]/6 to-[#2c2c54]/6 rounded-full blur-2xl animate-pulse opacity-30"></div>
+          
+          <!-- Luxury Light Rays -->
+          <div class="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#ecbc85]/20 to-transparent"></div>
+          <div class="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-[#2c2c54]/15 to-transparent"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <!-- Content -->
+            <div class="space-y-8">
+              <!-- Section Header -->
+              <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-12 h-px bg-gradient-to-r from-[#ecbc85] to-transparent"></div>
+                  <span class="text-[#ecbc85] font-bold text-sm uppercase tracking-[0.2em]">About Project</span>
+                </div>
+                <h2 class="text-5xl lg:text-6xl font-black text-[#2c2c54] leading-tight">
+                  Project
+                  <span class="block bg-gradient-to-r from-[#2c2c54] to-[#ecbc85] bg-clip-text text-transparent">
+                    Overview
+                  </span>
+                </h2>
+              </div>
+              
+              <!-- Description -->
+              <div class="relative">
+                <div class="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-[#ecbc85] to-transparent rounded-full"></div>
+                <p class="text-xl text-gray-700 leading-relaxed font-light pl-8">
+                  {{ project.description }}
+                </p>
+              </div>
+
+              <!-- Luxury Stats Grid -->
+              <div class="grid grid-cols-2 gap-6 pt-8">
+                <div class="group relative bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-[#ecbc85]/20">
+                  <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] rounded-t-2xl"></div>
+                  <div class="text-center">
+                    <div class="text-4xl font-black bg-gradient-to-r from-[#ecbc85] to-[#d4a574] bg-clip-text text-transparent mb-3">
+                      {{ project.floors || 'N/A' }}
+                    </div>
+                    <div class="text-sm text-gray-600 font-semibold uppercase tracking-wide">Floors</div>
+                  </div>
+                  <div class="absolute inset-0 bg-gradient-to-br from-[#ecbc85]/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                
+                <div class="group relative bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-[#ecbc85]/20">
+                  <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#2c2c54] to-[#ecbc85] rounded-t-2xl"></div>
+                  <div class="text-center">
+                    <div class="text-4xl font-black bg-gradient-to-r from-[#2c2c54] to-[#ecbc85] bg-clip-text text-transparent mb-3">
+                      {{ project.units || 'N/A' }}
+                    </div>
+                    <div class="text-sm text-gray-600 font-semibold uppercase tracking-wide">Units</div>
+                  </div>
+                  <div class="absolute inset-0 bg-gradient-to-br from-[#2c2c54]/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Premium Image Display -->
+            <div class="relative">
+              <!-- Decorative Elements -->
+              <div class="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-[#ecbc85]/20 to-transparent rounded-full blur-2xl"></div>
+              <div class="absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-br from-[#2c2c54]/20 to-transparent rounded-full blur-xl"></div>
+              
+              <!-- Main Image Container -->
+              <div class="relative group">
+                <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                  <NuxtImg
+                    :src="project.gallery?.[1]?.images?.[0]?.url || project.gallery?.[0]?.images?.[1]?.url || project.image"
+                    :alt="project.title + ' overview'"
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    format="webp"
+                    quality="95"
+                  />
+                  <!-- Luxury Overlay -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                
+                <!-- Floating Badge -->
+                <div class="absolute -bottom-6 -right-6 bg-gradient-to-r from-[#2c2c54] to-[#ecbc85] text-white px-6 py-3 rounded-2xl shadow-xl">
+                  <div class="text-sm font-bold uppercase tracking-wide">Premium</div>
+                  <div class="text-xs opacity-90">Development</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Project Information Tabs -->
+      <section class="py-20 bg-[#2c2c54] text-white">
+        <div class="max-w-7xl mx-auto px-6">
+          <!-- Section Header -->
+          <div class="text-center mb-16">
+            <span class="text-[#ecbc85] font-semibold text-sm uppercase tracking-wide">Project Details</span>
+            <h2 class="text-4xl font-bold mt-2 mb-4">Complete Information</h2>
+            <p class="text-xl text-white/80 max-w-3xl mx-auto">
+              Discover all the details about this exceptional project
             </p>
           </div>
 
           <!-- Tabs Navigation -->
           <div class="flex justify-center mb-12">
-            <div class="flex space-x-8 border-b border-gray-600">
-              <button
-                @click="activeTab = 'facilities'"
-                :class="[
-                  'pb-4 px-2 font-medium text-sm uppercase tracking-wider transition-colors relative',
-                  activeTab === 'facilities'
-                    ? 'text-[#ecbc85] border-b-2 border-[#ecbc85]'
-                    : 'text-gray-300 hover:text-white'
-                ]"
-              >
-                Facilities
-              </button>
-              <button
-                @click="activeTab = 'neighbourhood'"
-                :class="[
-                  'pb-4 px-2 font-medium text-sm uppercase tracking-wider transition-colors relative',
-                  activeTab === 'neighbourhood'
-                    ? 'text-[#ecbc85] border-b-2 border-[#ecbc85]'
-                    : 'text-gray-300 hover:text-white'
-                ]"
-              >
-                Neighbourhood
-              </button>
-              <button
-                @click="activeTab = 'factsheet'"
-                :class="[
-                  'pb-4 px-2 font-medium text-sm uppercase tracking-wider transition-colors relative',
-                  activeTab === 'factsheet'
-                    ? 'text-[#ecbc85] border-b-2 border-[#ecbc85]'
-                    : 'text-gray-300 hover:text-white'
-                ]"
-              >
-                Factsheet
-              </button>
+            <div class="bg-white/10 backdrop-blur-sm rounded-full p-1">
+              <div class="flex space-x-1">
+                <button
+                  @click="activeTab = 'facilities'"
+                  :class="[
+                    'px-6 py-3 rounded-full font-medium text-sm uppercase tracking-wide transition-all duration-300',
+                    activeTab === 'facilities'
+                      ? 'bg-[#ecbc85] text-white'
+                      : 'text-white/70 hover:text-white hover:bg-white/10'
+                  ]"
+                >
+                  Facilities
+                </button>
+                <button
+                  @click="activeTab = 'neighbourhood'"
+                  :class="[
+                    'px-6 py-3 rounded-full font-medium text-sm uppercase tracking-wide transition-all duration-300',
+                    activeTab === 'neighbourhood'
+                      ? 'bg-[#ecbc85] text-white'
+                      : 'text-white/70 hover:text-white hover:bg-white/10'
+                  ]"
+                >
+                  Location
+                </button>
+                <button
+                  @click="activeTab = 'factsheet'"
+                  :class="[
+                    'px-6 py-3 rounded-full font-medium text-sm uppercase tracking-wide transition-all duration-300',
+                    activeTab === 'factsheet'
+                      ? 'bg-[#ecbc85] text-white'
+                      : 'text-white/70 hover:text-white hover:bg-white/10'
+                  ]"
+                >
+                  Specifications
+                </button>
+              </div>
             </div>
           </div>
 
           <!-- Tab Content -->
-          <div class="min-h-96">
+          <div class="min-h-[400px]">
             <!-- Facilities Tab -->
             <div v-show="activeTab === 'facilities'" class="fade-in">
-              <div class="grid grid-cols-2 md:grid-cols-3 gap-12 max-w-4xl mx-auto">
-                <!-- The Club House -->
-                <div class="text-center">
-                  <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-                    <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2L2 7v10c0 5.55 3.84 10 9 11 1.16.21 2.76.21 3.91 0C20.16 27 24 22.55 24 17V7l-10-5z"/>
-                      <path d="M8 11h8v2H8v-2zm0 4h8v2H8v-2z"/>
-                    </svg>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Featured Facilities -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/15 transition-colors">
+                  <div class="w-16 h-16 bg-[#ecbc85] rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <Icon name="fa-solid:swimming-pool" class="text-2xl text-white" />
                   </div>
-                  <h3 class="text-lg font-medium">The Club House</h3>
+                  <h3 class="text-xl font-semibold mb-2">Swimming Pool</h3>
+                  <p class="text-white/70 text-sm">Luxury swimming pool with stunning views</p>
                 </div>
 
-                <!-- The Aqua Based Design -->
-                <div class="text-center">
-                  <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-                    <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                    </svg>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/15 transition-colors">
+                  <div class="w-16 h-16 bg-[#ecbc85] rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <Icon name="fa-solid:dumbbell" class="text-2xl text-white" />
                   </div>
-                  <h3 class="text-lg font-medium">The Aqua Based Design</h3>
+                  <h3 class="text-xl font-semibold mb-2">Fitness Center</h3>
+                  <p class="text-white/70 text-sm">State-of-the-art fitness equipment</p>
                 </div>
 
-                <!-- 4 Story Low-Rise -->
-                <div class="text-center">
-                  <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-                    <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/15 transition-colors">
+                  <div class="w-16 h-16 bg-[#ecbc85] rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <Icon name="fa-solid:shield-alt" class="text-2xl text-white" />
                   </div>
-                  <h3 class="text-lg font-medium">4 Story Low-Rise</h3>
+                  <h3 class="text-xl font-semibold mb-2">24/7 Security</h3>
+                  <p class="text-white/70 text-sm">Round-the-clock security service</p>
                 </div>
+              </div>
 
-                <!-- Fitness -->
-                <div class="text-center">
-                  <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-                    <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29l-1.43-1.43z"/>
-                    </svg>
+              <!-- Additional Facilities -->
+              <div v-if="project.facilities && project.facilities.length" class="mt-12">
+                <h3 class="text-2xl font-semibold text-center mb-8">Additional Amenities</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  <div
+                    v-for="facility in project.facilities"
+                    :key="facility"
+                    class="bg-white/5 rounded-lg p-4 text-center hover:bg-white/10 transition-colors"
+                  >
+                    <Icon name="fa-solid:check" class="text-[#ecbc85] mb-2" />
+                    <p class="text-sm">{{ facility }}</p>
                   </div>
-                  <h3 class="text-lg font-medium">Fitness</h3>
-                </div>
-
-                <!-- Basketball Court -->
-                <div class="text-center">
-                  <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-                    <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="10"/>
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-                      <circle cx="12" cy="12" r="3"/>
-                    </svg>
-                  </div>
-                  <h3 class="text-lg font-medium">Basketball Court</h3>
-                </div>
-
-                <!-- Park -->
-                <div class="text-center">
-                  <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-                    <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66C7.71 17.33 9.73 12.2 18 10c-1.33-1.33-2.67-2.67-4-4 2.67 0 5.33.67 8 2-2.67-2.67-5.33-4-8-4z"/>
-                      <path d="M12 2L8 6h8l-4-4z"/>
-                    </svg>
-                  </div>
-                  <h3 class="text-lg font-medium">Park</h3>
                 </div>
               </div>
             </div>
 
-            <!-- Neighbourhood Tab -->
+            <!-- Location Tab -->
             <div v-show="activeTab === 'neighbourhood'" class="fade-in">
               <div class="max-w-4xl mx-auto">
-                <div v-if="project.neighborhoods && project.neighborhoods.length" class="space-y-6">
-                  <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold mb-4">Nearby Areas</h3>
-                    <p class="text-gray-300">Discover the convenience of our prime location</p>
-                  </div>
-                  
+                <div v-if="project.neighborhoods && project.neighborhoods.length">
+                  <h3 class="text-2xl font-semibold text-center mb-8">Nearby Areas</h3>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div
                       v-for="neighborhood in project.neighborhoods"
                       :key="neighborhood.name"
-                      class="bg-white bg-opacity-10 rounded-lg p-6 hover:bg-opacity-20 transition-colors"
+                      class="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex items-center space-x-4"
                     >
-                      <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 bg-[#ecbc85] rounded-full flex items-center justify-center">
-                          <Icon name="fa-solid:location-dot" class="text-white" />
-                        </div>
-                        <div>
-                          <h4 class="font-semibold text-lg">{{ neighborhood.name }}</h4>
-                          <p v-if="neighborhood.number" class="text-gray-300 text-sm">{{ neighborhood.number }}</p>
-                        </div>
+                      <div class="w-12 h-12 bg-[#ecbc85] rounded-lg flex items-center justify-center">
+                        <Icon name="fa-solid:location-dot" class="text-white" />
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-lg">{{ neighborhood.name }}</h4>
+                        <p v-if="neighborhood.number" class="text-white/70 text-sm">{{ neighborhood.number }}</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                
                 <div v-else class="text-center py-12">
-                  <Icon name="fa-solid:map-marker-alt" class="text-4xl text-gray-400 mb-4" />
-                  <p class="text-gray-300">Neighborhood information will be available soon</p>
+                  <Icon name="fa-solid:map-marker-alt" class="text-4xl text-white/40 mb-4" />
+                  <p class="text-white/70">Location details will be available soon</p>
                 </div>
               </div>
             </div>
 
-            <!-- Factsheet Tab -->
+            <!-- Specifications Tab -->
             <div v-show="activeTab === 'factsheet'" class="fade-in">
               <div class="max-w-4xl mx-auto">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <!-- Project Details -->
-                  <div class="space-y-6">
-                    <h3 class="text-2xl font-bold mb-6 text-[#ecbc85]">Project Details</h3>
-                    
+                  <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8">
+                    <h3 class="text-2xl font-semibold mb-6 text-[#ecbc85]">Project Details</h3>
                     <div class="space-y-4">
-                      <div class="flex justify-between items-center py-3 border-b border-gray-600">
-                        <span class="text-gray-300">Project Name</span>
-                        <span class="font-medium">{{ project.title }}</span>
+                      <div class="flex justify-between py-2 border-b border-white/10">
+                        <span class="text-white/70">Developer</span>
+                        <span>{{ project.developer || 'N/A' }}</span>
                       </div>
-                      
-                      <div class="flex justify-between items-center py-3 border-b border-gray-600">
-                        <span class="text-gray-300">Developer</span>
-                        <span class="font-medium">{{ project.developer || 'N/A' }}</span>
+                      <div class="flex justify-between py-2 border-b border-white/10">
+                        <span class="text-white/70">Project Type</span>
+                        <span class="capitalize">{{ project.projectType || 'N/A' }}</span>
                       </div>
-                      
-                      <div class="flex justify-between items-center py-3 border-b border-gray-600">
-                        <span class="text-gray-300">Project Location</span>
-                        <span class="font-medium">{{ project.location || 'N/A' }}</span>
+                      <div class="flex justify-between py-2 border-b border-white/10">
+                        <span class="text-white/70">Ownership</span>
+                        <span class="capitalize">{{ project.ownershipType || 'N/A' }}</span>
                       </div>
-                      
-                      <div class="flex justify-between items-center py-3 border-b border-gray-600">
-                        <span class="text-gray-300">Project Area</span>
-                        <span class="font-medium">{{ project.area || 'N/A' }}</span>
-                      </div>
-                      
-                      <div class="flex justify-between items-center py-3 border-b border-gray-600">
-                        <span class="text-gray-300">Project Type</span>
-                        <span class="font-medium capitalize">{{ project.projectType || 'N/A' }}</span>
-                      </div>
-                      
-                      <div class="flex justify-between items-center py-3 border-b border-gray-600">
-                        <span class="text-gray-300">Ownership Type</span>
-                        <span class="font-medium capitalize">{{ project.ownershipType || 'N/A' }}</span>
+                      <div class="flex justify-between py-2 border-b border-white/10">
+                        <span class="text-white/70">Project Area</span>
+                        <span>{{ project.area || 'N/A' }}</span>
                       </div>
                     </div>
                   </div>
 
                   <!-- Construction Details -->
-                  <div class="space-y-6">
-                    <h3 class="text-2xl font-bold mb-6 text-[#ecbc85]">Construction Info</h3>
-                    
+                  <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8">
+                    <h3 class="text-2xl font-semibold mb-6 text-[#ecbc85]">Construction Info</h3>
                     <div class="space-y-4">
-                      <div class="flex justify-between items-center py-3 border-b border-gray-600">
-                        <span class="text-gray-300">Construction Period</span>
-                        <span class="font-medium">{{ project.constructionPeriod || 'N/A' }}</span>
+                      <div class="flex justify-between py-2 border-b border-white/10">
+                        <span class="text-white/70">Construction Period</span>
+                        <span>{{ project.constructionPeriod || 'N/A' }}</span>
                       </div>
-                      
-                      <div class="flex justify-between items-center py-3 border-b border-gray-600">
-                        <span class="text-gray-300">Expected Finish</span>
-                        <span class="font-medium">{{ project.expectedFinish || 'N/A' }}</span>
+                      <div class="flex justify-between py-2 border-b border-white/10">
+                        <span class="text-white/70">Expected Completion</span>
+                        <span>{{ project.expectedFinish || 'N/A' }}</span>
                       </div>
-                      
-                      <div class="flex justify-between items-center py-3 border-b border-gray-600">
-                        <span class="text-gray-300">Number of Floors</span>
-                        <span class="font-medium">{{ project.floors || 'N/A' }}</span>
+                      <div class="flex justify-between py-2 border-b border-white/10">
+                        <span class="text-white/70">Number of Floors</span>
+                        <span>{{ project.floors || 'N/A' }}</span>
                       </div>
-                      
-                      <div class="flex justify-between items-center py-3 border-b border-gray-600">
-                        <span class="text-gray-300">Number of Units</span>
-                        <span class="font-medium">{{ project.units || 'N/A' }}</span>
-                      </div>
-                      
-                      <div class="flex justify-between items-start py-3 border-b border-gray-600">
-                        <span class="text-gray-300">Room Types</span>
-                        <div class="text-right">
-                          <div v-if="project.showUnits && project.showUnits.length" class="space-y-1">
-                            <div
-                              v-for="unit in project.showUnits"
-                              :key="unit.roomType"
-                              class="font-medium capitalize"
-                            >
-                              {{ unit.roomType?.replace('br', ' Bedroom') || 'Unit' }}
-                            </div>
-                          </div>
-                          <span v-else class="font-medium">N/A</span>
-                        </div>
+                      <div class="flex justify-between py-2 border-b border-white/10">
+                        <span class="text-white/70">Total Units</span>
+                        <span>{{ project.units || 'N/A' }}</span>
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                <!-- Brochure Download -->
-                <div v-if="project.brochure" class="mt-12 text-center">
-                  <div class="bg-white bg-opacity-10 rounded-lg p-8">
-                    <Icon name="fa-solid:file-pdf" class="text-4xl text-[#ecbc85] mb-4" />
-                    <h4 class="text-xl font-bold mb-2">Project Brochure</h4>
-                    <p class="text-gray-300 mb-6">Download detailed information about this project</p>
-                    <a
-                      :href="project.brochure.url || project.brochure.data"
-                      :download="project.brochure.name"
-                      class="inline-flex items-center space-x-2 bg-[#ecbc85] text-white px-6 py-3 rounded-lg hover:bg-[#d4a574] transition-colors"
-                    >
-                      <Icon name="fa-solid:download" />
-                      <span>Download Brochure</span>
-                    </a>
                   </div>
                 </div>
               </div>
@@ -341,59 +410,131 @@
       </section>
 
       <!-- Show Units Section -->
-      <section v-if="project.showUnits && project.showUnits.length" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4">
-          <h2 class="text-4xl font-bold text-center text-gray-800 mb-16">SHOW UNIT</h2>
-          
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <!-- Unit Types List -->
-            <div>
-              <h3 class="text-2xl font-bold text-gray-800 mb-8">Unit Types</h3>
-              <div class="space-y-6">
+      <section v-if="project.showUnits && project.showUnits.length" class="py-32 bg-gradient-to-br from-white via-gray-50/50 to-white relative overflow-hidden">
+        <!-- Luxury Background Elements -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-[#ecbc85]/10 to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-[#2c2c54]/10 to-transparent rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative">
+          <!-- Luxury Section Header -->
+          <div class="text-center mb-20">
+            <div class="flex items-center justify-center space-x-4 mb-6">
+              <div class="w-16 h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent"></div>
+              <span class="text-[#ecbc85] font-bold text-sm uppercase tracking-[0.3em]">Unit Collection</span>
+              <div class="w-16 h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent"></div>
+            </div>
+            <h2 class="text-5xl lg:text-6xl font-black text-[#2c2c54] mb-6 leading-tight">
+              Exclusive
+              <span class="block bg-gradient-to-r from-[#2c2c54] to-[#ecbc85] bg-clip-text text-transparent">
+                Residences
+              </span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
+              Discover our meticulously crafted living spaces, each designed to embody luxury and sophistication
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <!-- Luxury Unit Selection -->
+            <div class="space-y-6">
+              <h3 class="text-2xl font-bold text-[#2c2c54] mb-8 flex items-center">
+                <Icon name="fa-solid:home" class="text-[#ecbc85] mr-3" />
+                Available Floor Plans
+              </h3>
+              <div class="space-y-4">
                 <div
                   v-for="(unit, index) in project.showUnits"
                   :key="index"
-                  class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 cursor-pointer hover:shadow-md transition-shadow"
+                  class="group relative p-8 bg-white rounded-2xl cursor-pointer border-2 transition-all duration-500 hover:shadow-2xl"
+                  :class="selectedUnit === index 
+                    ? 'border-[#ecbc85] bg-gradient-to-br from-[#ecbc85]/5 to-white shadow-xl' 
+                    : 'border-gray-100 hover:border-[#ecbc85]/30'"
                   @click="selectedUnit = index"
-                  :class="{ 'ring-2 ring-[#ecbc85]': selectedUnit === index }"
                 >
-                  <h4 class="text-xl font-semibold text-gray-800 mb-2 capitalize">
-                    {{ unit.roomType?.replace('br', ' Bedroom') || 'Unit Type' }}
-                  </h4>
-                  <p class="text-gray-600 text-sm">{{ unit.description }}</p>
+                  <!-- Selection Indicator -->
+                  <div 
+                    class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 transition-all duration-300"
+                    :class="selectedUnit === index 
+                      ? 'border-[#ecbc85] bg-[#ecbc85]' 
+                      : 'border-gray-300 group-hover:border-[#ecbc85]'"
+                  >
+                    <div 
+                      v-if="selectedUnit === index"
+                      class="w-full h-full rounded-full bg-white scale-50 flex items-center justify-center"
+                    >
+                      <Icon name="fa-solid:check" class="text-[#ecbc85] text-xs" />
+                    </div>
+                  </div>
+
+                  <!-- Unit Content -->
+                  <div class="space-y-3">
+                    <h4 class="text-2xl font-bold text-[#2c2c54] capitalize flex items-center">
+                      <Icon name="fa-solid:bed" class="text-[#ecbc85] mr-3 text-lg" />
+                      {{ unit.roomType?.replace('br', ' Bedroom') || 'Luxury Unit' }}
+                    </h4>
+                    <p class="text-gray-600 leading-relaxed font-light">{{ unit.description }}</p>
+                  </div>
+
+                  <!-- Luxury Accent -->
+                  <div 
+                    class="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] rounded-b-2xl transition-all duration-500"
+                    :class="selectedUnit === index ? 'w-full' : 'w-0 group-hover:w-full'"
+                  ></div>
                 </div>
               </div>
             </div>
 
-            <!-- Unit Images -->
-            <div>
-              <div v-if="project.showUnits[selectedUnit]?.images?.length" class="space-y-4">
-                <div class="aspect-video rounded-lg overflow-hidden">
-                  <NuxtImg
-                    :src="project.showUnits[selectedUnit].images[selectedUnitImage]?.url || project.showUnits[selectedUnit].images[selectedUnitImage]"
-                    :alt="`${project.showUnits[selectedUnit].roomType} unit`"
-                    class="w-full h-full object-cover"
-                    format="webp"
-                    quality="85"
-                  />
+            <!-- Premium Unit Gallery -->
+            <div class="space-y-6">
+              <h3 class="text-2xl font-bold text-[#2c2c54] mb-8 flex items-center">
+                <Icon name="fa-solid:images" class="text-[#ecbc85] mr-3" />
+                Interior Showcase
+              </h3>
+              
+              <div v-if="project.showUnits[selectedUnit]?.images?.length" class="space-y-6">
+                <!-- Main Image Display -->
+                <div class="relative group">
+                  <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                    <NuxtImg
+                      :src="project.showUnits[selectedUnit].images[selectedUnitImage]?.url || project.showUnits[selectedUnit].images[selectedUnitImage]"
+                      :alt="`${project.showUnits[selectedUnit].roomType} unit`"
+                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      format="webp"
+                      quality="95"
+                    />
+                    <!-- Luxury Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+                  
+                  <!-- Image Counter -->
+                  <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">
+                    {{ selectedUnitImage + 1 }} / {{ project.showUnits[selectedUnit].images.length }}
+                  </div>
                 </div>
                 
-                <!-- Image Thumbnails -->
-                <div class="grid grid-cols-4 gap-2">
+                <!-- Luxury Thumbnails -->
+                <div class="grid grid-cols-4 gap-3">
                   <div
                     v-for="(image, imgIndex) in project.showUnits[selectedUnit].images"
                     :key="imgIndex"
-                    class="aspect-square rounded-lg overflow-hidden cursor-pointer"
-                    :class="{ 'ring-2 ring-[#ecbc85]': selectedUnitImage === imgIndex }"
+                    class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer border-3 transition-all duration-300"
+                    :class="selectedUnitImage === imgIndex 
+                      ? 'border-[#ecbc85] shadow-lg' 
+                      : 'border-gray-200 hover:border-[#ecbc85]/50'"
                     @click="selectedUnitImage = imgIndex"
                   >
                     <NuxtImg
                       :src="image?.url || image"
                       :alt="`Unit image ${imgIndex + 1}`"
-                      class="w-full h-full object-cover"
+                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       format="webp"
-                      quality="70"
+                      quality="80"
                     />
+                    <!-- Selection Overlay -->
+                    <div 
+                      class="absolute inset-0 bg-gradient-to-br from-[#ecbc85]/20 to-transparent transition-opacity duration-300"
+                      :class="selectedUnitImage === imgIndex ? 'opacity-100' : 'opacity-0 group-hover:opacity-50'"
+                    ></div>
                   </div>
                 </div>
               </div>
@@ -403,10 +544,13 @@
       </section>
 
       <!-- Gallery Section -->
-      <section v-if="project.gallery && project.gallery.length" class="py-20 bg-[#2c2c54]">
-        <div class="max-w-7xl mx-auto px-4">
-          <h2 class="text-4xl font-bold text-center text-white mb-16">GALLERY</h2>
-          
+      <section v-if="project.gallery && project.gallery.length" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center mb-16">
+            <span class="text-[#ecbc85] font-semibold text-sm uppercase tracking-wide">Project Gallery</span>
+            <h2 class="text-4xl font-bold text-[#2c2c54] mt-2 mb-4">Visual Experience</h2>
+          </div>
+
           <!-- Gallery Filter -->
           <div class="flex flex-wrap justify-center gap-4 mb-12">
             <button
@@ -415,7 +559,7 @@
                 'px-6 py-2 rounded-full font-medium transition-colors',
                 selectedGalleryTag === 'all'
                   ? 'bg-[#ecbc85] text-white'
-                  : 'bg-white bg-opacity-10 text-white hover:bg-opacity-20'
+                  : 'bg-white text-gray-600 hover:bg-gray-100'
               ]"
             >
               All
@@ -428,195 +572,375 @@
                 'px-6 py-2 rounded-full font-medium transition-colors capitalize',
                 selectedGalleryTag === tag
                   ? 'bg-[#ecbc85] text-white'
-                  : 'bg-white bg-opacity-10 text-white hover:bg-opacity-20'
+                  : 'bg-white text-gray-600 hover:bg-gray-100'
               ]"
             >
               {{ tag }}
             </button>
           </div>
 
-          <!-- Gallery Grid -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Gallery Grid - Limited to 2 rows x 4 columns -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div
-              v-for="(image, index) in filteredGalleryImages"
+              v-for="(image, index) in limitedGalleryImages"
               :key="index"
-              class="aspect-square rounded-lg overflow-hidden cursor-pointer group"
-              @click="openLightbox(image, index)"
+              class="aspect-square rounded-xl overflow-hidden cursor-pointer group relative"
+              @click="openLightbox(index)"
             >
               <NuxtImg
                 :src="image.url || image.src"
                 :alt="image.alt || `Gallery image ${index + 1}`"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 format="webp"
                 quality="80"
               />
+              <!-- Show remaining count on last image if there are more -->
+              <div
+                v-if="index === 7 && filteredGalleryImages.length > 8"
+                class="absolute inset-0 bg-black/60 flex items-center justify-center group-hover:bg-black/70 transition-colors"
+              >
+                <div class="text-center text-white">
+                  <div class="text-2xl font-bold">+{{ filteredGalleryImages.length - 8 }}</div>
+                  <div class="text-sm">More Photos</div>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <!-- View All Button -->
+          <div v-if="filteredGalleryImages.length > 8" class="text-center">
+            <button
+              @click="openLightbox(0)"
+              class="inline-flex items-center space-x-2 bg-[#2c2c54] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#ecbc85] transition-colors"
+            >
+              <Icon name="fa-solid:images" />
+              <span>View All {{ filteredGalleryImages.length }} Photos</span>
+            </button>
           </div>
         </div>
       </section>
 
-      <!-- Contact Form Section -->
-      <section class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Contact Form -->
-            <div>
-              <h2 class="text-4xl font-bold text-gray-800 mb-8">REGISTER FOR SPECIAL PRIVILEGE</h2>
-              
-              <form @submit.prevent="submitContactForm" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+      <!-- Contact Section -->
+      <section id="contact" class="py-32 relative overflow-hidden">
+        <!-- Ultra-Luxury Background -->
+        <div class="absolute inset-0">
+          <!-- Primary Dark Gradient -->
+          <div class="absolute inset-0 bg-gradient-to-br from-[#1a1a3a] via-[#2c2c54] to-[#1e1e42]"></div>
+          
+          <!-- Sophisticated Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-tr from-[#ecbc85]/10 via-transparent to-[#2c2c54]/20"></div>
+          
+          <!-- Luxury Mesh Pattern -->
+          <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: 
+              radial-gradient(circle at 20% 20%, #ecbc85 1px, transparent 1px),
+              radial-gradient(circle at 80% 80%, #ecbc85 1px, transparent 1px),
+              linear-gradient(0deg, transparent 24%, rgba(236, 188, 133, 0.05) 25%, rgba(236, 188, 133, 0.05) 26%, transparent 27%, transparent 74%, rgba(236, 188, 133, 0.05) 75%, rgba(236, 188, 133, 0.05) 76%, transparent 77%);
+              background-size: 100px 100px, 150px 150px, 50px 50px;"></div>
+          </div>
+          
+          <!-- Floating Elements -->
+          <div class="absolute top-10 right-10 w-72 h-72 bg-gradient-to-br from-[#ecbc85]/15 to-transparent rounded-full blur-3xl animate-float"></div>
+          <div class="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-tr from-[#2c2c54]/20 to-transparent rounded-full blur-3xl animate-float-delayed"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative">
+          <!-- Luxury Section Header -->
+          <div class="text-center mb-20">
+            <div class="flex items-center justify-center space-x-4 mb-6">
+              <div class="w-20 h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent"></div>
+              <span class="text-[#ecbc85] font-bold text-sm uppercase tracking-[0.3em]">Get In Touch</span>
+              <div class="w-20 h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent"></div>
+            </div>
+            <h2 class="text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
+              Contact Our
+              <span class="block bg-gradient-to-r from-white to-[#ecbc85] bg-clip-text text-transparent">
+                Luxury Team
+              </span>
+            </h2>
+            <p class="text-xl text-white/80 max-w-3xl mx-auto font-light leading-relaxed">
+              Ready to make this exceptional project your new home? Our dedicated team is here to guide you through every step.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 xl:grid-cols-3 gap-12">
+            <!-- Premium Contact Form -->
+            <div class="xl:col-span-2">
+              <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 lg:p-12 shadow-2xl">
+                <div class="mb-10">
+                  <h3 class="text-3xl font-bold text-white mb-4 flex items-center">
+                    <Icon name="fa-solid:envelope" class="text-[#ecbc85] mr-4 text-2xl" />
+                    Send us a Message
+                  </h3>
+                  <p class="text-white/70 text-lg font-light">
+                    Fill out the form below and we'll get back to you within 24 hours.
+                  </p>
+                </div>
+
+                <form @submit.prevent="submitContactForm" class="space-y-8">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                      <label class="block text-white/90 text-sm font-semibold uppercase tracking-wide">First Name</label>
+                      <input
+                        v-model="contactForm.firstName"
+                        type="text"
+                        required
+                        class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-[#ecbc85] focus:border-[#ecbc85] focus:bg-white/15 outline-none transition-all duration-300"
+                        placeholder="Enter your first name"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label class="block text-white/90 text-sm font-semibold uppercase tracking-wide">Last Name</label>
+                      <input
+                        v-model="contactForm.lastName"
+                        type="text"
+                        required
+                        class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-[#ecbc85] focus:border-[#ecbc85] focus:bg-white/15 outline-none transition-all duration-300"
+                        placeholder="Enter your last name"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="block text-white/90 text-sm font-semibold uppercase tracking-wide">Email Address</label>
                     <input
-                      v-model="contactForm.firstName"
-                      type="text"
+                      v-model="contactForm.email"
+                      type="email"
                       required
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
-                      placeholder="Your first name"
+                      class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-[#ecbc85] focus:border-[#ecbc85] focus:bg-white/15 outline-none transition-all duration-300"
+                      placeholder="your.email@example.com"
                     />
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="block text-white/90 text-sm font-semibold uppercase tracking-wide">Phone Number</label>
+                    <input
+                      v-model="contactForm.phone"
+                      type="tel"
+                      required
+                      class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-[#ecbc85] focus:border-[#ecbc85] focus:bg-white/15 outline-none transition-all duration-300"
+                      placeholder="+66 XX XXX XXXX"
+                    />
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="block text-white/90 text-sm font-semibold uppercase tracking-wide">Your Message</label>
+                    <textarea
+                      v-model="contactForm.message"
+                      rows="5"
+                      class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-[#ecbc85] focus:border-[#ecbc85] focus:bg-white/15 outline-none transition-all duration-300 resize-none"
+                      placeholder="Tell us about your interest in this project..."
+                    ></textarea>
+                  </div>
+
+                  <button
+                    type="submit"
+                    :disabled="submittingForm"
+                    class="group w-full bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-[#ecbc85]/25 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-500 relative overflow-hidden"
+                  >
+                    <span v-if="submittingForm" class="flex items-center justify-center space-x-3">
+                      <div class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      <span>Sending Message...</span>
+                    </span>
+                    <span v-else class="flex items-center justify-center space-x-3">
+                      <Icon name="fa-solid:paper-plane" class="group-hover:translate-x-1 transition-transform duration-300" />
+                      <span>Send Luxury Inquiry</span>
+                    </span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Project Info & Map -->
+            <div class="space-y-8">
+              <!-- Project Information Card -->
+              <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
+                <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
+                  <Icon name="fa-solid:info-circle" class="text-[#ecbc85] mr-3" />
+                  Project Details
+                </h3>
+                <div class="space-y-6">
+                  <div class="flex items-start space-x-4 group">
+                    <div class="w-12 h-12 bg-gradient-to-br from-[#ecbc85] to-[#d4a574] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Icon name="fa-solid:map-marker-alt" class="text-white text-lg" />
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-white text-lg">Prime Location</h4>
+                      <p class="text-white/80 font-light">{{ project.location }}</p>
+                    </div>
                   </div>
                   
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                    <input
-                      v-model="contactForm.lastName"
-                      type="text"
-                      required
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
-                      placeholder="Your last name"
-                    />
+                  <div class="flex items-start space-x-4 group">
+                    <div class="w-12 h-12 bg-gradient-to-br from-[#2c2c54] to-[#ecbc85] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Icon name="fa-solid:building" class="text-white text-lg" />
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-white text-lg">Developer</h4>
+                      <p class="text-white/80 font-light">{{ project.developer }}</p>
+                    </div>
                   </div>
-                </div>
-
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                  <input
-                    v-model="contactForm.email"
-                    type="email"
-                    required
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
-                  <input
-                    v-model="contactForm.phone"
-                    type="tel"
-                    required
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
-                    placeholder="+66 XX XXX XXXX"
-                  />
-                </div>
-
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                  <textarea
-                    v-model="contactForm.message"
-                    rows="4"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition resize-none"
-                    placeholder="Tell us about your interest in this project..."
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  :disabled="submittingForm"
-                  class="w-full bg-[#2c2c54] text-white py-4 rounded-lg font-semibold hover:bg-[#ecbc85] transition-colors duration-200 disabled:opacity-50"
-                >
-                  <span v-if="submittingForm">Sending...</span>
-                  <span v-else>Send Message</span>
-                </button>
-              </form>
-            </div>
-
-            <!-- Contact Image -->
-            <div class="hidden lg:block">
-              <NuxtImg
-                :src="project.gallery?.[0]?.images?.[0]?.url || project.image || '/images/contact-image.jpg'"
-                alt="Contact us"
-                class="w-full h-96 object-cover rounded-lg shadow-lg"
-                format="webp"
-                quality="85"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Location Section -->
-      <section v-if="project.coordinates?.lat && project.coordinates?.lng" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4">
-          <h2 class="text-4xl font-bold text-center text-gray-800 mb-16">LOCATION</h2>
-          
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <!-- Location Info -->
-            <div>
-              <h3 class="text-2xl font-bold text-gray-800 mb-6">Project Location</h3>
-              <div class="space-y-4">
-                <div class="flex items-start space-x-3">
-                  <Icon name="fa-solid:map-marker-alt" class="text-[#ecbc85] mt-1" />
-                  <div>
-                    <h4 class="font-semibold text-gray-800">Address</h4>
-                    <p class="text-gray-600">{{ project.location }}</p>
-                  </div>
-                </div>
-
-                <div v-if="project.neighborhoods && project.neighborhoods.length" class="space-y-2">
-                  <h4 class="font-semibold text-gray-800">Nearby Areas</h4>
-                  <div class="space-y-1">
-                    <div
-                      v-for="neighborhood in project.neighborhoods"
-                      :key="neighborhood.name"
-                      class="flex items-center space-x-2 text-gray-600"
-                    >
-                      <Icon name="fa-solid:location-dot" class="text-[#ecbc85] text-sm" />
-                      <span>{{ neighborhood.name }}</span>
-                      <span v-if="neighborhood.number" class="text-sm text-gray-500">({{ neighborhood.number }})</span>
+                  
+                  <div class="flex items-start space-x-4 group">
+                    <div class="w-12 h-12 bg-gradient-to-br from-[#ecbc85] to-[#2c2c54] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Icon name="fa-solid:calendar-alt" class="text-white text-lg" />
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-white text-lg">Completion</h4>
+                      <p class="text-white/80 font-light">{{ project.expectedFinish || 'Coming Soon' }}</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Map Provider Buttons -->
-              <div class="mt-8 flex gap-4">
-                <button
-                  @click="openGoogleMaps"
-                  class="flex items-center space-x-2 bg-[#4285f4] text-white px-6 py-3 rounded-lg hover:bg-[#3367d6] transition-colors"
-                >
-                  <Icon name="fa-solid:map" />
-                  <span>Google Maps</span>
-                </button>
-                <button
-                  @click="openBaiduMaps"
-                  class="flex items-center space-x-2 bg-[#38f] text-white px-6 py-3 rounded-lg hover:bg-[#2d7ce6] transition-colors"
-                >
-                  <Icon name="fa-solid:map-marked-alt" />
-                  <span>Baidu Maps</span>
-                </button>
-              </div>
-            </div>
+              <!-- Interactive Map Section -->
+              <div v-if="project.coordinates?.lat && project.coordinates?.lng" class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
+                <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
+                  <Icon name="fa-solid:map" class="text-[#ecbc85] mr-3" />
+                  Location Map
+                </h3>
+                
+                <!-- Embedded Google Map -->
+                <div class="aspect-video rounded-2xl overflow-hidden mb-6 border-2 border-white/20">
+                  <iframe
+                    :src="`https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${project.coordinates.lat},${project.coordinates.lng}&zoom=15`"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    class="grayscale hover:grayscale-0 transition-all duration-500"
+                  ></iframe>
+                </div>
 
-            <!-- Map Preview -->
-            <div class="h-96 bg-gray-200 rounded-lg overflow-hidden">
-              <div class="w-full h-full flex items-center justify-center text-gray-500">
-                <div class="text-center">
-                  <Icon name="fa-solid:map" class="text-4xl mb-4" />
-                  <p class="font-medium">Interactive Map</p>
-                  <p class="text-sm">Lat: {{ project.coordinates.lat }}, Lng: {{ project.coordinates.lng }}</p>
-                  <p class="text-xs mt-2">Map integration will be implemented</p>
+                <!-- Map Action Buttons -->
+                <div class="grid grid-cols-1 gap-4">
+                  <button
+                    @click="openGoogleMaps"
+                    class="group flex items-center justify-center space-x-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 hover:scale-105 transition-all duration-300 shadow-lg"
+                  >
+                    <Icon name="fa-brands:google" class="text-xl group-hover:scale-110 transition-transform duration-300" />
+                    <span>Open in Google Maps</span>
+                    <Icon name="fa-solid:external-link-alt" class="text-sm opacity-70" />
+                  </button>
+                  
+                  <button
+                    @click="openBaiduMaps"
+                    class="group flex items-center justify-center space-x-3 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-4 rounded-xl font-semibold hover:from-red-700 hover:to-red-800 hover:scale-105 transition-all duration-300 shadow-lg"
+                  >
+                    <Icon name="fa-solid:map-marked-alt" class="text-xl group-hover:scale-110 transition-transform duration-300" />
+                    <span>Open in Baidu Maps</span>
+                    <Icon name="fa-solid:external-link-alt" class="text-sm opacity-70" />
+                  </button>
+                </div>
+              </div>
+
+              <!-- Quick Contact Info -->
+              <div class="bg-gradient-to-br from-[#ecbc85]/20 to-[#2c2c54]/20 backdrop-blur-xl border border-[#ecbc85]/30 rounded-3xl p-8 shadow-2xl">
+                <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                  <Icon name="fa-solid:phone" class="text-[#ecbc85] mr-3" />
+                  Quick Contact
+                </h3>
+                <div class="space-y-3 text-white/90">
+                  <p class="flex items-center space-x-3">
+                    <Icon name="fa-solid:phone" class="text-[#ecbc85]" />
+                    <span>+66 2 XXX XXXX</span>
+                  </p>
+                  <p class="flex items-center space-x-3">
+                    <Icon name="fa-solid:envelope" class="text-[#ecbc85]" />
+                    <span>info@luxuryproject.com</span>
+                  </p>
+                  <p class="flex items-center space-x-3">
+                    <Icon name="fa-solid:clock" class="text-[#ecbc85]" />
+                    <span>Mon - Sun: 9:00 AM - 8:00 PM</span>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <Footer/>
+
+      <!-- Footer -->
+      <Footer />
     </div>
 
     <!-- Mobile Bottom Bar -->
     <MobileBottomBar />
+
+    <!-- Gallery Lightbox Modal -->
+    <div
+      v-if="lightboxOpen"
+      class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
+      @click="closeLightbox"
+    >
+      <!-- Modal Content -->
+      <div class="relative w-full h-full flex items-center justify-center p-4" @click.stop>
+        <!-- Close Button -->
+        <button
+          @click="closeLightbox"
+          class="absolute top-4 right-4 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+        >
+          <Icon name="fa-solid:times" class="text-xl" />
+        </button>
+
+        <!-- Navigation Buttons -->
+        <button
+          v-if="filteredGalleryImages.length > 1"
+          @click="previousImage"
+          class="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+        >
+          <Icon name="fa-solid:chevron-left" class="text-xl" />
+        </button>
+
+        <button
+          v-if="filteredGalleryImages.length > 1"
+          @click="nextImage"
+          class="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+        >
+          <Icon name="fa-solid:chevron-right" class="text-xl" />
+        </button>
+
+        <!-- Main Image -->
+        <div class="max-w-6xl max-h-full flex items-center justify-center">
+          <NuxtImg
+            v-if="currentLightboxImage"
+            :src="currentLightboxImage.url || currentLightboxImage.src"
+            :alt="currentLightboxImage.alt || `Gallery image ${currentLightboxIndex + 1}`"
+            class="max-w-full max-h-full object-contain rounded-lg"
+            format="webp"
+            quality="95"
+          />
+        </div>
+
+        <!-- Image Counter -->
+        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm">
+          {{ currentLightboxIndex + 1 }} / {{ filteredGalleryImages.length }}
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="absolute bottom-16 left-1/2 transform -translate-x-1/2 max-w-4xl overflow-x-auto">
+          <div class="flex space-x-2 px-4">
+            <div
+              v-for="(image, index) in filteredGalleryImages"
+              :key="index"
+              class="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden cursor-pointer border-2 transition-colors"
+              :class="index === currentLightboxIndex ? 'border-[#ecbc85]' : 'border-transparent'"
+              @click="currentLightboxIndex = index"
+            >
+              <NuxtImg
+                :src="image.url || image.src"
+                :alt="`Thumbnail ${index + 1}`"
+                class="w-full h-full object-cover"
+                format="webp"
+                quality="60"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -631,6 +955,10 @@ const selectedUnitImage = ref(0);
 const selectedGalleryTag = ref('all');
 const activeTab = ref('facilities');
 
+// Lightbox State
+const lightboxOpen = ref(false);
+const currentLightboxIndex = ref(0);
+
 // Contact Form
 const contactForm = ref({
   firstName: '',
@@ -640,6 +968,17 @@ const contactForm = ref({
   message: '',
 });
 const submittingForm = ref(false);
+
+// Scroll functionality
+const scrollToSection = (sectionId: string) => {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+};
 
 // Fetch project data
 const loadProject = async () => {
@@ -692,11 +1031,59 @@ const filteredGalleryImages = computed(() => {
   return images.filter((image: any) => image.tag === selectedGalleryTag.value);
 });
 
+// Limited gallery images for preview (8 images max)
+const limitedGalleryImages = computed(() => {
+  return filteredGalleryImages.value.slice(0, 8);
+});
+
+// Current lightbox image
+const currentLightboxImage = computed(() => {
+  return filteredGalleryImages.value[currentLightboxIndex.value];
+});
+
 // Lightbox functionality
-const openLightbox = (image: any, index: number) => {
-  // In a real implementation, you would open a lightbox/modal here
-  console.log('Open lightbox for image:', image, 'at index:', index);
-  // You can integrate with a lightbox library like vue-easy-lightbox
+const openLightbox = (index: number) => {
+  currentLightboxIndex.value = index;
+  lightboxOpen.value = true;
+  document.body.style.overflow = 'hidden';
+};
+
+const closeLightbox = () => {
+  lightboxOpen.value = false;
+  document.body.style.overflow = 'auto';
+};
+
+const nextImage = () => {
+  if (currentLightboxIndex.value < filteredGalleryImages.value.length - 1) {
+    currentLightboxIndex.value++;
+  } else {
+    currentLightboxIndex.value = 0;
+  }
+};
+
+const previousImage = () => {
+  if (currentLightboxIndex.value > 0) {
+    currentLightboxIndex.value--;
+  } else {
+    currentLightboxIndex.value = filteredGalleryImages.value.length - 1;
+  }
+};
+
+// Keyboard navigation for lightbox
+const handleKeydown = (event: KeyboardEvent) => {
+  if (!lightboxOpen.value) return;
+  
+  switch (event.key) {
+    case 'Escape':
+      closeLightbox();
+      break;
+    case 'ArrowLeft':
+      previousImage();
+      break;
+    case 'ArrowRight':
+      nextImage();
+      break;
+  }
 };
 
 // Contact form submission
@@ -748,12 +1135,18 @@ const openBaiduMaps = () => {
 
 // Watch for unit selection changes
 watch(selectedUnit, () => {
-  selectedUnitImage.value = 0; // Reset to first image when unit changes
+  selectedUnitImage.value = 0;
 });
 
 // Initialize
 onMounted(() => {
   loadProject();
+  document.addEventListener('keydown', handleKeydown);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', handleKeydown);
+  document.body.style.overflow = 'auto';
 });
 
 // SEO Meta
@@ -790,39 +1183,20 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar for gallery */
-.gallery-scroll::-webkit-scrollbar {
-  height: 8px;
+/* Fade in animation */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-.gallery-scroll::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-
-.gallery-scroll::-webkit-scrollbar-thumb {
-  background: #ecbc85;
-  border-radius: 4px;
-}
-
-.gallery-scroll::-webkit-scrollbar-thumb:hover {
-  background: #d4a574;
-}
-
-/* Animation for hero section */
-@keyframes fadeInUp {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.fade-in-up {
-  animation: fadeInUp 0.8s ease-out;
 }
 
 /* Hover effects */
@@ -841,88 +1215,179 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(236, 188, 133, 0.1);
 }
 
-/* Button hover effects */
-.btn-primary {
-  background: linear-gradient(135deg, #2c2c54 0%, #ecbc85 100%);
+/* Button effects */
+button {
   transition: all 0.3s ease;
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(44, 44, 84, 0.3);
+button:hover {
+  transform: translateY(-1px);
 }
 
-/* Tab animations */
-.fade-in {
-  animation: fadeIn 0.5s ease-in-out;
+/* Lightbox styles */
+.lightbox-overlay {
+  backdrop-filter: blur(10px);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+/* Luxury Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  50% {
+    transform: translateY(-20px) rotate(5deg);
   }
 }
 
-/* Tab styling */
-.tab-button {
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(-3deg);
+  }
+}
+
+@keyframes luxury-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(236, 188, 133, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(236, 188, 133, 0.6);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 8s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Luxury Components */
+.luxury-badge {
   position: relative;
-  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
-.tab-button::after {
+.luxury-badge::before {
   content: '';
   position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: #ecbc85;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
 }
 
-.tab-button.active::after {
-  transform: scaleX(1);
+.luxury-badge:hover::before {
+  left: 100%;
 }
 
-/* Facility icons hover effect */
-.facility-icon {
-  transition: transform 0.3s ease;
+.luxury-title {
+  text-shadow: 0 4px 20px rgba(44, 44, 84, 0.3);
+  position: relative;
 }
 
-.facility-icon:hover {
-  transform: translateY(-5px);
+.luxury-button {
+  position: relative;
+  overflow: hidden;
+  background-size: 200% 100%;
+  animation: luxury-glow 3s ease-in-out infinite;
 }
 
-/* Gallery grid responsive */
+.luxury-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s;
+}
+
+.luxury-button:hover::before {
+  left: 100%;
+}
+
+/* Hero Parallax Effect */
+.hero-parallax {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Premium Glass Effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Luxury Border Gradient */
+.border-gradient {
+  position: relative;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(45deg, #ecbc85, #2c2c54) border-box;
+  border: 2px solid transparent;
+}
+
+/* Premium Hover Effects */
+.premium-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(44, 44, 84, 0.15);
+}
+
+/* Lightbox Enhancements */
+.lightbox-overlay {
+  backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.95);
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .gallery-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Responsive tabs */
-@media (max-width: 640px) {
-  .tab-navigation {
-    flex-direction: column;
-    space-y: 2;
+  .fade-in {
+    animation-duration: 0.3s;
   }
   
-  .tab-button {
-    width: 100%;
-    text-align: center;
-    padding: 12px 0;
+  .luxury-title {
+    font-size: 2.5rem;
   }
+  
+  .animate-float,
+  .animate-float-delayed {
+    animation-duration: 4s;
+  }
+  
+  /* Mobile lightbox adjustments */
+  .lightbox-overlay .absolute.bottom-16 {
+    bottom: 8px;
+  }
+  
+  .lightbox-overlay .w-16.h-16 {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+/* High-end Typography */
+.luxury-text {
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'pnum' 1, 'tnum' 0, 'onum' 1, 'lnum' 0, 'dlig' 1;
 }
 </style>

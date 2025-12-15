@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "id": "1765782813843",
+    "image": "/uploads/1765782811835.png",
+    "title": "Hero-1",
+    "description": "",
+    "order": 1,
+    "active": true,
+    "createdAt": "2025-12-15T07:13:33.843Z",
+    "updatedAt": "2025-12-15T07:15:38.394Z"
+  },
+  {
+    "id": "1765782910953",
+    "image": "/uploads/1765782903853.png",
+    "title": "Hero-2",
+    "description": "",
+    "order": 2,
+    "active": true,
+    "createdAt": "2025-12-15T07:15:10.953Z",
+    "updatedAt": "2025-12-15T07:15:10.953Z"
+  },
+  {
+    "id": "1765782919814",
+    "image": "/uploads/1765782915783.png",
+    "title": "Hero-3",
+    "description": "",
+    "order": 3,
+    "active": true,
+    "createdAt": "2025-12-15T07:15:19.814Z",
+    "updatedAt": "2025-12-15T07:15:19.814Z"
+  },
+  {
+    "id": "1765782932192",
+    "image": "/uploads/1765782927005.png",
+    "title": "Hero-4",
+    "description": "",
+    "order": 4,
+    "active": true,
+    "createdAt": "2025-12-15T07:15:32.192Z",
+    "updatedAt": "2025-12-15T07:15:32.192Z"
+  }
+]

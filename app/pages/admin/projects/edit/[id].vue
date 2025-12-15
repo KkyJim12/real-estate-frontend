@@ -231,6 +231,133 @@
           </div>
         </div>
 
+        <!-- Hero Carousel Section -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+            <Icon name="fa-solid:images" class="mr-2 text-[#ecbc85]" />
+            Hero Carousel Images
+          </h2>
+          
+          <div class="space-y-6">
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div class="flex items-start space-x-3">
+                <Icon name="fa-solid:info-circle" class="text-blue-500 mt-0.5" />
+                <div>
+                  <h3 class="font-medium text-blue-800">Hero Carousel</h3>
+                  <p class="text-sm text-blue-600 mt-1">
+                    These images will be displayed in the main hero carousel on the homepage. 
+                    Add multiple high-quality images to showcase your project. The first image will be the primary hero image.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div v-for="(carouselItem, index) in form.heroCarousel" :key="index" class="border border-gray-200 rounded-lg p-4">
+                <div class="flex justify-between items-center mb-4">
+                  <h3 class="font-semibold text-gray-800">Carousel Item {{ index + 1 }}</h3>
+                  <div class="flex items-center space-x-2">
+                    <span v-if="index === 0" class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">
+                      Primary
+                    </span>
+                    <button
+                      type="button"
+                      @click="removeCarouselItem(index)"
+                      class="text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors"
+                    >
+                      <Icon name="fa-solid:trash" />
+                    </button>
+                  </div>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <!-- Image Upload -->
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Hero Image *</label>
+                    <input
+                      type="file"
+                      @change="(e) => handleCarouselImageUpload(e, index)"
+                      accept="image/*"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                    />
+                    <p class="text-sm text-gray-500 mt-1">Recommended: 1920x1080px or higher</p>
+                    
+                    <!-- Image Preview -->
+                    <div v-if="carouselItem.image" class="mt-3">
+                      <img 
+                        :src="carouselItem.image" 
+                        alt="Carousel preview" 
+                        class="w-full h-32 object-cover rounded-lg border border-gray-200"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Carousel Details -->
+                  <div class="space-y-4">
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Title</label>
+                      <input
+                        v-model="carouselItem.title"
+                        type="text"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                        placeholder="Carousel slide title"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                      <textarea
+                        v-model="carouselItem.description"
+                        rows="3"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition resize-none"
+                        placeholder="Brief description for this slide"
+                      ></textarea>
+                    </div>
+                    
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Button Text</label>
+                      <input
+                        v-model="carouselItem.buttonText"
+                        type="text"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                        placeholder="e.g., View Project, Learn More"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Button Link</label>
+                      <input
+                        v-model="carouselItem.buttonLink"
+                        type="text"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                        placeholder="e.g., /projects/project-name"
+                      />
+                    </div>
+
+                    <div class="flex items-center">
+                      <input
+                        v-model="carouselItem.active"
+                        type="checkbox"
+                        class="rounded border-gray-300 text-[#ecbc85] focus:ring-[#ecbc85] mr-2"
+                      />
+                      <label class="text-sm text-gray-700">Active (show in carousel)</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <button
+                type="button"
+                @click="addCarouselItem"
+                class="flex items-center px-4 py-2 text-[#ecbc85] hover:bg-[#ecbc85]/10 rounded-lg transition-colors"
+              >
+                <Icon name="fa-solid:plus" class="mr-2" />
+                Add Carousel Item
+              </button>
+            </div>
+          </div>
+        </div>
+
         <!-- Show Units Section -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
@@ -469,6 +596,7 @@ const loadProject = async () => {
         ? data.neighborhoods 
         : [{ number: '', name: '' }],
       brochure: data.brochure || null,
+      heroCarousel: data.heroCarousel || [],
       showUnits: data.showUnits || [],
       gallery: data.gallery || [],
       coordinates: data.coordinates || { lat: null, lng: null },
@@ -506,6 +634,40 @@ const addShowUnit = () => {
 
 const removeShowUnit = (index: number) => {
   form.value.showUnits.splice(index, 1);
+};
+
+// Hero Carousel functions
+const addCarouselItem = () => {
+  form.value.heroCarousel.push({
+    image: '',
+    title: '',
+    description: '',
+    buttonText: 'View Project',
+    buttonLink: '',
+    active: true,
+    order: form.value.heroCarousel.length
+  });
+};
+
+const removeCarouselItem = (index: number) => {
+  form.value.heroCarousel.splice(index, 1);
+  // Update order for remaining items
+  form.value.heroCarousel.forEach((item: any, idx: number) => {
+    item.order = idx;
+  });
+};
+
+const handleCarouselImageUpload = async (event: Event, carouselIndex: number) => {
+  const target = event.target as HTMLInputElement;
+  const file = target.files?.[0];
+  if (!file) return;
+
+  // Convert to base64 for preview (in production, upload to server)
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    form.value.heroCarousel[carouselIndex].image = e.target?.result as string;
+  };
+  reader.readAsDataURL(file);
 };
 
 // Gallery functions

@@ -45,6 +45,7 @@ export default defineEventHandler(async (event) => {
       gallery: project.gallery || [],
       coordinates: project.coordinates || { lat: null, lng: null },
       brochure: project.brochure,
+      heroCarousel: project.heroCarousel || [],
       // Legacy fields for compatibility
       image: project.image,
       link: project.link,
