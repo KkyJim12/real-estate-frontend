@@ -5,10 +5,8 @@
   <!-- Carousel -->
   <div class="w-full">
     <!-- Loading State -->
-    <div
-      v-if="loading"
-      class="w-full h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-7rem)] bg-gray-200 flex items-center justify-center"
-    >
+    <div v-if="loading"
+      class="w-full h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-7rem)] bg-gray-200 flex items-center justify-center">
       <div class="text-center">
         <Icon name="fa-solid:spinner" class="text-4xl text-gray-400 animate-spin mb-4" />
         <p class="text-gray-500">{{ $t('carousel.loading') }}</p>
@@ -16,41 +14,24 @@
     </div>
 
     <!-- Carousel -->
-    <UCarousel
-      v-else-if="items.length > 0"
-      v-slot="{ item }"
-      :items="items"
-      loop
-      :autoplay="{ delay: 4000 }"
-      arrows
-      dots
-      class="w-full h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-7rem)] overflow-hidden"
-      :ui="{
+    <UCarousel v-else-if="items.length > 0" v-slot="{ item }" :items="items" loop :autoplay="{ delay: 4000 }" arrows
+      dots class="w-full h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-7rem)] overflow-hidden" :ui="{
         root: 'relative w-full h-full',
         viewport: 'w-full h-full overflow-hidden',
         container: 'flex h-full w-full',
         item: 'min-w-full h-full flex-shrink-0',
         dots: 'absolute bottom-4 sm:bottom-6 left-0 right-0 flex justify-center space-x-2 sm:space-x-3 z-20',
         dot: 'h-1 w-8 sm:w-10 rounded-sm bg-[#ecbc85]/50 data-[active=true]:bg-[#ecbc85] transition-colors duration-300',
-      }"
-    >
+      }">
       <div class="w-full h-full relative">
-        <NuxtImg 
-          :src="item" 
-          alt="Carousel slide" 
-          class="absolute inset-0 w-full h-full object-cover"
-          loading="lazy"
-          format="webp"
-          quality="80"
-        />
+        <NuxtImg :src="item" alt="Carousel slide" class="absolute inset-0 w-full h-full object-cover" loading="lazy"
+          format="webp" quality="80" />
       </div>
     </UCarousel>
 
     <!-- Empty State -->
-    <div
-      v-else
-      class="w-full h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-7rem)] bg-gray-100 flex items-center justify-center"
-    >
+    <div v-else
+      class="w-full h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-7rem)] bg-gray-100 flex items-center justify-center">
       <div class="text-center px-4">
         <Icon name="fa-solid:images" class="text-6xl text-gray-300 mb-4" />
         <p class="text-gray-500 text-lg">{{ $t('carousel.noSlides') }}</p>
@@ -85,21 +66,15 @@
   <!-- Business Items -->
   <div class="flex flex-col space-y-12 sm:space-y-16 lg:space-y-20 px-4 sm:px-8 lg:px-96 pb-16 sm:pb-24 lg:pb-32">
     <!-- Dynamic Projects -->
-    <div
-      v-for="(project, index) in projects"
-      :key="project.id"
-      class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-x-20"
-    >
+    <div v-for="(project, index) in projects" :key="project.id"
+      class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-x-20">
       <!-- Content (Left on even, Right on odd) -->
-      <div
-        :class="[
-          'lg:col-span-7',
-          index % 2 === 0 ? 'order-2 lg:order-1' : 'order-2'
-        ]"
-      >
+      <div :class="[
+        'lg:col-span-7',
+        index % 2 === 0 ? 'order-2 lg:order-1' : 'order-2'
+      ]">
         <div
-          class="flex flex-col justify-center lg:items-start items-center h-full space-y-4 sm:space-y-6 lg:space-y-8 w-full text-center lg:text-left"
-        >
+          class="flex flex-col justify-center lg:items-start items-center h-full space-y-4 sm:space-y-6 lg:space-y-8 w-full text-center lg:text-left">
           <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#36384f]">
             {{ project.title }}
           </h2>
@@ -107,32 +82,23 @@
           <p class="text-sm sm:text-base lg:text-xl text-[#2c3c51] whitespace-pre-line">
             {{ project.description }}
           </p>
-          <NuxtLink
-            :to="project.link && project.link !== '/' ? project.link : `/projects/${project.id}`"
-            class="bg-[#36364e] w-60 sm:w-48 lg:w-40 py-2 sm:py-3 flex justify-center text-white text-base sm:text-lg lg:text-xl duration-200 hover:bg-[#ecbc85]"
-          >
+          <NuxtLink :to="project.link && project.link !== '/' ? project.link : `/projects/${project.id}`"
+            class="bg-[#36364e] w-60 sm:w-48 lg:w-40 py-2 sm:py-3 flex justify-center text-white text-base sm:text-lg lg:text-xl duration-200 hover:bg-[#ecbc85]">
             {{ $t('ramada.viewMore') }}
           </NuxtLink>
         </div>
       </div>
 
       <!-- Image (Right on even, Left on odd) -->
-      <div
-        :class="[
-          'lg:col-span-5',
-          index % 2 === 0 ? 'order-1 lg:order-2 flex justify-center' : 'order-1 flex justify-center lg:justify-start'
-        ]"
-      >
-        <NuxtImg
-          v-if="project.image"
-          class="w-3/5 lg:w-full h-64 sm:h-80 lg:h-full object-cover rounded-lg lg:rounded-none"
-          :src="project.image"
-          :alt="project.title"
-          loading="lazy"
-          format="webp"
-          quality="80"
-        />
-        <div v-else class="w-3/5 lg:w-full h-64 sm:h-80 lg:h-full bg-gray-200 rounded-lg lg:rounded-none flex items-center justify-center">
+      <div :class="[
+        'lg:col-span-5',
+        index % 2 === 0 ? 'order-1 lg:order-2 flex justify-center' : 'order-1 flex justify-center lg:justify-start'
+      ]">
+        <NuxtImg v-if="project.image"
+          class="w-3/5 lg:w-full h-64 sm:h-80 lg:h-full object-cover rounded-lg lg:rounded-none" :src="project.image"
+          :alt="project.title" loading="lazy" format="webp" quality="80" />
+        <div v-else
+          class="w-3/5 lg:w-full h-64 sm:h-80 lg:h-full bg-gray-200 rounded-lg lg:rounded-none flex items-center justify-center">
           <Icon name="fa-solid:building" class="text-6xl text-gray-400" />
         </div>
       </div>
@@ -166,24 +132,16 @@
 
     <!-- Articles Grid -->
     <div v-else-if="latestArticles.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-      <article
-        v-for="article in latestArticles"
-        :key="article.id"
-        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
-      >
+      <article v-for="article in latestArticles" :key="article.id"
+        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
         <NuxtLink :to="`/articles/${article.id}`" class="block">
           <!-- Article Image -->
           <div class="relative h-48 bg-gray-200 overflow-hidden">
-            <NuxtImg
-              v-if="article.featuredImage"
-              :src="article.featuredImage"
-              :alt="article.title"
-              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-              format="webp"
-              quality="80"
-            />
-            <div v-else class="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#1d1d39] to-[#36364e]">
+            <NuxtImg v-if="article.featuredImage" :src="article.featuredImage" :alt="article.title"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" loading="lazy"
+              format="webp" quality="80" />
+            <div v-else
+              class="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#1d1d39] to-[#36364e]">
               <Icon name="fa-solid:newspaper" class="text-6xl text-white/30" />
             </div>
           </div>
@@ -193,7 +151,7 @@
             <h3 class="text-xl font-bold text-gray-800 mb-3 line-clamp-2 hover:text-[#ecbc85] transition-colors">
               {{ article.title }}
             </h3>
-            
+
             <p class="text-gray-600 text-sm mb-4 line-clamp-3">
               {{ article.excerpt || stripHtml(article.content) }}
             </p>
@@ -212,10 +170,8 @@
 
     <!-- View All Button -->
     <div v-if="latestArticles.length > 0" class="text-center">
-      <NuxtLink
-        to="/articles"
-        class="inline-flex items-center space-x-2 bg-[#36364e] text-white px-8 py-3 rounded-lg hover:bg-[#ecbc85] transition-colors duration-200 text-lg font-semibold"
-      >
+      <NuxtLink to="/articles"
+        class="inline-flex items-center space-x-2 bg-[#36364e] text-white px-8 py-3 rounded-lg hover:bg-[#ecbc85] transition-colors duration-200 text-lg font-semibold">
         <span>{{ $t('news.viewAll') }}</span>
         <Icon name="fa-solid:arrow-right" />
       </NuxtLink>
@@ -228,65 +184,7 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="bg-[#1d1d39] px-4 sm:px-8 lg:px-96 py-12 sm:py-16 lg:py-20">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-24">
-      <!-- Contact Us -->
-      <div class="sm:col-span-2 lg:col-span-4">
-        <div class="flex flex-col space-y-4 sm:space-y-5">
-          <p class="text-white font-bold text-xl sm:text-2xl">{{ $t('footer.contactTitle') }}</p>
-          <div class="flex flex-col space-y-3 text-sm sm:text-base">
-            <div class="flex items-center space-x-3">
-              <Icon name="fa-solid:phone" class="text-white rotate-100 text-base sm:text-lg" />
-              <a class="text-white hover:text-[#ecbc85] transition-colors" href="tel:+66616109888">
-                (+66) 61-610-9888
-              </a>
-            </div>
-            <div class="flex items-center space-x-3">
-              <Icon name="fa-solid:envelope" class="text-white text-base sm:text-lg" />
-              <a class="text-white hover:text-[#ecbc85] transition-colors" href="mailto:info@emeraldbaypattaya.com">
-                info@emeraldbaypattaya.com
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Location -->
-      <div class="sm:col-span-2 lg:col-span-4">
-        <div class="flex flex-col space-y-4 sm:space-y-5">
-          <p class="text-white font-bold text-xl sm:text-2xl">{{ $t('footer.locationTitle') }}</p>
-          <div class="flex flex-col space-y-1 text-xs sm:text-sm">
-            <p class="text-white">{{ $t('footer.company') }}</p>
-            <p class="text-white">{{ $t('footer.address1') }}</p>
-            <p class="text-white">{{ $t('footer.address2') }}</p>
-            <p class="text-white">{{ $t('footer.address3') }}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Social Media -->
-      <div class="sm:col-span-2 lg:col-span-4">
-        <div class="flex flex-col space-y-4 sm:space-y-5">
-          <p class="text-white font-bold text-xl sm:text-2xl">{{ $t('footer.followTitle') }}</p>
-          <div class="flex space-x-4 sm:space-x-6 items-center">
-            <a href="#" class="text-white hover:text-[#ecbc85] transition-colors">
-              <Icon name="fa-brands:facebook" class="text-2xl sm:text-3xl" />
-            </a>
-            <a href="#" class="text-white hover:text-[#ecbc85] transition-colors">
-              <Icon name="fa-brands:line" class="text-2xl sm:text-3xl" />
-            </a>
-            <a href="#" class="text-white hover:text-[#ecbc85] transition-colors">
-              <Icon name="fa-brands:instagram" class="text-2xl sm:text-3xl" />
-            </a>
-            <a href="#" class="text-white hover:text-[#ecbc85] transition-colors">
-              <Icon name="fa-brands:youtube" class="text-2xl sm:text-3xl" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <Footer />
 
   <!-- Mobile Bottom Bar -->
   <MobileBottomBar />
