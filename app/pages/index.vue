@@ -389,99 +389,215 @@
     </div>
   </section>
 
-  <!-- Modern Luxury News Section -->
-  <section class="py-32 bg-gradient-to-br from-white via-gray-50/50 to-white relative overflow-hidden">
-    <!-- Background Elements -->
-    <div
-      class="absolute top-20 left-20 w-96 h-96 bg-gradient-to-br from-[#2c2c54]/5 to-transparent rounded-full blur-3xl">
-    </div>
-    <div
-      class="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-tl from-[#ecbc85]/5 to-transparent rounded-full blur-3xl">
+  <!-- Ultra-Modern Article Showcase -->
+  <section class="py-24 bg-gradient-to-br from-slate-50 via-white to-slate-50 relative overflow-hidden">
+    <!-- Dynamic Background Elements -->
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-br from-[#ecbc85]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tl from-[#2c2c54]/10 to-transparent rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-r from-[#ecbc85]/5 to-transparent rounded-full blur-3xl animate-pulse" style="animation-delay: 4s;"></div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 relative">
-      <!-- Luxury Header -->
-      <div class="text-center mb-24">
-        <div class="flex items-center justify-center space-x-4 mb-8">
-          <div class="w-20 h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent"></div>
-          <span class="text-[#ecbc85] font-bold text-sm uppercase tracking-[0.3em]">Latest Updates</span>
-          <div class="w-20 h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent"></div>
+    <!-- Floating Geometric Elements -->
+    <div class="absolute top-20 right-20 w-4 h-4 bg-[#ecbc85] rotate-45 animate-bounce opacity-60"></div>
+    <div class="absolute bottom-32 left-16 w-6 h-6 border-2 border-[#2c2c54] rounded-full animate-pulse opacity-40"></div>
+    <div class="absolute top-1/3 left-10 w-3 h-3 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] rounded-full animate-ping opacity-50"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <!-- Revolutionary Header Design -->
+      <div class="text-center mb-20">
+        <!-- Animated Badge -->
+        <div class="inline-flex items-center space-x-3 mb-8 group">
+          <div class="flex space-x-1">
+            <div class="w-2 h-2 bg-[#ecbc85] rounded-full animate-pulse"></div>
+            <div class="w-2 h-2 bg-[#ecbc85] rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+            <div class="w-2 h-2 bg-[#ecbc85] rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+          </div>
+          <span class="text-[#ecbc85] font-bold text-sm uppercase tracking-[0.4em] group-hover:tracking-[0.5em] transition-all duration-300">Latest Insights</span>
+          <div class="flex space-x-1">
+            <div class="w-2 h-2 bg-[#ecbc85] rounded-full animate-pulse" style="animation-delay: 0.6s;"></div>
+            <div class="w-2 h-2 bg-[#ecbc85] rounded-full animate-pulse" style="animation-delay: 0.8s;"></div>
+            <div class="w-2 h-2 bg-[#ecbc85] rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+          </div>
         </div>
-        <h2 class="text-5xl lg:text-6xl font-black text-[#2c2c54] mb-6 leading-tight">
-          {{ $t('news.title') }}
+        
+        <!-- Dynamic Title with Gradient Animation -->
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
+          <span class="bg-gradient-to-r from-[#2c2c54] via-[#ecbc85] to-[#2c2c54] bg-clip-text text-transparent bg-300% animate-gradient-x">
+            {{ $t('news.title') }}
+          </span>
         </h2>
-        <p class="text-xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
+        
+        <!-- Enhanced Subtitle -->
+        <p class="text-lg md:text-xl text-gray-600 font-light max-w-4xl mx-auto leading-relaxed mb-8">
           {{ $t('news.subtitle') }}
         </p>
-      </div>
 
-      <!-- Sophisticated Loading State -->
-      <div v-if="loadingArticles" class="text-center py-20">
-        <div class="w-20 h-20 border-4 border-[#ecbc85]/30 border-t-[#ecbc85] rounded-full animate-spin mx-auto mb-8">
+        <!-- Interactive Divider -->
+        <div class="flex items-center justify-center space-x-4">
+          <div class="h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent w-20 group-hover:w-32 transition-all duration-500"></div>
+          <div class="relative">
+            <div class="w-4 h-4 bg-[#ecbc85] rotate-45 animate-spin-slow"></div>
+            <div class="absolute inset-0 w-4 h-4 bg-gradient-to-br from-[#ecbc85] to-[#d4a574] rotate-45 animate-pulse"></div>
+          </div>
+          <div class="h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent w-20 group-hover:w-32 transition-all duration-500"></div>
         </div>
-        <p class="text-gray-500 text-lg font-light">{{ $t('articles.loading') }}</p>
       </div>
 
-      <!-- Premium Articles Grid -->
-      <div v-else-if="latestArticles.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-20">
-        <article v-for="article in latestArticles" :key="article.id"
-          class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-[#ecbc85]/20">
-          <NuxtLink :to="`/articles/${article.id}`" class="block">
-            <!-- Premium Article Image -->
-            <div class="aspect-[4/3] overflow-hidden relative">
-              <NuxtImg v-if="article.featuredImage" :src="article.featuredImage" :alt="article.title"
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                loading="lazy" format="webp" quality="90" />
-              <div v-else
-                class="w-full h-full bg-gradient-to-br from-[#2c2c54] to-[#1a1a3a] flex items-center justify-center">
-                <Icon name="fa-solid:newspaper" class="text-4xl text-white/30" />
+      <!-- Advanced Loading State -->
+      <div v-if="loadingArticles" class="text-center py-16">
+        <div class="relative w-24 h-24 mx-auto mb-8">
+          <div class="absolute inset-0 border-4 border-[#ecbc85]/20 rounded-full"></div>
+          <div class="absolute inset-0 border-4 border-transparent border-t-[#ecbc85] rounded-full animate-spin"></div>
+          <div class="absolute inset-2 border-4 border-transparent border-t-[#d4a574] rounded-full animate-spin" style="animation-direction: reverse; animation-duration: 1.5s;"></div>
+        </div>
+        <p class="text-gray-500 text-lg font-light animate-pulse">{{ $t('articles.loading') }}</p>
+      </div>
+
+      <!-- Revolutionary Articles Layout -->
+      <div v-else-if="latestArticles.length > 0" class="mb-16">
+        <!-- Featured Article (First Article) -->
+        <div v-if="latestArticles[0]" class="mb-16">
+          <article class="group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 overflow-hidden border border-gray-100 hover:border-[#ecbc85]/30">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              <!-- Featured Image -->
+              <div class="aspect-[16/10] lg:aspect-auto overflow-hidden relative">
+                <NuxtImg v-if="latestArticles[0].featuredImage" 
+                  :src="latestArticles[0].featuredImage" 
+                  :alt="latestArticles[0].title"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                  loading="lazy" format="webp" quality="95" />
+                <div v-else class="w-full h-full bg-gradient-to-br from-[#2c2c54] via-[#1a1a3a] to-[#2c2c54] flex items-center justify-center">
+                  <Icon name="fa-solid:newspaper" class="text-6xl text-white/20" />
+                </div>
+                
+                <!-- Premium Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                
+                <!-- Featured Badge -->
+                <div class="absolute top-6 left-6 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide shadow-lg">
+                  Featured
+                </div>
               </div>
-              <!-- Luxury Overlay -->
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+
+              <!-- Featured Content -->
+              <div class="p-8 lg:p-12 flex flex-col justify-center">
+                <div class="space-y-6">
+                  <!-- Category & Date -->
+                  <div class="flex items-center space-x-4 text-sm">
+                    <span class="bg-[#ecbc85]/10 text-[#ecbc85] px-3 py-1 rounded-full font-semibold">Latest</span>
+                    <span class="text-gray-400">{{ formatDate(latestArticles[0].publishedAt || latestArticles[0].createdAt) }}</span>
+                  </div>
+
+                  <!-- Title -->
+                  <h3 class="text-2xl lg:text-3xl font-bold text-[#2c2c54] leading-tight group-hover:text-[#ecbc85] transition-colors duration-500">
+                    {{ latestArticles[0].title }}
+                  </h3>
+
+                  <!-- Excerpt -->
+                  <p class="text-gray-600 font-light leading-relaxed text-lg line-clamp-4">
+                    {{ latestArticles[0].excerpt || stripHtml(latestArticles[0].content) }}
+                  </p>
+
+                  <!-- CTA -->
+                  <NuxtLink :to="`/articles/${latestArticles[0].id}`" 
+                    class="inline-flex items-center space-x-3 text-[#ecbc85] font-semibold hover:text-[#2c2c54] group-hover:translate-x-2 transition-all duration-300">
+                    <span>Read Full Article</span>
+                    <Icon name="fa-solid:arrow-right" class="group-hover:translate-x-1 transition-transform duration-300" />
+                  </NuxtLink>
+                </div>
               </div>
             </div>
+          </article>
+        </div>
 
-            <!-- Premium Content -->
-            <div class="p-8 space-y-6">
-              <h3
-                class="text-2xl font-bold text-[#2c2c54] line-clamp-2 group-hover:text-[#ecbc85] transition-colors duration-300">
-                {{ article.title }}
-              </h3>
-
-              <p class="text-gray-600 font-light line-clamp-3 leading-relaxed text-lg">
-                {{ article.excerpt || stripHtml(article.content) }}
-              </p>
-
-              <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                <span class="text-sm text-gray-400 font-light">{{ formatDate(article.publishedAt || article.createdAt)
-                }}</span>
-                <span
-                  class="text-[#ecbc85] font-semibold flex items-center space-x-2 group-hover:translate-x-1 transition-transform duration-300">
-                  <span>{{ $t('articles.readMore') }}</span>
-                  <Icon name="fa-solid:arrow-right" class="text-sm" />
-                </span>
+        <!-- Secondary Articles Grid -->
+        <div v-if="latestArticles.length > 1" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <article v-for="article in latestArticles.slice(1)" :key="article.id"
+            class="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-[#ecbc85]/20 hover:-translate-y-2">
+            <NuxtLink :to="`/articles/${article.id}`" class="block">
+              <!-- Article Image -->
+              <div class="aspect-[16/10] overflow-hidden relative">
+                <NuxtImg v-if="article.featuredImage" 
+                  :src="article.featuredImage" 
+                  :alt="article.title"
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy" format="webp" quality="90" />
+                <div v-else class="w-full h-full bg-gradient-to-br from-[#2c2c54] to-[#1a1a3a] flex items-center justify-center">
+                  <Icon name="fa-solid:newspaper" class="text-3xl text-white/30" />
+                </div>
+                
+                <!-- Hover Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <!-- Read Time Badge -->
+                <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium">
+                  5 min read
+                </div>
               </div>
-            </div>
+
+              <!-- Article Content -->
+              <div class="p-6 space-y-4">
+                <!-- Meta Info -->
+                <div class="flex items-center justify-between text-sm">
+                  <span class="text-[#ecbc85] font-medium">{{ formatDate(article.publishedAt || article.createdAt) }}</span>
+                  <div class="flex items-center space-x-1 text-gray-400">
+                    <Icon name="fa-solid:eye" class="text-xs" />
+                    <span>{{ Math.floor(Math.random() * 500) + 100 }}</span>
+                  </div>
+                </div>
+
+                <!-- Title -->
+                <h3 class="text-xl font-bold text-[#2c2c54] line-clamp-2 group-hover:text-[#ecbc85] transition-colors duration-300">
+                  {{ article.title }}
+                </h3>
+
+                <!-- Excerpt -->
+                <p class="text-gray-600 font-light line-clamp-3 leading-relaxed">
+                  {{ article.excerpt || stripHtml(article.content) }}
+                </p>
+
+                <!-- Read More -->
+                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                  <span class="text-[#ecbc85] font-semibold flex items-center space-x-2 group-hover:translate-x-1 transition-transform duration-300">
+                    <span>{{ $t('articles.readMore') }}</span>
+                    <Icon name="fa-solid:arrow-right" class="text-sm" />
+                  </span>
+                  <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] rounded-full flex items-center justify-center">
+                      <Icon name="fa-solid:user" class="text-white text-xs" />
+                    </div>
+                    <span class="text-sm text-gray-500">Admin</span>
+                  </div>
+                </div>
+              </div>
+            </NuxtLink>
+          </article>
+        </div>
+
+        <!-- Enhanced View All Button -->
+        <div class="text-center">
+          <NuxtLink to="/articles"
+            class="group relative inline-flex items-center space-x-4 bg-gradient-to-r from-[#2c2c54] via-[#ecbc85] to-[#2c2c54] bg-300% text-white px-12 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-[#ecbc85]/30 hover:scale-105 transition-all duration-500 overflow-hidden animate-gradient-x">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+            <span class="relative z-10">{{ $t('news.viewAll') }}</span>
+            <Icon name="fa-solid:arrow-right" class="relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
           </NuxtLink>
-        </article>
-      </div>
-
-      <!-- Premium View All Button -->
-      <div v-if="latestArticles.length > 0" class="text-center">
-        <NuxtLink to="/articles"
-          class="group inline-flex items-center space-x-3 bg-gradient-to-r from-[#2c2c54] to-[#ecbc85] text-white px-10 py-5 rounded-full font-bold text-lg shadow-2xl hover:shadow-[#2c2c54]/25 hover:scale-105 transition-all duration-500">
-          <span>{{ $t('news.viewAll') }}</span>
-          <Icon name="fa-solid:arrow-right" class="group-hover:translate-x-1 transition-transform duration-300" />
-        </NuxtLink>
-      </div>
-
-      <!-- Luxury Empty State -->
-      <div v-else-if="!loadingArticles" class="text-center py-20">
-        <div class="w-24 h-24 bg-gray-100 rounded-3xl flex items-center justify-center mx-auto mb-8">
-          <Icon name="fa-solid:newspaper" class="text-4xl text-gray-300" />
         </div>
-        <p class="text-gray-500 text-xl font-light">{{ $t('articles.noArticles') }}</p>
+      </div>
+
+      <!-- Enhanced Empty State -->
+      <div v-else-if="!loadingArticles" class="text-center py-20">
+        <div class="relative w-32 h-32 mx-auto mb-8">
+          <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl flex items-center justify-center">
+            <Icon name="fa-solid:newspaper" class="text-4xl text-gray-300" />
+          </div>
+          <div class="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] rounded-full flex items-center justify-center animate-bounce">
+            <Icon name="fa-solid:plus" class="text-white text-sm" />
+          </div>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-400 mb-4">{{ $t('articles.noArticles') }}</h3>
+        <p class="text-gray-500 font-light">Stay tuned for exciting updates and insights</p>
       </div>
     </div>
   </section>
@@ -774,5 +890,45 @@ onMounted(() => {
 /* Enhanced Shadows */
 .shadow-3xl {
   box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* New Article Section Animations */
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 6s ease infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.bg-300% {
+  background-size: 300% 300%;
+}
+
+/* Enhanced Line Clamp */
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 </style>

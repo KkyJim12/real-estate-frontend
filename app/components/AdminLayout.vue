@@ -73,6 +73,18 @@
             <Icon name="fa-solid:images" class="mr-3 text-lg" />
             <span class="font-medium">Carousel</span>
           </NuxtLink>
+
+          <div class="border-t border-white/10 my-4"></div>
+
+          <NuxtLink
+            to="/admin/settings"
+            @click="mobileMenuOpen = false"
+            class="flex items-center px-4 py-3 rounded-lg transition-colors hover:bg-white/10"
+            :class="{ 'bg-[#ecbc85] text-white': isActive('/admin/settings') }"
+          >
+            <Icon name="fa-solid:cog" class="mr-3 text-lg" />
+            <span class="font-medium">Settings</span>
+          </NuxtLink>
         </nav>
       </div>
 
