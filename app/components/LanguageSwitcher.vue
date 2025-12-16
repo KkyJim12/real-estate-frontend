@@ -28,7 +28,7 @@ const currentLocale = computed(() => locale.value);
 const availableLocales = computed(() => {
   return locales.value.map((l: any) => ({
     code: l.code,
-    name: l.code.toUpperCase(),
+    name: l.name || l.code.toUpperCase(),
   }));
 });
 

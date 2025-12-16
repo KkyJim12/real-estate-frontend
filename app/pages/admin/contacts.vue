@@ -6,23 +6,23 @@
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
             <div>
-              <h1 class="text-2xl font-bold text-gray-900">Contact Management</h1>
-              <p class="text-gray-600 mt-1">Manage customer inquiries and project contacts</p>
+              <h1 class="text-2xl font-bold text-gray-900">{{ $t('admin.contacts.title') }}</h1>
+              <p class="text-gray-600 mt-1">{{ $t('admin.contacts.subtitle') }}</p>
             </div>
             <div class="flex items-center space-x-4">
               <!-- Stats -->
               <div class="flex items-center space-x-6 text-sm">
                 <div class="text-center">
                   <div class="text-2xl font-bold text-blue-600">{{ stats.new || 0 }}</div>
-                  <div class="text-gray-500">New</div>
+                  <div class="text-gray-500">{{ $t('admin.contacts.newContacts') }}</div>
                 </div>
                 <div class="text-center">
                   <div class="text-2xl font-bold text-yellow-600">{{ stats.contacted || 0 }}</div>
-                  <div class="text-gray-500">Contacted</div>
+                  <div class="text-gray-500">{{ $t('admin.contacts.respondedContacts') }}</div>
                 </div>
                 <div class="text-center">
                   <div class="text-2xl font-bold text-green-600">{{ stats.closed || 0 }}</div>
-                  <div class="text-gray-500">Closed</div>
+                  <div class="text-gray-500">{{ $t('admin.contacts.pendingContacts') }}</div>
                 </div>
               </div>
             </div>
@@ -34,7 +34,7 @@
           <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <!-- Search -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Search</label>
+              <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('common.search') }}</label>
               <input
                 v-model="filters.search"
                 type="text"

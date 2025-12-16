@@ -2,8 +2,8 @@
   <AdminLayout>
     <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
       <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-900 mb-2">Settings</h1>
-        <p class="text-gray-600">Manage system settings and data migration</p>
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ $t('admin.settings.title') }}</h1>
+        <p class="text-gray-600">{{ $t('admin.settings.subtitle') }}</p>
       </div>
 
       <!-- Database Migration Section -->
@@ -13,8 +13,8 @@
             <Icon name="fa-solid:database" class="text-blue-600" />
           </div>
           <div>
-            <h2 class="text-xl font-semibold text-gray-900">Database Migration</h2>
-            <p class="text-sm text-gray-600">Migrate data from JSON files to Vercel KV</p>
+            <h2 class="text-xl font-semibold text-gray-900">{{ $t('admin.settings.databaseMigration') }}</h2>
+            <p class="text-sm text-gray-600">{{ $t('admin.settings.migrationDescription') }}</p>
           </div>
         </div>
 
@@ -22,13 +22,7 @@
           <div class="flex items-start">
             <Icon name="fa-solid:info-circle" class="text-blue-500 mt-0.5 mr-2" />
             <div class="text-sm text-blue-800">
-              <p class="font-medium mb-1">Migration Information:</p>
-              <ul class="list-disc list-inside space-y-1 text-blue-700">
-                <li>This will migrate all data from JSON files to Vercel KV database</li>
-                <li>Migration only works in production environment</li>
-                <li>Existing data in Vercel KV will be overwritten</li>
-                <li>The process is irreversible</li>
-              </ul>
+              <p class="font-medium mb-1">{{ $t('admin.settings.migrationInfo') }}</p>
             </div>
           </div>
         </div>

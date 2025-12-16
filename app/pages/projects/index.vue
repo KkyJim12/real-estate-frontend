@@ -7,7 +7,7 @@
     <header class="bg-[#1d1d39] text-white py-40 px-4 mt-14 lg:mt-0">
       <div class="max-w-6xl mx-auto text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ $t('home.businessTitle') }}</h1>
-        <p class="text-lg md:text-xl text-white/80">Explore our business projects</p>
+        <p class="text-lg md:text-xl text-white/80">{{ $t('projects.subtitle') }}</p>
       </div>
     </header>
 
@@ -15,7 +15,7 @@
     <div v-if="loading" class="max-w-6xl mx-auto px-4 py-16">
       <div class="text-center">
         <Icon name="fa-solid:spinner" class="text-4xl text-gray-400 animate-spin mb-4" />
-        <p class="text-gray-500">{{ $t('carousel.loading') }}</p>
+        <p class="text-gray-500">{{ $t('projects.loading') }}</p>
       </div>
     </div>
 
@@ -56,7 +56,7 @@
 
               <div class="flex items-center justify-end">
                 <span class="text-[#ecbc85] font-semibold flex items-center space-x-1">
-                  <span>{{ $t('ramada.viewMore') }}</span>
+                  <span>{{ $t('projects.viewProject') }}</span>
                   <Icon name="fa-solid:arrow-right" class="text-xs" />
                 </span>
               </div>
@@ -70,7 +70,7 @@
     <div v-else class="max-w-6xl mx-auto px-4 py-16">
       <div class="text-center">
         <Icon name="fa-solid:building" class="text-6xl text-gray-300 mb-4" />
-        <p class="text-gray-500 text-lg">No projects available</p>
+        <p class="text-gray-500 text-lg">{{ $t('projects.noProjects') }}</p>
       </div>
     </div>
 
