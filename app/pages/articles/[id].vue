@@ -4,7 +4,7 @@
     <SiteNavigation />
 
     <!-- Breadcrumb -->
-    <div class="bg-white border-b border-gray-200 py-4 px-4 mt-14 lg:mt-0">
+    <div class="bg-[#1d1d39] border-b border-gray-200 pt-40 pb-10 px-4 mt-14 lg:mt-0">
       <div class="max-w-4xl mx-auto">
         <NuxtLink to="/articles" class="flex items-center space-x-2 text-gray-600 hover:text-[#ecbc85] transition-colors">
           <Icon name="fa-solid:arrow-left" />

@@ -4,7 +4,7 @@
     <SiteNavigation />
 
     <!-- Header -->
-    <header class="bg-[#1d1d39] text-white py-16 px-4 mt-14 lg:mt-0">
+    <header class="bg-[#1d1d39] text-white py-40 px-4 mt-14 lg:mt-0">
       <div class="max-w-6xl mx-auto text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ $t('home.businessTitle') }}</h1>
         <p class="text-lg md:text-xl text-white/80">Explore our business projects</p>

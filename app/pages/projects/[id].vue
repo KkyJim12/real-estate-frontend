@@ -225,101 +225,154 @@
         </div>
       </section>
 
-      <!-- Project Information Tabs -->
-      <section class="py-20 bg-[#2c2c54] text-white">
-        <div class="max-w-7xl mx-auto px-6">
-          <!-- Section Header -->
-          <div class="text-center mb-16">
-            <span class="text-[#ecbc85] font-semibold text-sm uppercase tracking-wide">Project Details</span>
-            <h2 class="text-4xl font-bold mt-2 mb-4">Complete Information</h2>
-            <p class="text-xl text-white/80 max-w-3xl mx-auto">
-              Discover all the details about this exceptional project
+      <!-- Ultra-Modern Complete Information Section -->
+      <section class="py-32 bg-gradient-to-br from-[#0f0f23] via-[#1a1a2e] to-[#16213e] relative overflow-hidden">
+        <!-- Sophisticated Background Elements -->
+        <div class="absolute inset-0 opacity-30">
+          <div class="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-[#ecbc85]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div class="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-tl from-[#2c2c54]/30 to-transparent rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-gradient-to-r from-[#ecbc85]/10 to-transparent rounded-full blur-3xl animate-pulse" style="animation-delay: 4s;"></div>
+        </div>
+
+        <!-- Luxury Pattern Overlay -->
+        <div class="absolute inset-0 opacity-5" style="background-image: 
+          radial-gradient(circle at 25% 25%, #ecbc85 2px, transparent 2px),
+          radial-gradient(circle at 75% 75%, #ecbc85 1px, transparent 1px);
+          background-size: 120px 120px, 80px 80px;
+          background-position: 0 0, 40px 40px;"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+          <!-- Ultra-Premium Section Header -->
+          <div class="text-center mb-20">
+            <!-- Luxury Badge -->
+            <div class="inline-flex items-center space-x-4 mb-8">
+              <div class="w-20 h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent"></div>
+              <div class="bg-gradient-to-r from-[#ecbc85]/20 to-[#d4a574]/20 backdrop-blur-xl border border-[#ecbc85]/30 rounded-full px-8 py-4">
+                <span class="text-[#ecbc85] font-bold text-lg uppercase tracking-[0.3em]">Project Intelligence</span>
+              </div>
+              <div class="w-20 h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent"></div>
+            </div>
+            
+            <!-- Main Title -->
+            <h2 class="text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
+              Complete
+              <span class="block bg-gradient-to-r from-[#ecbc85] via-[#d4a574] to-[#ecbc85] bg-clip-text text-transparent">
+                Information
+              </span>
+            </h2>
+            
+            <!-- Subtitle -->
+            <p class="text-xl text-white/80 max-w-3xl mx-auto font-light leading-relaxed">
+              Comprehensive details about every aspect of this exceptional development
             </p>
           </div>
 
-          <!-- Tabs Navigation -->
-          <div class="flex justify-center mb-12">
-            <div class="bg-white/10 backdrop-blur-sm rounded-full p-1">
-              <div class="flex space-x-1">
+          <!-- Modern Tab Navigation -->
+          <div class="flex justify-center mb-16">
+            <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl">
+              <div class="flex flex-wrap justify-center gap-2">
                 <button
                   @click="activeTab = 'facilities'"
                   :class="[
-                    'px-6 py-3 rounded-full font-medium text-sm uppercase tracking-wide transition-all duration-300',
+                    'group relative px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-wide transition-all duration-500 overflow-hidden',
                     activeTab === 'facilities'
-                      ? 'bg-[#ecbc85] text-white'
+                      ? 'bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white shadow-lg shadow-[#ecbc85]/25'
                       : 'text-white/70 hover:text-white hover:bg-white/10'
                   ]"
                 >
-                  Facilities
+                  <div v-if="activeTab === 'facilities'" class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <Icon name="fa-solid:star" class="mr-2" />
+                  <span class="relative z-10">Facilities</span>
                 </button>
                 <button
                   @click="activeTab = 'neighbourhood'"
                   :class="[
-                    'px-6 py-3 rounded-full font-medium text-sm uppercase tracking-wide transition-all duration-300',
+                    'group relative px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-wide transition-all duration-500 overflow-hidden',
                     activeTab === 'neighbourhood'
-                      ? 'bg-[#ecbc85] text-white'
+                      ? 'bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white shadow-lg shadow-[#ecbc85]/25'
                       : 'text-white/70 hover:text-white hover:bg-white/10'
                   ]"
                 >
-                  Location
+                  <div v-if="activeTab === 'neighbourhood'" class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <Icon name="fa-solid:map-marker-alt" class="mr-2" />
+                  <span class="relative z-10">Location</span>
                 </button>
                 <button
                   @click="activeTab = 'factsheet'"
                   :class="[
-                    'px-6 py-3 rounded-full font-medium text-sm uppercase tracking-wide transition-all duration-300',
+                    'group relative px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-wide transition-all duration-500 overflow-hidden',
                     activeTab === 'factsheet'
-                      ? 'bg-[#ecbc85] text-white'
+                      ? 'bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white shadow-lg shadow-[#ecbc85]/25'
                       : 'text-white/70 hover:text-white hover:bg-white/10'
                   ]"
                 >
-                  Specifications
+                  <div v-if="activeTab === 'factsheet'" class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <Icon name="fa-solid:clipboard-list" class="mr-2" />
+                  <span class="relative z-10">Specifications</span>
                 </button>
               </div>
             </div>
           </div>
 
-          <!-- Tab Content -->
-          <div class="min-h-[400px]">
+          <!-- Premium Tab Content -->
+          <div class="min-h-[500px]">
             <!-- Facilities Tab -->
             <div v-show="activeTab === 'facilities'" class="fade-in">
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Featured Facilities -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/15 transition-colors">
-                  <div class="w-16 h-16 bg-[#ecbc85] rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <Icon name="fa-solid:swimming-pool" class="text-2xl text-white" />
+              <!-- Featured Facilities Grid -->
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Swimming Pool -->
+                <div class="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-8 hover:border-[#ecbc85]/50 hover:shadow-2xl hover:shadow-[#ecbc85]/20 transition-all duration-500 overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-br from-[#ecbc85]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div class="relative z-10 text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-[#ecbc85] to-[#d4a574] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+                      <Icon name="fa-solid:swimming-pool" class="text-3xl text-white" />
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-[#ecbc85] transition-colors duration-300">Swimming Pool</h3>
+                    <p class="text-white/70 font-light leading-relaxed">Infinity pool with panoramic city views and luxury poolside amenities</p>
                   </div>
-                  <h3 class="text-xl font-semibold mb-2">Swimming Pool</h3>
-                  <p class="text-white/70 text-sm">Luxury swimming pool with stunning views</p>
                 </div>
 
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/15 transition-colors">
-                  <div class="w-16 h-16 bg-[#ecbc85] rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <Icon name="fa-solid:dumbbell" class="text-2xl text-white" />
+                <!-- Fitness Center -->
+                <div class="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-8 hover:border-[#ecbc85]/50 hover:shadow-2xl hover:shadow-[#ecbc85]/20 transition-all duration-500 overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-br from-[#ecbc85]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div class="relative z-10 text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-[#2c2c54] to-[#1a1a3a] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+                      <Icon name="fa-solid:dumbbell" class="text-3xl text-[#ecbc85]" />
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-[#ecbc85] transition-colors duration-300">Fitness Center</h3>
+                    <p class="text-white/70 font-light leading-relaxed">State-of-the-art equipment with personal training and wellness programs</p>
                   </div>
-                  <h3 class="text-xl font-semibold mb-2">Fitness Center</h3>
-                  <p class="text-white/70 text-sm">State-of-the-art fitness equipment</p>
                 </div>
 
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/15 transition-colors">
-                  <div class="w-16 h-16 bg-[#ecbc85] rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <Icon name="fa-solid:shield-alt" class="text-2xl text-white" />
+                <!-- Security -->
+                <div class="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-8 hover:border-[#ecbc85]/50 hover:shadow-2xl hover:shadow-[#ecbc85]/20 transition-all duration-500 overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-br from-[#ecbc85]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div class="relative z-10 text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-[#ecbc85]/80 to-[#2c2c54] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+                      <Icon name="fa-solid:shield-alt" class="text-3xl text-white" />
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-[#ecbc85] transition-colors duration-300">24/7 Security</h3>
+                    <p class="text-white/70 font-light leading-relaxed">Advanced security systems with professional staff and smart access control</p>
                   </div>
-                  <h3 class="text-xl font-semibold mb-2">24/7 Security</h3>
-                  <p class="text-white/70 text-sm">Round-the-clock security service</p>
                 </div>
               </div>
 
               <!-- Additional Facilities -->
-              <div v-if="project.facilities && project.facilities.length" class="mt-12">
-                <h3 class="text-2xl font-semibold text-center mb-8">Additional Amenities</h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div v-if="project.facilities && project.facilities.length" class="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-10">
+                <h3 class="text-3xl font-bold text-center mb-10 text-white">
+                  <Icon name="fa-solid:gem" class="text-[#ecbc85] mr-3" />
+                  Premium Amenities
+                </h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   <div
                     v-for="facility in project.facilities"
                     :key="facility"
-                    class="bg-white/5 rounded-lg p-4 text-center hover:bg-white/10 transition-colors"
+                    class="group bg-white/5 hover:bg-gradient-to-br hover:from-[#ecbc85]/10 hover:to-white/5 border border-white/10 hover:border-[#ecbc85]/30 rounded-2xl p-6 text-center transition-all duration-300 hover:scale-105"
                   >
-                    <Icon name="fa-solid:check" class="text-[#ecbc85] mb-2" />
-                    <p class="text-sm">{{ facility }}</p>
+                    <div class="w-12 h-12 bg-[#ecbc85]/20 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-[#ecbc85]/30 transition-colors duration-300">
+                      <Icon :name="getFacilityIcon(facility)" class="text-[#ecbc85] text-xl group-hover:scale-125 transition-transform duration-300" />
+                    </div>
+                    <p class="text-white font-medium text-sm">{{ facility }}</p>
                   </div>
                 </div>
               </div>
@@ -327,77 +380,100 @@
 
             <!-- Location Tab -->
             <div v-show="activeTab === 'neighbourhood'" class="fade-in">
-              <div class="max-w-4xl mx-auto">
+              <div class="max-w-5xl mx-auto">
                 <div v-if="project.neighborhoods && project.neighborhoods.length">
-                  <h3 class="text-2xl font-semibold text-center mb-8">Nearby Areas</h3>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold text-white mb-4">
+                      <Icon name="fa-solid:map-marked-alt" class="text-[#ecbc85] mr-3" />
+                      Strategic Location
+                    </h3>
+                    <p class="text-white/70 text-lg font-light">Perfectly positioned with easy access to key destinations</p>
+                  </div>
+                  
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div
                       v-for="neighborhood in project.neighborhoods"
                       :key="neighborhood.name"
-                      class="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex items-center space-x-4"
+                      class="group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-8 hover:border-[#ecbc85]/50 hover:shadow-xl hover:shadow-[#ecbc85]/20 transition-all duration-500"
                     >
-                      <div class="w-12 h-12 bg-[#ecbc85] rounded-lg flex items-center justify-center">
-                        {{ neighborhood.number }}m
-                      </div>
-                      <div>
-                        <h4 class="font-semibold text-lg">{{ neighborhood.name }}</h4>
+                      <div class="flex items-center space-x-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-[#ecbc85] to-[#d4a574] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                          <span class="text-white font-bold text-lg">{{ neighborhood.number }}m</span>
+                        </div>
+                        <div>
+                          <h4 class="text-xl font-bold text-white group-hover:text-[#ecbc85] transition-colors duration-300">{{ neighborhood.name }}</h4>
+                          <p class="text-white/60 text-sm font-light mt-1">{{ neighborhood.number }} meters away</p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div v-else class="text-center py-12">
-                  <Icon name="fa-solid:map-marker-alt" class="text-4xl text-white/40 mb-4" />
-                  <p class="text-white/70">Location details will be available soon</p>
+                <div v-else class="text-center py-20">
+                  <div class="w-24 h-24 bg-white/10 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                    <Icon name="fa-solid:map-marker-alt" class="text-4xl text-white/40" />
+                  </div>
+                  <h3 class="text-2xl font-bold text-white/80 mb-3">Location Details</h3>
+                  <p class="text-white/60 font-light">Detailed location information will be available soon</p>
                 </div>
               </div>
             </div>
 
             <!-- Specifications Tab -->
             <div v-show="activeTab === 'factsheet'" class="fade-in">
-              <div class="max-w-4xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <!-- Project Details -->
-                  <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8">
-                    <h3 class="text-2xl font-semibold mb-6 text-[#ecbc85]">Project Details</h3>
-                    <div class="space-y-4">
-                      <div class="flex justify-between py-2 border-b border-white/10">
-                        <span class="text-white/70">Developer</span>
-                        <span>{{ project.developer || 'N/A' }}</span>
+              <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                  <!-- Project Details Card -->
+                  <div class="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-10 hover:border-[#ecbc85]/30 transition-all duration-500">
+                    <div class="flex items-center mb-8">
+                      <div class="w-12 h-12 bg-gradient-to-br from-[#ecbc85] to-[#d4a574] rounded-xl flex items-center justify-center mr-4">
+                        <Icon name="fa-solid:building" class="text-2xl text-white" />
                       </div>
-                      <div class="flex justify-between py-2 border-b border-white/10">
-                        <span class="text-white/70">Project Type</span>
-                        <span class="capitalize">{{ project.projectType || 'N/A' }}</span>
+                      <h3 class="text-3xl font-bold text-[#ecbc85]">Project Details</h3>
+                    </div>
+                    <div class="space-y-6">
+                      <div class="group flex justify-between items-center py-4 border-b border-white/10 hover:border-[#ecbc85]/30 transition-colors duration-300">
+                        <span class="text-white/70 font-medium">Developer</span>
+                        <span class="text-white font-semibold group-hover:text-[#ecbc85] transition-colors duration-300">{{ project.developer || 'N/A' }}</span>
                       </div>
-                      <div class="flex justify-between py-2 border-b border-white/10">
-                        <span class="text-white/70">Ownership</span>
-                        <span class="capitalize">{{ project.ownershipType || 'N/A' }}</span>
+                      <div class="group flex justify-between items-center py-4 border-b border-white/10 hover:border-[#ecbc85]/30 transition-colors duration-300">
+                        <span class="text-white/70 font-medium">Project Type</span>
+                        <span class="text-white font-semibold capitalize group-hover:text-[#ecbc85] transition-colors duration-300">{{ project.projectType || 'N/A' }}</span>
                       </div>
-                      <div class="flex justify-between py-2 border-b border-white/10">
-                        <span class="text-white/70">Project Area</span>
-                        <span>{{ project.area || 'N/A' }}</span>
+                      <div class="group flex justify-between items-center py-4 border-b border-white/10 hover:border-[#ecbc85]/30 transition-colors duration-300">
+                        <span class="text-white/70 font-medium">Ownership Type</span>
+                        <span class="text-white font-semibold capitalize group-hover:text-[#ecbc85] transition-colors duration-300">{{ project.ownershipType || 'N/A' }}</span>
+                      </div>
+                      <div class="group flex justify-between items-center py-4 border-b border-white/10 hover:border-[#ecbc85]/30 transition-colors duration-300">
+                        <span class="text-white/70 font-medium">Project Area</span>
+                        <span class="text-white font-semibold group-hover:text-[#ecbc85] transition-colors duration-300">{{ project.area || 'N/A' }}</span>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Construction Details -->
-                  <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8">
-                    <h3 class="text-2xl font-semibold mb-6 text-[#ecbc85]">Construction Info</h3>
-                    <div class="space-y-4">
-                      <div class="flex justify-between py-2 border-b border-white/10">
-                        <span class="text-white/70">Construction Period</span>
-                        <span>{{ project.constructionPeriod || 'N/A' }}</span>
+                  <!-- Construction Details Card -->
+                  <div class="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-10 hover:border-[#ecbc85]/30 transition-all duration-500">
+                    <div class="flex items-center mb-8">
+                      <div class="w-12 h-12 bg-gradient-to-br from-[#2c2c54] to-[#1a1a3a] rounded-xl flex items-center justify-center mr-4">
+                        <Icon name="fa-solid:hard-hat" class="text-2xl text-[#ecbc85]" />
                       </div>
-                      <div class="flex justify-between py-2 border-b border-white/10">
-                        <span class="text-white/70">Expected Completion</span>
-                        <span>{{ project.expectedFinish || 'N/A' }}</span>
+                      <h3 class="text-3xl font-bold text-[#ecbc85]">Construction Info</h3>
+                    </div>
+                    <div class="space-y-6">
+                      <div class="group flex justify-between items-center py-4 border-b border-white/10 hover:border-[#ecbc85]/30 transition-colors duration-300">
+                        <span class="text-white/70 font-medium">Construction Period</span>
+                        <span class="text-white font-semibold group-hover:text-[#ecbc85] transition-colors duration-300">{{ project.constructionPeriod || 'N/A' }}</span>
                       </div>
-                      <div class="flex justify-between py-2 border-b border-white/10">
-                        <span class="text-white/70">Number of Floors</span>
-                        <span>{{ project.floors || 'N/A' }}</span>
+                      <div class="group flex justify-between items-center py-4 border-b border-white/10 hover:border-[#ecbc85]/30 transition-colors duration-300">
+                        <span class="text-white/70 font-medium">Expected Completion</span>
+                        <span class="text-white font-semibold group-hover:text-[#ecbc85] transition-colors duration-300">{{ project.expectedFinish || 'N/A' }}</span>
                       </div>
-                      <div class="flex justify-between py-2 border-b border-white/10">
-                        <span class="text-white/70">Total Units</span>
-                        <span>{{ project.units || 'N/A' }}</span>
+                      <div class="group flex justify-between items-center py-4 border-b border-white/10 hover:border-[#ecbc85]/30 transition-colors duration-300">
+                        <span class="text-white/70 font-medium">Number of Floors</span>
+                        <span class="text-white font-semibold group-hover:text-[#ecbc85] transition-colors duration-300">{{ project.floors || 'N/A' }}</span>
+                      </div>
+                      <div class="group flex justify-between items-center py-4 border-b border-white/10 hover:border-[#ecbc85]/30 transition-colors duration-300">
+                        <span class="text-white/70 font-medium">Total Units</span>
+                        <span class="text-white font-semibold group-hover:text-[#ecbc85] transition-colors duration-300">{{ project.units || 'N/A' }}</span>
                       </div>
                     </div>
                   </div>
@@ -1200,6 +1276,44 @@ const openGoogleMaps = () => {
   } else {
     alert('Location information not available');
   }
+};
+
+// Icon mapping for facilities
+const getFacilityIcon = (facility: string): string => {
+  const iconMap: Record<string, string> = {
+    'Swimming Pool': 'fa-solid:swimming-pool',
+    'Gym': 'fa-solid:dumbbell',
+    'Playground': 'fa-solid:child',
+    'Security': 'fa-solid:shield-alt',
+    'Parking': 'fa-solid:car',
+    'Garden': 'fa-solid:seedling',
+    'BBQ Area': 'fa-solid:fire',
+    'Function Room': 'fa-solid:users',
+    'Tennis Court': 'fa-solid:table-tennis',
+    'Sauna': 'fa-solid:hot-tub',
+    'Jacuzzi': 'fa-solid:bath',
+    'Concierge': 'fa-solid:concierge-bell',
+    'Elevator': 'fa-solid:elevator',
+    'CCTV': 'fa-solid:video',
+    'Clubhouse': 'fa-solid:home',
+    'Jogging Track': 'fa-solid:running',
+    'Children\'s Pool': 'fa-solid:child',
+    'Multi-purpose Hall': 'fa-solid:building',
+    'Reading Room': 'fa-solid:book',
+    'Yoga Studio': 'fa-solid:spa',
+    'Badminton Court': 'fa-solid:shuttlecock',
+    'Basketball Court': 'fa-solid:basketball-ball',
+    'Putting Green': 'fa-solid:golf-ball',
+    'Rooftop Garden': 'fa-solid:tree',
+    'Sky Lounge': 'fa-solid:cloud',
+    'Business Center': 'fa-solid:briefcase',
+    'Meeting Room': 'fa-solid:handshake',
+    'Karaoke Room': 'fa-solid:microphone',
+    'Game Room': 'fa-solid:gamepad',
+    'Laundry': 'fa-solid:tshirt'
+  };
+  
+  return iconMap[facility] || 'fa-solid:star';
 };
 
 

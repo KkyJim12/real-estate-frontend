@@ -37,11 +37,11 @@
     </div>
     
     <!-- Facilities Grid -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-64 overflow-y-auto border border-gray-200 rounded-lg p-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-h-64 overflow-y-auto border border-gray-200 rounded-lg p-4">
       <label 
         v-for="facility in filteredFacilities" 
         :key="facility" 
-        class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+        class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors border border-transparent hover:border-[#ecbc85]/20"
       >
         <input
           v-model="selectedFacilities"
@@ -49,7 +49,10 @@
           type="checkbox"
           class="rounded border-gray-300 text-[#ecbc85] focus:ring-[#ecbc85]"
         />
-        <span class="text-sm text-gray-700 select-none">{{ facility }}</span>
+        <div class="w-8 h-8 bg-[#ecbc85]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+          <Icon :name="getFacilityIcon(facility)" class="text-[#ecbc85] text-sm" />
+        </div>
+        <span class="text-sm text-gray-700 select-none font-medium">{{ facility }}</span>
       </label>
     </div>
     
@@ -60,13 +63,14 @@
         <span
           v-for="facility in selectedFacilities"
           :key="facility"
-          class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-[#ecbc85]/10 text-[#ecbc85] border border-[#ecbc85]/20"
+          class="inline-flex items-center px-3 py-2 rounded-full text-sm bg-[#ecbc85]/10 text-[#ecbc85] border border-[#ecbc85]/20"
         >
+          <Icon :name="getFacilityIcon(facility)" class="text-[#ecbc85] text-xs mr-2" />
           {{ facility }}
           <button
             type="button"
             @click="removeFacility(facility)"
-            class="ml-2 text-[#ecbc85] hover:text-[#d4a574]"
+            class="ml-2 text-[#ecbc85] hover:text-[#d4a574] font-bold"
           >
             ×
           </button>
@@ -127,5 +131,43 @@ const clearAll = () => {
 
 const removeFacility = (facility: string) => {
   selectedFacilities.value = selectedFacilities.value.filter(f => f !== facility);
+};
+
+// Icon mapping for facilities
+const getFacilityIcon = (facility: string): string => {
+  const iconMap: Record<string, string> = {
+    'Swimming Pool': 'fa-solid:swimming-pool',
+    'Gym': 'fa-solid:dumbbell',
+    'Playground': 'fa-solid:child',
+    'Security': 'fa-solid:shield-alt',
+    'Parking': 'fa-solid:car',
+    'Garden': 'fa-solid:seedling',
+    'BBQ Area': 'fa-solid:fire',
+    'Function Room': 'fa-solid:users',
+    'Tennis Court': 'fa-solid:table-tennis',
+    'Sauna': 'fa-solid:hot-tub',
+    'Jacuzzi': 'fa-solid:bath',
+    'Concierge': 'fa-solid:concierge-bell',
+    'Elevator': 'fa-solid:elevator',
+    'CCTV': 'fa-solid:video',
+    'Clubhouse': 'fa-solid:home',
+    'Jogging Track': 'fa-solid:running',
+    'Children\'s Pool': 'fa-solid:child',
+    'Multi-purpose Hall': 'fa-solid:building',
+    'Reading Room': 'fa-solid:book',
+    'Yoga Studio': 'fa-solid:spa',
+    'Badminton Court': 'fa-solid:shuttlecock',
+    'Basketball Court': 'fa-solid:basketball-ball',
+    'Putting Green': 'fa-solid:golf-ball',
+    'Rooftop Garden': 'fa-solid:tree',
+    'Sky Lounge': 'fa-solid:cloud',
+    'Business Center': 'fa-solid:briefcase',
+    'Meeting Room': 'fa-solid:handshake',
+    'Karaoke Room': 'fa-solid:microphone',
+    'Game Room': 'fa-solid:gamepad',
+    'Laundry': 'fa-solid:tshirt'
+  };
+  
+  return iconMap[facility] || 'fa-solid:star';
 };
 </script>
