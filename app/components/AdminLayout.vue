@@ -74,6 +74,16 @@
             <span class="font-medium">Carousel</span>
           </NuxtLink>
 
+          <NuxtLink
+            to="/admin/contacts"
+            @click="mobileMenuOpen = false"
+            class="flex items-center px-4 py-3 rounded-lg transition-colors hover:bg-white/10"
+            :class="{ 'bg-[#ecbc85] text-white': isActive('/admin/contacts') }"
+          >
+            <Icon name="fa-solid:envelope" class="mr-3 text-lg" />
+            <span class="font-medium">Contacts</span>
+          </NuxtLink>
+
           <div class="border-t border-white/10 my-4"></div>
 
           <NuxtLink

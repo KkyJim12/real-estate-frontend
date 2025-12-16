@@ -380,18 +380,13 @@
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-1">Room Type</label>
-                  <select
+                  <input
                     v-model="unit.roomType"
+                    type="text"
                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
-                  >
-                    <option value="">Select room type</option>
-                    <option value="studio">Studio</option>
-                    <option value="1br">1 Bedroom</option>
-                    <option value="2br">2 Bedroom</option>
-                    <option value="3br">3 Bedroom</option>
-                    <option value="4br">4+ Bedroom</option>
-                    <option value="penthouse">Penthouse</option>
-                  </select>
+                    placeholder="e.g., Studio, 1 Bedroom, 2 Bedroom, Penthouse"
+                  />
+                  <p class="text-xs text-gray-500 mt-1">Enter any room type (e.g., Studio, 1BR, 2BR, 3BR, Penthouse, Duplex, etc.)</p>
                 </div>
                 
                 <div class="md:col-span-1">

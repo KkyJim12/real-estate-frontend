@@ -1,61 +1,60 @@
+import { db } from '../utils/db'
+
 export default defineEventHandler(async (event) => {
   try {
-    const body = await readBody(event);
+    const body = await readBody(event)
     
     // Validate required fields
-    const requiredFields = ['firstName', 'lastName', 'email', 'phone'];
-    for (const field of requiredFields) {
-      if (!body[field]) {
-        throw createError({
-          statusCode: 400,
-          message: `${field} is required`,
-        });
-      }
+    if (!body.firstName || !body.lastName || !body.email || !body.message) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Missing required fields'
+      })
     }
 
     // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(body.email)) {
       throw createError({
         statusCode: 400,
-        message: 'Invalid email format',
-      });
+        statusMessage: 'Invalid email format'
+      })
     }
-
-    const contactSubmission = {
+    
+    // Create contact record
+    const contactData = {
       id: Date.now().toString(),
-      firstName: body.firstName,
-      lastName: body.lastName,
-      email: body.email,
-      phone: body.phone,
-      message: body.message || '',
+      firstName: body.firstName.trim(),
+      lastName: body.lastName.trim(),
+      email: body.email.trim().toLowerCase(),
+      phone: body.phone?.trim() || '',
+      message: body.message.trim(),
       projectId: body.projectId || null,
       projectTitle: body.projectTitle || null,
       type: body.type || 'general_inquiry',
       status: 'new',
       createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    };
+      updatedAt: new Date().toISOString()
+    }
 
     // Save to database
-    await db.create('contacts', contactSubmission);
-
-    // In a real application, you might want to:
-    // 1. Send email notification to admin
-    // 2. Send confirmation email to user
-    // 3. Integrate with CRM system
-    // 4. Send to marketing automation platform
+    await db.create('contacts', contactData)
 
     return {
       success: true,
       message: 'Contact form submitted successfully',
-      id: contactSubmission.id,
-    };
-  } catch (error: any) {
-    console.error('Error submitting contact form:', error);
+      id: contactData.id
+    }
+  } catch (error) {
+    console.error('Contact form submission error:', error)
+    
+    if (error.statusCode) {
+      throw error
+    }
+    
     throw createError({
-      statusCode: error.statusCode || 500,
-      message: error.message || 'Failed to submit contact form',
-    });
+      statusCode: 500,
+      statusMessage: 'Failed to submit contact form'
+    })
   }
-});
+})

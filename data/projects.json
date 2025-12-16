@@ -5,6 +5,10 @@
     "description": "An exclusive waterfront development featuring luxury condominiums with panoramic ocean views. Each residence is meticulously designed with premium finishes and state-of-the-art amenities.",
     "developer": "Premium Developments Ltd.",
     "location": "Oceanfront Boulevard, Marina District",
+    "coordinates": {
+      "lat": 13.7563,
+      "lng": 100.5018
+    },
     "area": "15 acres of prime waterfront property",
     "projectType": "residential",
     "ownershipType": "freehold",
@@ -114,6 +118,10 @@
     "description": "A prestigious twin-tower development in the heart of the business district, offering luxury apartments with stunning city skyline views and premium amenities.",
     "developer": "Metropolitan Properties",
     "location": "Central Business District, Downtown",
+    "coordinates": {
+      "lat": 13.7650,
+      "lng": 100.5380
+    },
     "area": "8 acres in prime city location",
     "projectType": "residential",
     "ownershipType": "freehold",

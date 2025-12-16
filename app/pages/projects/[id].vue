@@ -337,11 +337,10 @@
                       class="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex items-center space-x-4"
                     >
                       <div class="w-12 h-12 bg-[#ecbc85] rounded-lg flex items-center justify-center">
-                        <Icon name="fa-solid:location-dot" class="text-white" />
+                        {{ neighborhood.number }}m
                       </div>
                       <div>
                         <h4 class="font-semibold text-lg">{{ neighborhood.name }}</h4>
-                        <p v-if="neighborhood.number" class="text-white/70 text-sm">{{ neighborhood.number }}</p>
                       </div>
                     </div>
                   </div>
@@ -620,241 +619,299 @@
         </div>
       </section>
 
-      <!-- Contact Section -->
-      <section id="contact" class="py-32 relative overflow-hidden">
-        <!-- Ultra-Luxury Background -->
-        <div class="absolute inset-0">
-          <!-- Primary Dark Gradient -->
-          <div class="absolute inset-0 bg-gradient-to-br from-[#1a1a3a] via-[#2c2c54] to-[#1e1e42]"></div>
-          
-          <!-- Sophisticated Overlay -->
-          <div class="absolute inset-0 bg-gradient-to-tr from-[#ecbc85]/10 via-transparent to-[#2c2c54]/20"></div>
-          
-          <!-- Luxury Mesh Pattern -->
-          <div class="absolute inset-0 opacity-10">
-            <div class="absolute inset-0" style="background-image: 
-              radial-gradient(circle at 20% 20%, #ecbc85 1px, transparent 1px),
-              radial-gradient(circle at 80% 80%, #ecbc85 1px, transparent 1px),
-              linear-gradient(0deg, transparent 24%, rgba(236, 188, 133, 0.05) 25%, rgba(236, 188, 133, 0.05) 26%, transparent 27%, transparent 74%, rgba(236, 188, 133, 0.05) 75%, rgba(236, 188, 133, 0.05) 76%, transparent 77%);
-              background-size: 100px 100px, 150px 150px, 50px 50px;"></div>
-          </div>
-          
-          <!-- Floating Elements -->
-          <div class="absolute top-10 right-10 w-72 h-72 bg-gradient-to-br from-[#ecbc85]/15 to-transparent rounded-full blur-3xl animate-float"></div>
-          <div class="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-tr from-[#2c2c54]/20 to-transparent rounded-full blur-3xl animate-float-delayed"></div>
+      <!-- Contact Our Team Section -->
+      <section class="py-24 bg-gradient-to-br from-white via-gray-50/30 to-white relative overflow-hidden px-10 lg:px-60">
+        <!-- Elegant Background Elements -->
+        <div class="absolute inset-0 opacity-20">
+          <div class="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-[#ecbc85]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div class="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-tl from-[#2c2c54]/15 to-transparent rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-6 relative">
-          <!-- Luxury Section Header -->
-          <div class="text-center mb-20">
-            <div class="flex items-center justify-center space-x-4 mb-6">
-              <div class="w-20 h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent"></div>
-              <span class="text-[#ecbc85] font-bold text-sm uppercase tracking-[0.3em]">Get In Touch</span>
-              <div class="w-20 h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent"></div>
+        <div class="w-full relative z-10">
+          <!-- Section Header -->
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center space-x-4 mb-8">
+              <div class="w-16 h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent"></div>
+              <span class="text-[#ecbc85] font-bold text-lg uppercase tracking-[0.3em]">Get In Touch</span>
+              <div class="w-16 h-px bg-gradient-to-r from-transparent via-[#ecbc85] to-transparent"></div>
             </div>
-            <h2 class="text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-              Contact Our
-              <span class="block bg-gradient-to-r from-white to-[#ecbc85] bg-clip-text text-transparent">
-                Luxury Team
-              </span>
+            <h2 class="text-4xl lg:text-5xl font-bold text-[#2c2c54] mb-6 leading-tight">
+              Contact Our Team
             </h2>
-            <p class="text-xl text-white/80 max-w-3xl mx-auto font-light leading-relaxed">
-              Ready to make this exceptional project your new home? Our dedicated team is here to guide you through every step.
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
+              Ready to make this luxury development your new home? Our expert team is here to assist you every step of the way.
             </p>
           </div>
 
-          <div class="grid grid-cols-1 xl:grid-cols-3 gap-12">
-            <!-- Premium Contact Form -->
-            <div class="xl:col-span-2">
-              <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 lg:p-12 shadow-2xl">
-                <div class="mb-10">
-                  <h3 class="text-3xl font-bold text-white mb-4 flex items-center">
-                    <Icon name="fa-solid:envelope" class="text-[#ecbc85] mr-4 text-2xl" />
-                    Send us a Message
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <!-- Contact Form -->
+            <div class="relative">
+              <!-- Decorative Elements -->
+              <div class="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-[#ecbc85]/10 to-transparent rounded-full blur-2xl"></div>
+              <div class="absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-br from-[#2c2c54]/10 to-transparent rounded-full blur-xl"></div>
+              
+              <div class="relative bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 lg:p-10">
+                <div class="mb-8">
+                  <h3 class="text-2xl font-bold text-[#2c2c54] mb-3 flex items-center">
+                    <Icon name="fa-solid:envelope" class="text-[#ecbc85] mr-3 text-xl" />
+                    Send Us a Message
                   </h3>
-                  <p class="text-white/70 text-lg font-light">
-                    Fill out the form below and we'll get back to you within 24 hours.
-                  </p>
+                  <p class="text-gray-600 font-light">Fill out the form below and we'll get back to you within 24 hours.</p>
                 </div>
 
-                <form @submit.prevent="submitContactForm" class="space-y-8">
+                <form @submit.prevent="submitContactForm" class="space-y-6">
+                  <!-- Name Fields -->
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-2">
-                      <label class="block text-white/90 text-sm font-semibold uppercase tracking-wide">First Name</label>
-                      <input
-                        v-model="contactForm.firstName"
-                        type="text"
-                        required
-                        class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-[#ecbc85] focus:border-[#ecbc85] focus:bg-white/15 outline-none transition-all duration-300"
-                        placeholder="Enter your first name"
-                      />
+                    <div class="group">
+                      <label class="block text-sm font-semibold text-gray-700 mb-2">First Name *</label>
+                      <div class="relative">
+                        <input
+                          v-model="contactForm.firstName"
+                          type="text"
+                          required
+                          class="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:border-[#ecbc85] focus:ring-0 transition-colors duration-300 bg-gray-50 focus:bg-white"
+                          placeholder="Enter your first name"
+                        />
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-4">
+                          <Icon name="fa-solid:user" class="text-gray-400 group-focus-within:text-[#ecbc85] transition-colors duration-300" />
+                        </div>
+                      </div>
                     </div>
-                    <div class="space-y-2">
-                      <label class="block text-white/90 text-sm font-semibold uppercase tracking-wide">Last Name</label>
-                      <input
-                        v-model="contactForm.lastName"
-                        type="text"
-                        required
-                        class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-[#ecbc85] focus:border-[#ecbc85] focus:bg-white/15 outline-none transition-all duration-300"
-                        placeholder="Enter your last name"
-                      />
+                    
+                    <div class="group">
+                      <label class="block text-sm font-semibold text-gray-700 mb-2">Last Name *</label>
+                      <div class="relative">
+                        <input
+                          v-model="contactForm.lastName"
+                          type="text"
+                          required
+                          class="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:border-[#ecbc85] focus:ring-0 transition-colors duration-300 bg-gray-50 focus:bg-white"
+                          placeholder="Enter your last name"
+                        />
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-4">
+                          <Icon name="fa-solid:user" class="text-gray-400 group-focus-within:text-[#ecbc85] transition-colors duration-300" />
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <div class="space-y-2">
-                    <label class="block text-white/90 text-sm font-semibold uppercase tracking-wide">Email Address</label>
-                    <input
-                      v-model="contactForm.email"
-                      type="email"
-                      required
-                      class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-[#ecbc85] focus:border-[#ecbc85] focus:bg-white/15 outline-none transition-all duration-300"
-                      placeholder="your.email@example.com"
-                    />
+                  <!-- Email Field -->
+                  <div class="group">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                    <div class="relative">
+                      <input
+                        v-model="contactForm.email"
+                        type="email"
+                        required
+                        class="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:border-[#ecbc85] focus:ring-0 transition-colors duration-300 bg-gray-50 focus:bg-white"
+                        placeholder="Enter your email address"
+                      />
+                      <div class="absolute inset-y-0 right-0 flex items-center pr-4">
+                        <Icon name="fa-solid:envelope" class="text-gray-400 group-focus-within:text-[#ecbc85] transition-colors duration-300" />
+                      </div>
+                    </div>
                   </div>
 
-                  <div class="space-y-2">
-                    <label class="block text-white/90 text-sm font-semibold uppercase tracking-wide">Phone Number</label>
-                    <input
-                      v-model="contactForm.phone"
-                      type="tel"
-                      required
-                      class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-[#ecbc85] focus:border-[#ecbc85] focus:bg-white/15 outline-none transition-all duration-300"
-                      placeholder="+66 XX XXX XXXX"
-                    />
+                  <!-- Phone Field -->
+                  <div class="group">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
+                    <div class="relative">
+                      <input
+                        v-model="contactForm.phone"
+                        type="tel"
+                        class="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:border-[#ecbc85] focus:ring-0 transition-colors duration-300 bg-gray-50 focus:bg-white"
+                        placeholder="Enter your phone number"
+                      />
+                      <div class="absolute inset-y-0 right-0 flex items-center pr-4">
+                        <Icon name="fa-solid:phone" class="text-gray-400 group-focus-within:text-[#ecbc85] transition-colors duration-300" />
+                      </div>
+                    </div>
                   </div>
 
-                  <div class="space-y-2">
-                    <label class="block text-white/90 text-sm font-semibold uppercase tracking-wide">Your Message</label>
+                  <!-- Message Field -->
+                  <div class="group">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Message *</label>
                     <textarea
                       v-model="contactForm.message"
+                      required
                       rows="5"
-                      class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-[#ecbc85] focus:border-[#ecbc85] focus:bg-white/15 outline-none transition-all duration-300 resize-none"
+                      class="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:border-[#ecbc85] focus:ring-0 transition-colors duration-300 bg-gray-50 focus:bg-white resize-none"
                       placeholder="Tell us about your interest in this project..."
                     ></textarea>
                   </div>
 
+                  <!-- Submit Button -->
                   <button
                     type="submit"
                     :disabled="submittingForm"
-                    class="group w-full bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-[#ecbc85]/25 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-500 relative overflow-hidden"
+                    class="group relative w-full bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl hover:shadow-[#ecbc85]/25 hover:scale-105 transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden"
                   >
-                    <span v-if="submittingForm" class="flex items-center justify-center space-x-3">
-                      <div class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      <span>Sending Message...</span>
-                    </span>
-                    <span v-else class="flex items-center justify-center space-x-3">
+                    <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span v-if="!submittingForm" class="relative z-10 flex items-center justify-center space-x-3">
+                      <span>Send Message</span>
                       <Icon name="fa-solid:paper-plane" class="group-hover:translate-x-1 transition-transform duration-300" />
-                      <span>Send Luxury Inquiry</span>
                     </span>
-                    <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span v-else class="relative z-10 flex items-center justify-center space-x-3">
+                      <div class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      <span>Sending...</span>
+                    </span>
                   </button>
                 </form>
               </div>
             </div>
 
-            <!-- Project Info & Map -->
+            <!-- Contact Information -->
             <div class="space-y-8">
-              <!-- Project Information Card -->
-              <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
-                <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
-                  <Icon name="fa-solid:info-circle" class="text-[#ecbc85] mr-3" />
-                  Project Details
-                </h3>
-                <div class="space-y-6">
-                  <div class="flex items-start space-x-4 group">
-                    <div class="w-12 h-12 bg-gradient-to-br from-[#ecbc85] to-[#d4a574] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Icon name="fa-solid:map-marker-alt" class="text-white text-lg" />
-                    </div>
-                    <div>
-                      <h4 class="font-bold text-white text-lg">Prime Location</h4>
-                      <p class="text-white/80 font-light">{{ project.location }}</p>
-                    </div>
-                  </div>
+              <!-- Contact Details -->
+              <div class="bg-gradient-to-br from-[#2c2c54] to-[#1a1a3a] rounded-3xl p-8 lg:p-10 text-white relative overflow-hidden">
+                <!-- Background Pattern -->
+                <div class="absolute inset-0 opacity-10">
+                  <div class="absolute top-0 right-0 w-32 h-32 bg-[#ecbc85] rounded-full blur-3xl"></div>
+                  <div class="absolute bottom-0 left-0 w-24 h-24 bg-[#ecbc85] rounded-full blur-2xl"></div>
+                </div>
+                
+                <div class="relative z-10">
+                  <h3 class="text-2xl font-bold mb-8 flex items-center">
+                    <Icon name="fa-solid:building" class="text-[#ecbc85] mr-3 text-xl" />
+                    {{ project?.title || 'Luxury Development' }}
+                  </h3>
                   
-                  <div class="flex items-start space-x-4 group">
-                    <div class="w-12 h-12 bg-gradient-to-br from-[#2c2c54] to-[#ecbc85] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Icon name="fa-solid:building" class="text-white text-lg" />
+                  <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                      <div class="w-12 h-12 bg-[#ecbc85]/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Icon name="fa-solid:map-marker-alt" class="text-[#ecbc85] text-lg" />
+                      </div>
+                      <div>
+                        <h4 class="font-semibold mb-1">Project Location</h4>
+                        <p class="text-white/80 leading-relaxed">{{ project?.location || 'Prime Location, Bangkok' }}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 class="font-bold text-white text-lg">Developer</h4>
-                      <p class="text-white/80 font-light">{{ project.developer }}</p>
+                    
+                    <div class="flex items-start space-x-4">
+                      <div class="w-12 h-12 bg-[#ecbc85]/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Icon name="fa-solid:phone" class="text-[#ecbc85] text-lg" />
+                      </div>
+                      <div>
+                        <h4 class="font-semibold mb-1">Sales Hotline</h4>
+                        <p class="text-white/80">+66 2 XXX XXXX</p>
+                        <p class="text-white/60 text-sm">Available 24/7</p>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div class="flex items-start space-x-4 group">
-                    <div class="w-12 h-12 bg-gradient-to-br from-[#ecbc85] to-[#2c2c54] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Icon name="fa-solid:calendar-alt" class="text-white text-lg" />
+                    
+                    <div class="flex items-start space-x-4">
+                      <div class="w-12 h-12 bg-[#ecbc85]/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Icon name="fa-solid:envelope" class="text-[#ecbc85] text-lg" />
+                      </div>
+                      <div>
+                        <h4 class="font-semibold mb-1">Email Us</h4>
+                        <p class="text-white/80">info@luxuryproject.com</p>
+                        <p class="text-white/60 text-sm">We'll respond within 24 hours</p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 class="font-bold text-white text-lg">Completion</h4>
-                      <p class="text-white/80 font-light">{{ project.expectedFinish || 'Coming Soon' }}</p>
+                    
+                    <div class="flex items-start space-x-4">
+                      <div class="w-12 h-12 bg-[#ecbc85]/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Icon name="fa-solid:clock" class="text-[#ecbc85] text-lg" />
+                      </div>
+                      <div>
+                        <h4 class="font-semibold mb-1">Sales Office Hours</h4>
+                        <p class="text-white/80">Monday - Sunday</p>
+                        <p class="text-white/60 text-sm">9:00 AM - 8:00 PM</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Interactive Map Section -->
-              <div v-if="project.coordinates?.lat && project.coordinates?.lng" class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
-                <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
-                  <Icon name="fa-solid:map" class="text-[#ecbc85] mr-3" />
-                  Location Map
+              <!-- Why Choose Us -->
+              <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 lg:p-10">
+                <h3 class="text-2xl font-bold text-[#2c2c54] mb-6 flex items-center">
+                  <Icon name="fa-solid:star" class="text-[#ecbc85] mr-3 text-xl" />
+                  Why Choose Us
                 </h3>
                 
-                <!-- Embedded Google Map -->
-                <div class="aspect-video rounded-2xl overflow-hidden mb-6 border-2 border-white/20">
+                <div class="space-y-4">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-2 h-2 bg-[#ecbc85] rounded-full"></div>
+                    <span class="text-gray-700 font-medium">Expert consultation and guidance</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-2 h-2 bg-[#ecbc85] rounded-full"></div>
+                    <span class="text-gray-700 font-medium">Flexible payment plans available</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-2 h-2 bg-[#ecbc85] rounded-full"></div>
+                    <span class="text-gray-700 font-medium">Exclusive pre-launch offers</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-2 h-2 bg-[#ecbc85] rounded-full"></div>
+                    <span class="text-gray-700 font-medium">Dedicated after-sales support</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Maps Section -->
+          <div class="mt-20">
+            <!-- Header Section with Padding -->
+            <div class="px-8">
+              <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-[#2c2c54] mb-4 flex items-center justify-center">
+                  <Icon name="fa-solid:map-marked-alt" class="text-[#ecbc85] mr-3 text-2xl" />
+                  Project Location
+                </h3>
+                <p class="text-gray-600 font-light">Explore our prime location with interactive maps</p>
+              </div>
+
+              <!-- Map Controls -->
+              <div class="flex items-center justify-between mb-6">
+                <h4 class="text-xl font-bold text-[#2c2c54] flex items-center">
+                  <Icon name="fa-brands:google" class="text-blue-600 mr-3 text-lg" />
+                  Google Maps - Interactive Location
+                </h4>
+                
+                <button
+                  @click="openGoogleMaps()"
+                  class="flex items-center space-x-2 text-[#ecbc85] hover:text-[#2c2c54] font-medium text-sm transition-colors"
+                >
+                  <span>Open in Google Maps</span>
+                  <Icon name="fa-solid:external-link-alt" class="text-xs" />
+                </button>
+              </div>
+            </div>
+
+            <!-- Full Width Map Display Area (No Card, No Padding) -->
+            <div class="w-full">
+              <div class="aspect-[21/9] relative">
+                <!-- Google Maps -->
+                <div class="w-full h-full">
                   <iframe
-                    :src="`https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${project.coordinates.lat},${project.coordinates.lng}&zoom=15`"
+                    v-if="project?.coordinates?.lat && project?.coordinates?.lng"
+                    :src="`https://www.google.com/maps/embed/v1/place?key=${googleMapsApiKey}&q=${project.coordinates.lat},${project.coordinates.lng}&zoom=15&maptype=roadmap`"
                     width="100%"
                     height="100%"
                     style="border:0;"
                     allowfullscreen
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
-                    class="grayscale hover:grayscale-0 transition-all duration-500"
+                    class="transition-all duration-500"
                   ></iframe>
-                </div>
-
-                <!-- Map Action Buttons -->
-                <div class="grid grid-cols-1 gap-4">
-                  <button
-                    @click="openGoogleMaps"
-                    class="group flex items-center justify-center space-x-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 hover:scale-105 transition-all duration-300 shadow-lg"
-                  >
-                    <Icon name="fa-brands:google" class="text-xl group-hover:scale-110 transition-transform duration-300" />
-                    <span>Open in Google Maps</span>
-                    <Icon name="fa-solid:external-link-alt" class="text-sm opacity-70" />
-                  </button>
                   
-                  <button
-                    @click="openBaiduMaps"
-                    class="group flex items-center justify-center space-x-3 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-4 rounded-xl font-semibold hover:from-red-700 hover:to-red-800 hover:scale-105 transition-all duration-300 shadow-lg"
-                  >
-                    <Icon name="fa-solid:map-marked-alt" class="text-xl group-hover:scale-110 transition-transform duration-300" />
-                    <span>Open in Baidu Maps</span>
-                    <Icon name="fa-solid:external-link-alt" class="text-sm opacity-70" />
-                  </button>
-                </div>
-              </div>
-
-              <!-- Quick Contact Info -->
-              <div class="bg-gradient-to-br from-[#ecbc85]/20 to-[#2c2c54]/20 backdrop-blur-xl border border-[#ecbc85]/30 rounded-3xl p-8 shadow-2xl">
-                <h3 class="text-xl font-bold text-white mb-4 flex items-center">
-                  <Icon name="fa-solid:phone" class="text-[#ecbc85] mr-3" />
-                  Quick Contact
-                </h3>
-                <div class="space-y-3 text-white/90">
-                  <p class="flex items-center space-x-3">
-                    <Icon name="fa-solid:phone" class="text-[#ecbc85]" />
-                    <span>+66 2 XXX XXXX</span>
-                  </p>
-                  <p class="flex items-center space-x-3">
-                    <Icon name="fa-solid:envelope" class="text-[#ecbc85]" />
-                    <span>info@luxuryproject.com</span>
-                  </p>
-                  <p class="flex items-center space-x-3">
-                    <Icon name="fa-solid:clock" class="text-[#ecbc85]" />
-                    <span>Mon - Sun: 9:00 AM - 8:00 PM</span>
-                  </p>
+                  <!-- Google Maps Fallback -->
+                  <div v-else class="w-full h-full bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+                    <div class="text-center">
+                      <Icon name="fa-brands:google" class="text-4xl text-blue-400 mb-4" />
+                      <p class="text-blue-600 font-medium text-lg">{{ project?.location || 'Location coordinates not available' }}</p>
+                      <button
+                        @click="openGoogleMaps"
+                        class="mt-4 inline-flex items-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                      >
+                        <Icon name="fa-brands:google" />
+                        <span>Search on Google Maps</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -968,6 +1025,9 @@ const contactForm = ref({
   message: '',
 });
 const submittingForm = ref(false);
+
+// Map API Keys (replace with your actual API keys)
+const googleMapsApiKey = 'AIzaSyC2PxSAoZekJT872yb4zzDZ3P58cbZC0Wo';
 
 // Scroll functionality
 const scrollToSection = (sectionId: string) => {
@@ -1088,6 +1148,12 @@ const handleKeydown = (event: KeyboardEvent) => {
 
 // Contact form submission
 const submitContactForm = async () => {
+  // Validate required fields
+  if (!contactForm.value.firstName || !contactForm.value.lastName || !contactForm.value.email || !contactForm.value.message) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+
   submittingForm.value = true;
   try {
     await $fetch('/api/contact', {
@@ -1109,10 +1175,14 @@ const submitContactForm = async () => {
       message: '',
     };
     
-    alert('Thank you for your interest! We will contact you soon.');
-  } catch (error) {
+    // Success notification
+    alert('🎉 Thank you for your interest! Our team will contact you within 24 hours.');
+  } catch (error: any) {
     console.error('Failed to submit contact form:', error);
-    alert('Failed to send message. Please try again.');
+    
+    // Better error handling
+    const errorMessage = error?.data?.message || error?.message || 'Failed to send message. Please try again.';
+    alert(`❌ ${errorMessage}`);
   } finally {
     submittingForm.value = false;
   }
@@ -1123,15 +1193,16 @@ const openGoogleMaps = () => {
   if (project.value?.coordinates?.lat && project.value?.coordinates?.lng) {
     const url = `https://www.google.com/maps?q=${project.value.coordinates.lat},${project.value.coordinates.lng}`;
     window.open(url, '_blank');
+  } else if (project.value?.location) {
+    // Fallback to search by location name
+    const url = `https://www.google.com/maps/search/${encodeURIComponent(project.value.location)}`;
+    window.open(url, '_blank');
+  } else {
+    alert('Location information not available');
   }
 };
 
-const openBaiduMaps = () => {
-  if (project.value?.coordinates?.lat && project.value?.coordinates?.lng) {
-    const url = `https://map.baidu.com/?q=${project.value.coordinates.lat},${project.value.coordinates.lng}`;
-    window.open(url, '_blank');
-  }
-};
+
 
 // Watch for unit selection changes
 watch(selectedUnit, () => {
