@@ -319,16 +319,15 @@
             <!-- Facilities Tab -->
             <div v-show="activeTab === 'facilities'" class="fade-in">
               <!-- Featured Facilities Grid -->
-              <div v-for="facility in project.facilities" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                 <!-- Swimming Pool -->
-                <div class="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-8 hover:border-[#ecbc85]/50 hover:shadow-2xl hover:shadow-[#ecbc85]/20 transition-all duration-500 overflow-hidden">
+                <div  v-for="facility in project.facilities"  class="group col-span-1 relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-8 hover:border-[#ecbc85]/50 hover:shadow-2xl hover:shadow-[#ecbc85]/20 transition-all duration-500 overflow-hidden">
                   <div class="absolute inset-0 bg-gradient-to-br from-[#ecbc85]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div class="relative z-10 text-center">
                     <div class="w-20 h-20 bg-gradient-to-br from-[#ecbc85] to-[#d4a574] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
                       <Icon :name="getFacilityIcon(facility)" class="text-3xl text-white" />
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-[#ecbc85] transition-colors duration-300">Swimming Pool</h3>
-                    <p class="text-white/70 font-light leading-relaxed">{{ facility }}</p>
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-[#ecbc85] transition-colors duration-300">{{ facility }}</h3>
                   </div>
                 </div>
               </div>
