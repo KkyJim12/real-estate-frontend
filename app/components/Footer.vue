@@ -1,6 +1,6 @@
 <template>
     <!-- Footer -->
-    <footer class="bg-[#1d1d39] px-4 sm:px-8 lg:px-96 py-12 sm:py-16 lg:py-20">
+    <footer class="bg-[#1d1d39] px-4 sm:px-8 lg:px-96 pt-20 pb-32 lg:pt-20 lg:pb-20">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-24">
             <!-- Contact Us -->
             <div class="sm:col-span-2 lg:col-span-4">
