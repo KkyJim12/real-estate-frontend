@@ -644,8 +644,8 @@
             <!-- Article Image -->
             <div class="aspect-[16/10] overflow-hidden relative">
               <NuxtImg
-                v-if="article.featuredImage"
-                :src="article.featuredImage"
+                v-if="article.image"
+                :src="article.image"
                 :alt="article.title"
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 loading="lazy"
