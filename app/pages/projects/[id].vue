@@ -319,60 +319,16 @@
             <!-- Facilities Tab -->
             <div v-show="activeTab === 'facilities'" class="fade-in">
               <!-- Featured Facilities Grid -->
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              <div v-for="facility in project.facilities" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                 <!-- Swimming Pool -->
                 <div class="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-8 hover:border-[#ecbc85]/50 hover:shadow-2xl hover:shadow-[#ecbc85]/20 transition-all duration-500 overflow-hidden">
                   <div class="absolute inset-0 bg-gradient-to-br from-[#ecbc85]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div class="relative z-10 text-center">
                     <div class="w-20 h-20 bg-gradient-to-br from-[#ecbc85] to-[#d4a574] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
-                      <Icon name="fa-solid:swimming-pool" class="text-3xl text-white" />
+                      <Icon :name="getFacilityIcon(facility)" class="text-3xl text-white" />
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-[#ecbc85] transition-colors duration-300">Swimming Pool</h3>
-                    <p class="text-white/70 font-light leading-relaxed">Infinity pool with panoramic city views and luxury poolside amenities</p>
-                  </div>
-                </div>
-
-                <!-- Fitness Center -->
-                <div class="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-8 hover:border-[#ecbc85]/50 hover:shadow-2xl hover:shadow-[#ecbc85]/20 transition-all duration-500 overflow-hidden">
-                  <div class="absolute inset-0 bg-gradient-to-br from-[#ecbc85]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div class="relative z-10 text-center">
-                    <div class="w-20 h-20 bg-gradient-to-br from-[#2c2c54] to-[#1a1a3a] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
-                      <Icon name="fa-solid:dumbbell" class="text-3xl text-[#ecbc85]" />
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-[#ecbc85] transition-colors duration-300">Fitness Center</h3>
-                    <p class="text-white/70 font-light leading-relaxed">State-of-the-art equipment with personal training and wellness programs</p>
-                  </div>
-                </div>
-
-                <!-- Security -->
-                <div class="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-8 hover:border-[#ecbc85]/50 hover:shadow-2xl hover:shadow-[#ecbc85]/20 transition-all duration-500 overflow-hidden">
-                  <div class="absolute inset-0 bg-gradient-to-br from-[#ecbc85]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div class="relative z-10 text-center">
-                    <div class="w-20 h-20 bg-gradient-to-br from-[#ecbc85]/80 to-[#2c2c54] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
-                      <Icon name="fa-solid:shield-alt" class="text-3xl text-white" />
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-[#ecbc85] transition-colors duration-300">24/7 Security</h3>
-                    <p class="text-white/70 font-light leading-relaxed">Advanced security systems with professional staff and smart access control</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Additional Facilities -->
-              <div v-if="project.facilities && project.facilities.length" class="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-10">
-                <h3 class="text-3xl font-bold text-center mb-10 text-white">
-                  <Icon name="fa-solid:gem" class="text-[#ecbc85] mr-3" />
-                  Premium Amenities
-                </h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                  <div
-                    v-for="facility in project.facilities"
-                    :key="facility"
-                    class="group bg-white/5 hover:bg-gradient-to-br hover:from-[#ecbc85]/10 hover:to-white/5 border border-white/10 hover:border-[#ecbc85]/30 rounded-2xl p-6 text-center transition-all duration-300 hover:scale-105"
-                  >
-                    <div class="w-12 h-12 bg-[#ecbc85]/20 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-[#ecbc85]/30 transition-colors duration-300">
-                      <Icon :name="getFacilityIcon(facility)" class="text-[#ecbc85] text-xl group-hover:scale-125 transition-transform duration-300" />
-                    </div>
-                    <p class="text-white font-medium text-sm">{{ facility }}</p>
+                    <p class="text-white/70 font-light leading-relaxed">{{ facility }}</p>
                   </div>
                 </div>
               </div>
