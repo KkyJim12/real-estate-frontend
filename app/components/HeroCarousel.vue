@@ -1,9 +1,15 @@
 <template>
   <div class="relative h-screen overflow-hidden">
     <!-- Loading State -->
-    <div v-if="loading" class="flex items-center justify-center h-full bg-gray-100">
+    <div
+      v-if="loading"
+      class="flex items-center justify-center h-full bg-gray-100"
+    >
       <div class="text-center">
-        <Icon name="fa-solid:spinner" class="text-4xl text-gray-400 animate-spin mb-4" />
+        <Icon
+          name="fa-solid:spinner"
+          class="text-4xl text-gray-400 animate-spin mb-4"
+        />
         <p class="text-gray-500">Loading carousel...</p>
       </div>
     </div>
@@ -17,7 +23,7 @@
           :key="index"
           :class="[
             'absolute inset-0 transition-opacity duration-1000 ease-in-out',
-            index === currentSlide ? 'opacity-100' : 'opacity-0'
+            index === currentSlide ? 'opacity-100' : 'opacity-0',
           ]"
         >
           <!-- Background Image -->
@@ -36,21 +42,21 @@
           <!-- Content -->
           <div class="relative z-10 flex items-center justify-center h-full">
             <div class="text-center text-white px-4 max-w-4xl mx-auto">
-              <h1 
+              <h1
                 v-if="item.title"
                 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-wide animate-fade-in-up"
               >
                 {{ item.title }}
               </h1>
-              
-              <p 
+
+              <p
                 v-if="item.description"
                 class="text-lg md:text-xl lg:text-2xl font-light opacity-90 mb-8 animate-fade-in-up animation-delay-300"
               >
                 {{ item.description }}
               </p>
-              
-              <div 
+
+              <div
                 v-if="item.buttonText && item.buttonLink"
                 class="animate-fade-in-up animation-delay-600"
               >
@@ -68,7 +74,10 @@
       </div>
 
       <!-- Navigation Dots -->
-      <div v-if="carouselItems.length > 1" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+      <div
+        v-if="carouselItems.length > 1"
+        class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+      >
         <div class="flex space-x-3">
           <button
             v-for="(item, index) in carouselItems"
@@ -76,9 +85,9 @@
             @click="goToSlide(index)"
             :class="[
               'w-3 h-3 rounded-full transition-all duration-300',
-              index === currentSlide 
-                ? 'bg-[#ecbc85] scale-125' 
-                : 'bg-white bg-opacity-50 hover:bg-opacity-75'
+              index === currentSlide
+                ? 'bg-[#ecbc85] scale-125'
+                : 'bg-white bg-opacity-50 hover:bg-opacity-75',
             ]"
             :aria-label="`Go to slide ${index + 1}`"
           ></button>
@@ -86,7 +95,10 @@
       </div>
 
       <!-- Navigation Arrows -->
-      <div v-if="carouselItems.length > 1" class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 z-20">
+      <div
+        v-if="carouselItems.length > 1"
+        class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 z-20"
+      >
         <button
           @click="previousSlide"
           class="w-12 h-12 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
@@ -94,7 +106,7 @@
         >
           <Icon name="fa-solid:chevron-left" class="text-xl" />
         </button>
-        
+
         <button
           @click="nextSlide"
           class="w-12 h-12 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
@@ -106,14 +118,19 @@
 
       <!-- Slide Counter -->
       <div v-if="carouselItems.length > 1" class="absolute top-8 right-8 z-20">
-        <div class="bg-black bg-opacity-50 text-white px-4 py-2 rounded-full text-sm font-medium">
+        <div
+          class="bg-black bg-opacity-50 text-white px-4 py-2 rounded-full text-sm font-medium"
+        >
           {{ currentSlide + 1 }} / {{ carouselItems.length }}
         </div>
       </div>
     </div>
 
     <!-- Fallback when no carousel items -->
-    <div v-else class="flex items-center justify-center h-full bg-gradient-to-br from-[#2c2c54] to-[#ecbc85]">
+    <div
+      v-else
+      class="flex items-center justify-center h-full bg-gradient-to-br from-[#2c2c54] to-[#ecbc85]"
+    >
       <div class="text-center text-white px-4">
         <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome</h1>
         <p class="text-xl md:text-2xl font-light opacity-90">
@@ -146,10 +163,10 @@ const autoplayInterval = ref<NodeJS.Timeout | null>(null);
 const loadCarousel = async () => {
   loading.value = true;
   try {
-    const data = await $fetch('/api/carousel');
+    const data = await $fetch("/api/carousel");
     carouselItems.value = data.carousel || [];
   } catch (error) {
-    console.error('Failed to load carousel:', error);
+    console.error("Failed to load carousel:", error);
     carouselItems.value = [];
   } finally {
     loading.value = false;
@@ -168,9 +185,10 @@ const nextSlide = () => {
 };
 
 const previousSlide = () => {
-  currentSlide.value = currentSlide.value === 0 
-    ? carouselItems.value.length - 1 
-    : currentSlide.value - 1;
+  currentSlide.value =
+    currentSlide.value === 0
+      ? carouselItems.value.length - 1
+      : currentSlide.value - 1;
   resetAutoplay();
 };
 
@@ -197,9 +215,9 @@ const resetAutoplay = () => {
 
 // Keyboard navigation
 const handleKeydown = (event: KeyboardEvent) => {
-  if (event.key === 'ArrowLeft') {
+  if (event.key === "ArrowLeft") {
     previousSlide();
-  } else if (event.key === 'ArrowRight') {
+  } else if (event.key === "ArrowRight") {
     nextSlide();
   }
 };
@@ -209,14 +227,14 @@ onMounted(() => {
   loadCarousel().then(() => {
     if (carouselItems.value.length > 0) {
       startAutoplay();
-      window.addEventListener('keydown', handleKeydown);
+      window.addEventListener("keydown", handleKeydown);
     }
   });
 });
 
 onUnmounted(() => {
   stopAutoplay();
-  window.removeEventListener('keydown', handleKeydown);
+  window.removeEventListener("keydown", handleKeydown);
 });
 
 // Pause autoplay on hover
