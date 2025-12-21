@@ -31,8 +31,8 @@
             <!-- Article Image -->
             <div class="relative h-48 bg-gray-200 overflow-hidden">
               <NuxtImg
-                v-if="article.featuredImage"
-                :src="article.featuredImage"
+                v-if="article.image"
+                :src="article.image"
                 :alt="article.title"
                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 loading="lazy"
