@@ -63,7 +63,7 @@
         item: 'min-w-full h-full flex-shrink-0',
         dots: 'absolute bottom-12 left-0 right-0 flex justify-center space-x-4 z-30',
         dot: 'h-3 w-16 rounded-full bg-white/20 data-[state=active]:bg-[#ddac7c] transition-all duration-700 hover:bg-white/40 cursor-pointer',
-        arrows: 'absolute inset-y-0 flex items-center z-30'
+        arrows: 'absolute inset-y-0 flex items-center z-30',
       }"
     >
       <div class="w-full h-full relative group overflow-hidden">
@@ -485,78 +485,82 @@
       </div>
 
       <!-- Compact Projects Grid - 4 Items in 1 Row -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 place-content-center">
-        <div
-          v-for="project in projects.slice(0, 4)"
-          :key="project.id"
-          class="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 hover:border-[#ecbc85]/30 hover:scale-105 transition-all duration-500"
-        >
-          <!-- Project Image -->
-          <div class="aspect-[4/3] overflow-hidden relative">
-            <NuxtImg
-              v-if="project.image"
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              :src="project.image"
-              :alt="project.title"
-              loading="lazy"
-              format="webp"
-              quality="90"
-            />
-            <div
-              v-else
-              class="w-full h-full bg-gradient-to-br from-[#2c2c54] to-[#1a1a3a] flex items-center justify-center"
-            >
-              <Icon name="fa-solid:building" class="text-4xl text-white/30" />
-            </div>
-            <!-- Overlay -->
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-            ></div>
-            <!-- Premium Badge -->
-            <div
-              class="absolute top-4 right-4 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide"
-            >
-              Premium
-            </div>
-          </div>
-
-          <!-- Project Content -->
-          <div class="p-6 space-y-4">
-            <h3
-              class="text-xl font-bold text-white group-hover:text-[#ecbc85] transition-colors duration-300"
-            >
-              {{ project.title }}
-            </h3>
-            <p
-              class="text-white/70 font-light line-clamp-2 text-sm leading-relaxed"
-            >
-              {{ project.description }}
-            </p>
-            <NuxtLink
-              :to="
-                project.link && project.link !== '/'
-                  ? `/projects/${project.id}`
-                  : `/projects/${project.id}`
-              "
-              class="inline-flex items-center space-x-2 text-[#ecbc85] font-semibold text-sm hover:text-white group-hover:translate-x-1 transition-all duration-300"
-            >
-              <span>{{ $t("ramada.viewMore") }}</span>
-              <Icon name="fa-solid:arrow-right" class="text-xs" />
-            </NuxtLink>
-          </div>
-        </div>
-
-        <!-- Compact Empty State -->
-        <div
-          v-if="projects.length === 0 && !loadingProjects"
-          class="col-span-full text-center py-12"
-        >
+      <div class="flex justify-center">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <div
-            class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4"
+            v-for="project in projects.slice(0, 4)"
+            :key="project.id"
+            class="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 hover:border-[#ecbc85]/30 hover:scale-105 transition-all duration-500"
           >
-            <Icon name="fa-solid:building" class="text-2xl text-white/60" />
+            <!-- Project Image -->
+            <div class="aspect-[4/3] overflow-hidden relative">
+              <NuxtImg
+                v-if="project.image"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                :src="project.image"
+                :alt="project.title"
+                loading="lazy"
+                format="webp"
+                quality="90"
+              />
+              <div
+                v-else
+                class="w-full h-full bg-gradient-to-br from-[#2c2c54] to-[#1a1a3a] flex items-center justify-center"
+              >
+                <Icon name="fa-solid:building" class="text-4xl text-white/30" />
+              </div>
+              <!-- Overlay -->
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              ></div>
+              <!-- Premium Badge -->
+              <div
+                class="absolute top-4 right-4 bg-gradient-to-r from-[#ecbc85] to-[#d4a574] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide"
+              >
+                Premium
+              </div>
+            </div>
+
+            <!-- Project Content -->
+            <div class="p-6 space-y-4">
+              <h3
+                class="text-xl font-bold text-white group-hover:text-[#ecbc85] transition-colors duration-300"
+              >
+                {{ project.title }}
+              </h3>
+              <p
+                class="text-white/70 font-light line-clamp-2 text-sm leading-relaxed"
+              >
+                {{ project.description }}
+              </p>
+              <NuxtLink
+                :to="
+                  project.link && project.link !== '/'
+                    ? `/projects/${project.id}`
+                    : `/projects/${project.id}`
+                "
+                class="inline-flex items-center space-x-2 text-[#ecbc85] font-semibold text-sm hover:text-white group-hover:translate-x-1 transition-all duration-300"
+              >
+                <span>{{ $t("ramada.viewMore") }}</span>
+                <Icon name="fa-solid:arrow-right" class="text-xs" />
+              </NuxtLink>
+            </div>
           </div>
-          <p class="text-white/70 text-lg font-light">No projects available</p>
+
+          <!-- Compact Empty State -->
+          <div
+            v-if="projects.length === 0 && !loadingProjects"
+            class="col-span-full text-center py-12"
+          >
+            <div
+              class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4"
+            >
+              <Icon name="fa-solid:building" class="text-2xl text-white/60" />
+            </div>
+            <p class="text-white/70 text-lg font-light">
+              No projects available
+            </p>
+          </div>
         </div>
       </div>
 
