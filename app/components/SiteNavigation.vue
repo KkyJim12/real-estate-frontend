@@ -9,56 +9,29 @@
     ]">
       <div class="flex items-center justify-between">
         <!-- Premium Hamburger Menu Button -->
-        <button @click="mobileMenuOpen = true" :class="[
-          'group relative p-3 rounded-xl transition-all duration-300',
-          isScrolled
-            ? 'bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-[#ecbc85]/30'
-            : 'bg-black/20 backdrop-blur-md border border-white/20 hover:bg-black/30 hover:border-[#ecbc85]/50'
-        ]">
+        <button @click="mobileMenuOpen = true" 
+          class="group relative p-3 transition-all duration-300">
           <Icon name="fa-solid:bars"
             class="text-xl text-white group-hover:text-[#ecbc85] transition-colors duration-300" />
-          <div
-            class="absolute inset-0 bg-gradient-to-r from-[#ecbc85]/0 via-[#ecbc85]/10 to-[#ecbc85]/0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          </div>
         </button>
 
         <!-- Luxury Logo -->
         <NuxtLink to="/" class="group relative">
-          <div :class="[
-            'relative p-2 rounded-2xl transition-all duration-500 group-hover:scale-105',
-            isScrolled
-              ? 'bg-white/5 backdrop-blur-sm border border-white/10 group-hover:border-[#ecbc85]/30'
-              : 'bg-black/20 backdrop-blur-md border border-white/20 group-hover:border-[#ecbc85]/50'
-          ]">
+          <div class="relative p-2 transition-all duration-500 group-hover:scale-105">
             <NuxtImg class="w-16 sm:w-20 transition-transform duration-500"
               src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/logo-new.png" alt="Emerald Bay Pattaya"
               loading="eager" format="webp" />
-            <div
-              class="absolute inset-0 bg-gradient-to-br from-[#ecbc85]/0 via-[#ecbc85]/5 to-[#ecbc85]/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            </div>
           </div>
         </NuxtLink>
 
         <!-- Premium Contact Actions -->
         <div class="flex items-center space-x-3">
-          <a href="tel:+66616109888" :class="[
-            'group relative p-3 rounded-xl transition-all duration-300',
-            isScrolled
-              ? 'bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-[#ecbc85]/30'
-              : 'bg-black/20 backdrop-blur-md border border-white/20 hover:bg-black/30 hover:border-[#ecbc85]/50'
-          ]">
+          <a href="tel:+66616109888" 
+            class="group relative p-3 transition-all duration-300">
             <Icon name="fa-solid:phone"
               class="text-lg text-white group-hover:text-[#ecbc85] transition-colors duration-300" />
-            <div
-              class="absolute inset-0 bg-gradient-to-r from-[#ecbc85]/0 via-[#ecbc85]/10 to-[#ecbc85]/0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            </div>
           </a>
-          <div :class="[
-            'relative p-2 rounded-xl transition-all duration-300',
-            isScrolled
-              ? 'bg-white/5 backdrop-blur-sm border border-white/10'
-              : 'bg-black/20 backdrop-blur-md border border-white/20'
-          ]">
+          <div class="relative p-2 transition-all duration-300">
             <LanguageSwitcher />
           </div>
         </div>
@@ -77,38 +50,28 @@
           <div class="flex items-center justify-between px-6 py-6 border-b border-white/10">
             <!-- Premium Close Button -->
             <button @click="mobileMenuOpen = false"
-              class="group relative p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-[#ecbc85]/30 transition-all duration-300">
+              class="group relative p-3 transition-all duration-300">
               <Icon name="fa-solid:times"
                 class="text-xl text-white group-hover:text-[#ecbc85] transition-colors duration-300" />
-              <div
-                class="absolute inset-0 bg-gradient-to-r from-[#ecbc85]/0 via-[#ecbc85]/10 to-[#ecbc85]/0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              </div>
             </button>
 
             <!-- Luxury Logo -->
             <NuxtLink to="/" @click="mobileMenuOpen = false" class="group relative">
-              <div
-                class="relative p-2 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 group-hover:border-[#ecbc85]/30 transition-all duration-500">
+              <div class="relative p-2 transition-all duration-500">
                 <NuxtImg class="w-16 sm:w-20 group-hover:scale-105 transition-transform duration-500"
                   src="https://emeraldbaypattaya.com/wp-content/uploads/2019/11/logo-new.png" alt="Emerald Bay Pattaya"
                   loading="eager" format="webp" />
-                <div
-                  class="absolute inset-0 bg-gradient-to-br from-[#ecbc85]/0 via-[#ecbc85]/5 to-[#ecbc85]/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                </div>
               </div>
             </NuxtLink>
 
             <!-- Premium Contact Actions -->
             <div class="flex items-center space-x-3">
               <a href="tel:+66616109888"
-                class="group relative p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-[#ecbc85]/30 transition-all duration-300">
+                class="group relative p-3 transition-all duration-300">
                 <Icon name="fa-solid:phone"
                   class="text-lg text-white group-hover:text-[#ecbc85] transition-colors duration-300" />
-                <div
-                  class="absolute inset-0 bg-gradient-to-r from-[#ecbc85]/0 via-[#ecbc85]/10 to-[#ecbc85]/0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                </div>
               </a>
-              <div class="relative p-2 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
+              <div class="relative p-2">
                 <LanguageSwitcher />
               </div>
             </div>
