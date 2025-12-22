@@ -1033,6 +1033,8 @@
 </template>
 
 <script setup lang="ts">
+const { locale } = useI18n();
+
 const route = useRoute();
 const project = ref<any>(null);
 const loading = ref(true);
@@ -1075,7 +1077,9 @@ const scrollToSection = (sectionId: string) => {
 const loadProject = async () => {
   loading.value = true;
   try {
-    const data: any = await $fetch(`/api/public/projects/${route.params.id}`);
+    const data: any = await $fetch(`/api/public/projects/${route.params.id}`, {
+      query: { lang: locale.value }
+    });
     project.value = data;
     
     // Initialize UI state
@@ -1282,6 +1286,11 @@ watch(selectedUnit, () => {
 onMounted(() => {
   loadProject();
   document.addEventListener('keydown', handleKeydown);
+});
+
+// Watch for language changes and reload content
+watch(locale, () => {
+  loadProject();
 });
 
 onUnmounted(() => {

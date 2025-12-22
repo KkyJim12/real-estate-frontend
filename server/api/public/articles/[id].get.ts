@@ -1,3 +1,5 @@
+import { getTranslatedContent } from '../../../utils/translation';
+
 export default defineEventHandler(async (event) => {
   try {
     const id = getRouterParam(event, 'id');
@@ -7,6 +9,9 @@ export default defineEventHandler(async (event) => {
         message: 'Article ID is required',
       });
     }
+
+    const query = getQuery(event);
+    const lang = (query.lang as string) || 'en';
 
     const article = await db.getById('articles', id);
     
@@ -25,7 +30,10 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    return article;
+    // Translate the article content
+    const translatedArticle = getTranslatedContent(article, lang as any);
+
+    return translatedArticle;
   } catch (error: any) {
     console.error('Error fetching article:', error);
     throw createError({

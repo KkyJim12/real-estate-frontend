@@ -122,6 +122,8 @@
 </template>
 
 <script setup lang="ts">
+const { locale } = useI18n();
+
 const route = useRoute();
 const article = ref<any>(null);
 const loading = ref(true);
@@ -138,7 +140,9 @@ const shareUrl = computed(() => {
 const loadArticle = async () => {
   loading.value = true;
   try {
-    const data: any = await $fetch(`/api/public/articles/${route.params.id}`);
+    const data: any = await $fetch(`/api/public/articles/${route.params.id}`, {
+      query: { lang: locale.value }
+    });
     article.value = data;
   } catch (error) {
     console.error('Failed to load article:', error);
@@ -159,6 +163,11 @@ const formatDate = (dateString: string) => {
 };
 
 onMounted(() => {
+  loadArticle();
+});
+
+// Watch for language changes and reload content
+watch(locale, () => {
   loadArticle();
 });
 

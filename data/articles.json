@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "id": "1766399062737",
+    "title": {
+      "en": "Test",
+      "th": "เทส",
+      "zh": ""
+    },
+    "image": "/uploads/1766399057414.jpg",
+    "content": {
+      "en": "Test",
+      "th": "เทสเทส",
+      "zh": ""
+    },
+    "excerpt": {
+      "en": "",
+      "th": "",
+      "zh": ""
+    },
+    "author": "",
+    "status": "published",
+    "publishedAt": "2025-12-22T10:24:22.737Z",
+    "createdAt": "2025-12-22T10:24:22.737Z",
+    "updatedAt": "2025-12-22T10:24:22.737Z"
+  }
+]

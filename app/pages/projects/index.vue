@@ -80,6 +80,8 @@
 </template>
 
 <script setup lang="ts">
+const { locale } = useI18n();
+
 const projects = ref<any[]>([]);
 const loading = ref(true);
 
@@ -87,7 +89,9 @@ const loading = ref(true);
 const loadProjects = async () => {
   loading.value = true;
   try {
-    const data: any = await $fetch('/api/public/projects');
+    const data: any = await $fetch('/api/public/projects', {
+      query: { lang: locale.value }
+    });
     projects.value = data;
   } catch (error) {
     console.error('Failed to load projects:', error);
@@ -98,6 +102,11 @@ const loadProjects = async () => {
 };
 
 onMounted(() => {
+  loadProjects();
+});
+
+// Watch for language changes and reload content
+watch(locale, () => {
   loadProjects();
 });
 

@@ -81,6 +81,8 @@
 </template>
 
 <script setup lang="ts">
+const { locale } = useI18n();
+
 const articles = ref<any[]>([]);
 const loading = ref(true);
 
@@ -88,7 +90,9 @@ const loading = ref(true);
 const loadArticles = async () => {
   loading.value = true;
   try {
-    const data: any = await $fetch('/api/public/articles');
+    const data: any = await $fetch('/api/public/articles', {
+      query: { lang: locale.value }
+    });
     articles.value = data;
   } catch (error) {
     console.error('Failed to load articles:', error);
@@ -117,6 +121,11 @@ const stripHtml = (html: string) => {
 };
 
 onMounted(() => {
+  loadArticles();
+});
+
+// Watch for language changes and reload content
+watch(locale, () => {
   loadArticles();
 });
 

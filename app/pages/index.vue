@@ -735,6 +735,8 @@
 </template>
 
 <script setup lang="ts">
+const { locale } = useI18n();
+
 const carouselSlides = ref<any[]>([]);
 const loading = ref(true);
 const latestArticles = ref<any[]>([]);
@@ -746,7 +748,9 @@ const loadingProjects = ref(true);
 const loadCarousel = async () => {
   loading.value = true;
   try {
-    const data: any = await $fetch("/api/public/carousel");
+    const data: any = await $fetch("/api/public/carousel", {
+      query: { lang: locale.value }
+    });
     // Filter only active slides and sort by order
     const activeSlides = data
       .filter((slide: any) => slide.active)
@@ -787,7 +791,9 @@ const loadCarousel = async () => {
 const loadLatestArticles = async () => {
   loadingArticles.value = true;
   try {
-    const data: any = await $fetch("/api/public/articles");
+    const data: any = await $fetch("/api/public/articles", {
+      query: { lang: locale.value }
+    });
     // Get only the latest 3 articles
     latestArticles.value = data.slice(0, 3);
   } catch (error) {
@@ -802,7 +808,9 @@ const loadLatestArticles = async () => {
 const loadProjects = async () => {
   loadingProjects.value = true;
   try {
-    const data: any = await $fetch("/api/public/projects");
+    const data: any = await $fetch("/api/public/projects", {
+      query: { lang: locale.value }
+    });
     projects.value = data;
   } catch (error) {
     console.error("Failed to load projects:", error);
@@ -851,6 +859,13 @@ const stripHtml = (html: string) => {
 };
 
 onMounted(() => {
+  loadCarousel();
+  loadLatestArticles();
+  loadProjects();
+});
+
+// Watch for language changes and reload content
+watch(locale, () => {
   loadCarousel();
   loadLatestArticles();
   loadProjects();
