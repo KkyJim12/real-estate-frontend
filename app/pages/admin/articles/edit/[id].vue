@@ -24,11 +24,9 @@
       <div v-else-if="form.title" class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-8">
         <form @submit.prevent="updateArticle" class="space-y-6 sm:space-y-8">
           <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Article Title</label>
-            <input
+            <MultiLanguageInput
               v-model="form.title"
-              type="text"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+              label="Article Title"
               placeholder="Enter a compelling title..."
               required
             />
@@ -41,8 +39,12 @@
           />
 
           <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Article Content</label>
-            <ContentEditor v-model="form.content" />
+            <MultiLanguageEditor
+              v-model="form.content"
+              label="Article Content"
+              placeholder="Enter article content..."
+              required
+            />
           </div>
 
           <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-6 border-t border-gray-200">
@@ -79,9 +81,9 @@ const route = useRoute();
 const articleId = route.params.id as string;
 
 const form = ref({
-  title: '',
+  title: { en: '', th: '', zh: '' },
   image: '',
-  content: '',
+  content: { en: '', th: '', zh: '' },
 });
 
 const loading = ref(true);
@@ -91,10 +93,26 @@ const loadArticle = async () => {
   loading.value = true;
   try {
     const article: any = await $fetch(`/api/articles/${articleId}`);
+    
+    // Helper function to ensure multi-language format
+    const ensureMultiLang = (value: any) => {
+      if (typeof value === 'string') {
+        return { en: value, th: '', zh: '' };
+      }
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        return {
+          en: value.en || '',
+          th: value.th || '',
+          zh: value.zh || ''
+        };
+      }
+      return { en: '', th: '', zh: '' };
+    };
+    
     form.value = {
-      title: article.title,
+      title: ensureMultiLang(article.title),
       image: article.image,
-      content: article.content,
+      content: ensureMultiLang(article.content),
     };
   } catch (error: any) {
     console.error('Failed to load article:', error);
@@ -111,8 +129,17 @@ const loadArticle = async () => {
 };
 
 const updateArticle = async () => {
-  if (!form.value.title) {
-    alert('Please enter a title');
+  // Validate that at least one language has content for required fields
+  const hasTitle = form.value.title.en || form.value.title.th || form.value.title.zh;
+  const hasContent = form.value.content.en || form.value.content.th || form.value.content.zh;
+  
+  if (!hasTitle) {
+    alert('Please enter a title in at least one language');
+    return;
+  }
+  
+  if (!hasContent) {
+    alert('Please enter content in at least one language');
     return;
   }
 

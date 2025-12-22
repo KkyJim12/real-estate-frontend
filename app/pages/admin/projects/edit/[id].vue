@@ -45,14 +45,12 @@
           </h2>
           
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Project Title *</label>
-              <input
+            <div class="lg:col-span-2">
+              <MultiLanguageInput
                 v-model="form.title"
-                type="text"
-                required
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                label="Project Title"
                 placeholder="e.g., RAMADA EMERALD BAY"
+                required
               />
             </div>
 
@@ -68,14 +66,12 @@
             </div>
 
             <div class="lg:col-span-2">
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Description *</label>
-              <textarea
+              <MultiLanguageEditor
                 v-model="form.description"
-                required
-                rows="4"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition resize-none"
+                label="Description"
                 placeholder="Enter project description..."
-              ></textarea>
+                required
+              />
             </div>
 
             <div>
@@ -182,26 +178,35 @@
             <div class="lg:col-span-2">
               <label class="block text-sm font-semibold text-gray-700 mb-2">Neighborhoods</label>
               <div class="space-y-3">
-                <div v-for="(neighborhood, index) in form.neighborhoods" :key="index" class="flex gap-3">
-                  <input
-                    v-model="neighborhood.number"
-                    type="text"
-                    placeholder="Number/Code"
-                    class="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
-                  />
-                  <input
-                    v-model="neighborhood.name"
-                    type="text"
-                    placeholder="Neighborhood name"
-                    class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
-                  />
-                  <button
-                    type="button"
-                    @click="removeNeighborhood(index)"
-                    class="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                  >
-                    <Icon name="fa-solid:trash" />
-                  </button>
+                <div v-for="(neighborhood, index) in form.neighborhoods" :key="index" class="border border-gray-200 rounded-lg p-4">
+                  <div class="flex justify-between items-center mb-3">
+                    <h4 class="font-medium text-gray-700">Neighborhood {{ index + 1 }}</h4>
+                    <button
+                      type="button"
+                      @click="removeNeighborhood(index)"
+                      class="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                    >
+                      <Icon name="fa-solid:trash" />
+                    </button>
+                  </div>
+                  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-1">Number/Code</label>
+                      <input
+                        v-model="neighborhood.number"
+                        type="text"
+                        placeholder="Number/Code"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                      />
+                    </div>
+                    <div class="lg:col-span-2">
+                      <MultiLanguageInput
+                        v-model="neighborhood.name"
+                        label="Neighborhood Name"
+                        placeholder="Neighborhood name"
+                      />
+                    </div>
+                  </div>
                 </div>
                 <button
                   type="button"
@@ -294,31 +299,26 @@
                   <!-- Carousel Details -->
                   <div class="space-y-4">
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-2">Title</label>
-                      <input
+                      <MultiLanguageInput
                         v-model="carouselItem.title"
-                        type="text"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                        label="Title"
                         placeholder="Carousel slide title"
                       />
                     </div>
                     
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                      <textarea
+                      <MultiLanguageEditor
                         v-model="carouselItem.description"
-                        rows="3"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition resize-none"
+                        label="Description"
                         placeholder="Brief description for this slide"
-                      ></textarea>
+                        :rows="3"
+                      />
                     </div>
                     
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-2">Button Text</label>
-                      <input
+                      <MultiLanguageInput
                         v-model="carouselItem.buttonText"
-                        type="text"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                        label="Button Text"
                         placeholder="e.g., View Project, Learn More"
                       />
                     </div>
@@ -377,26 +377,23 @@
                 </button>
               </div>
               
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div class="grid grid-cols-1 gap-4 mb-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-1">Room Type</label>
-                  <input
+                  <MultiLanguageInput
                     v-model="unit.roomType"
-                    type="text"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+                    label="Room Type"
                     placeholder="e.g., Studio, 1 Bedroom, 2 Bedroom, Penthouse"
                   />
                   <p class="text-xs text-gray-500 mt-1">Enter any room type (e.g., Studio, 1BR, 2BR, 3BR, Penthouse, Duplex, etc.)</p>
                 </div>
                 
-                <div class="md:col-span-1">
-                  <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                  <textarea
+                <div>
+                  <MultiLanguageEditor
                     v-model="unit.description"
-                    rows="3"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition resize-none"
+                    label="Description"
                     placeholder="Unit description..."
-                  ></textarea>
+                    :rows="3"
+                  />
                 </div>
               </div>
               
@@ -443,18 +440,16 @@
               
               <div class="space-y-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-1">Tag</label>
-                  <input
+                  <MultiLanguageInput
                     v-model="galleryItem.tag"
-                    type="text"
+                    label="Tag"
                     placeholder="e.g., Exterior, Interior, Amenities"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
                   />
                 </div>
                 
                 <MultiImageUpload
                   v-model="galleryItem.images"
-                  :label="`Images for ${galleryItem.tag || 'Gallery Item'}`"
+                  :label="`Images for ${galleryItem.tag?.en || 'Gallery Item'}`"
                   description="Upload multiple images for this gallery section"
                   :max-files="12"
                 />
@@ -572,10 +567,25 @@ const loadProject = async () => {
   try {
     const data: any = await $fetch(`/api/projects/${route.params.id}`);
     
+    // Helper function to ensure multi-language format
+    const ensureMultiLang = (value: any) => {
+      if (typeof value === 'string') {
+        return { en: value, th: '', zh: '' };
+      }
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        return {
+          en: value.en || '',
+          th: value.th || '',
+          zh: value.zh || ''
+        };
+      }
+      return { en: '', th: '', zh: '' };
+    };
+    
     // Ensure all required fields exist with defaults
     form.value = {
-      title: data.title || '',
-      description: data.description || '',
+      title: ensureMultiLang(data.title),
+      description: ensureMultiLang(data.description),
       developer: data.developer || '',
       location: data.location || '',
       area: data.area || '',
@@ -588,16 +598,30 @@ const loadProject = async () => {
       image: data.image || '', // Main project image for homepage
       facilities: data.facilities || [],
       neighborhoods: data.neighborhoods && data.neighborhoods.length > 0 
-        ? data.neighborhoods 
-        : [{ number: '', name: '' }],
+        ? data.neighborhoods.map((n: any) => ({
+            number: n.number || '',
+            name: ensureMultiLang(n.name)
+          }))
+        : [{ number: '', name: { en: '', th: '', zh: '' } }],
       brochure: data.brochure || null,
-      heroCarousel: data.heroCarousel || [],
-      showUnits: data.showUnits || [],
-      gallery: data.gallery || [],
+      heroCarousel: data.heroCarousel ? data.heroCarousel.map((item: any) => ({
+        ...item,
+        title: ensureMultiLang(item.title),
+        description: ensureMultiLang(item.description),
+        buttonText: ensureMultiLang(item.buttonText || 'View Project')
+      })) : [],
+      showUnits: data.showUnits ? data.showUnits.map((unit: any) => ({
+        ...unit,
+        roomType: ensureMultiLang(unit.roomType),
+        description: ensureMultiLang(unit.description)
+      })) : [],
+      gallery: data.gallery ? data.gallery.map((item: any) => ({
+        ...item,
+        tag: ensureMultiLang(item.tag)
+      })) : [],
       coordinates: data.coordinates || { lat: null, lng: null },
       order: data.order || 0,
       active: data.active !== undefined ? data.active : true,
-      ...data
     };
   } catch (error) {
     console.error('Failed to load project:', error);
@@ -609,7 +633,7 @@ const loadProject = async () => {
 
 // Neighborhood functions
 const addNeighborhood = () => {
-  form.value.neighborhoods.push({ number: '', name: '' });
+  form.value.neighborhoods.push({ number: '', name: { en: '', th: '', zh: '' } });
 };
 
 const removeNeighborhood = (index: number) => {
@@ -621,8 +645,8 @@ const removeNeighborhood = (index: number) => {
 // Show Unit functions
 const addShowUnit = () => {
   form.value.showUnits.push({
-    roomType: '',
-    description: '',
+    roomType: { en: '', th: '', zh: '' },
+    description: { en: '', th: '', zh: '' },
     images: []
   });
 };
@@ -635,9 +659,9 @@ const removeShowUnit = (index: number) => {
 const addCarouselItem = () => {
   form.value.heroCarousel.push({
     image: '',
-    title: '',
-    description: '',
-    buttonText: 'View Project',
+    title: { en: '', th: '', zh: '' },
+    description: { en: '', th: '', zh: '' },
+    buttonText: { en: 'View Project', th: 'ดูโครงการ', zh: '查看项目' },
     buttonLink: '',
     active: true,
     order: form.value.heroCarousel.length
@@ -652,12 +676,10 @@ const removeCarouselItem = (index: number) => {
   });
 };
 
-// Carousel image upload is now handled by ImageUpload component
-
 // Gallery functions
 const addGalleryItem = () => {
   form.value.gallery.push({
-    tag: '',
+    tag: { en: '', th: '', zh: '' },
     images: []
   });
 };
@@ -691,10 +713,26 @@ const handleSubmit = async () => {
     return;
   }
 
+  // Validate that at least one language has content for required fields
+  const hasTitle = form.value.title.en || form.value.title.th || form.value.title.zh;
+  const hasDescription = form.value.description.en || form.value.description.th || form.value.description.zh;
+  
+  if (!hasTitle) {
+    alert('Please enter a project title in at least one language');
+    return;
+  }
+  
+  if (!hasDescription) {
+    alert('Please enter a project description in at least one language');
+    return;
+  }
+
   saving.value = true;
   try {
     // Clean up empty neighborhoods
-    form.value.neighborhoods = form.value.neighborhoods.filter((n: any) => n.number || n.name);
+    form.value.neighborhoods = form.value.neighborhoods.filter((n: any) => 
+      n.number || n.name.en || n.name.th || n.name.zh
+    );
     
     await $fetch(`/api/projects/${route.params.id}`, {
       method: 'PUT',

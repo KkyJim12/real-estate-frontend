@@ -30,23 +30,20 @@
           />
 
           <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Title (Optional)</label>
-            <input
+            <MultiLanguageInput
               v-model="form.title"
-              type="text"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+              label="Title (Optional)"
               placeholder="Enter slide title..."
             />
           </div>
 
           <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Description (Optional)</label>
-            <textarea
+            <MultiLanguageEditor
               v-model="form.description"
-              rows="3"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+              label="Description (Optional)"
               placeholder="Enter slide description..."
-            ></textarea>
+              :rows="3"
+            />
           </div>
 
           <div>
@@ -119,8 +116,8 @@ const slideId = route.params.id as string;
 
 const form = ref({
   image: '',
-  title: '',
-  description: '',
+  title: { en: '', th: '', zh: '' },
+  description: { en: '', th: '', zh: '' },
   videoLink: '',
   order: 0,
   active: true,
@@ -133,10 +130,26 @@ const loadSlide = async () => {
   loading.value = true;
   try {
     const slide: any = await $fetch(`/api/carousel/${slideId}`);
+    
+    // Helper function to ensure multi-language format
+    const ensureMultiLang = (value: any) => {
+      if (typeof value === 'string') {
+        return { en: value, th: '', zh: '' };
+      }
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        return {
+          en: value.en || '',
+          th: value.th || '',
+          zh: value.zh || ''
+        };
+      }
+      return { en: '', th: '', zh: '' };
+    };
+    
     form.value = {
       image: slide.image,
-      title: slide.title,
-      description: slide.description,
+      title: ensureMultiLang(slide.title),
+      description: ensureMultiLang(slide.description),
       videoLink: slide.videoLink || '',
       order: slide.order,
       active: slide.active,
