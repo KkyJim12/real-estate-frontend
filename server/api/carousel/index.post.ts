@@ -6,8 +6,8 @@ export default defineEventHandler(async (event) => {
     const newSlide = {
       id: Date.now().toString(),
       image: body.image || '',
-      title: body.title || '',
-      description: body.description || '',
+      title: body.title || { en: '', th: '', zh: '' },
+      description: body.description || { en: '', th: '', zh: '' },
       videoLink: body.videoLink || '',
       order: body.order || 0,
       active: body.active !== undefined ? body.active : true,

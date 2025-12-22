@@ -1,12 +1,25 @@
+import { migrateToTranslatable, validateTranslatableContent } from '../../utils/translation';
+
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event);
     
+    // Validate required translatable fields
+    const validation = validateTranslatableContent(body, ['title', 'description']);
+    if (!validation.isValid) {
+      throw createError({
+        statusCode: 400,
+        message: `Validation failed: ${validation.errors.join(', ')}`
+      });
+    }
+    
     const project = {
       id: Date.now().toString(),
-      // Basic info
+      // Multi-language fields
       title: body.title,
       description: body.description,
+      
+      // Single language fields
       developer: body.developer,
       location: body.location,
       area: body.area,
@@ -17,7 +30,7 @@ export default defineEventHandler(async (event) => {
       floors: body.floors,
       units: body.units,
       
-      // Arrays
+      // Arrays with potential multi-language content
       facilities: body.facilities || [],
       neighborhoods: body.neighborhoods || [],
       heroCarousel: body.heroCarousel || [],

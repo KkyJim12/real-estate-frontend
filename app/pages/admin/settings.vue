@@ -6,6 +6,106 @@
         <p class="text-gray-600">{{ $t('admin.settings.subtitle') }}</p>
       </div>
 
+      <!-- Multi-Language Migration Section -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+        <div class="flex items-center mb-4">
+          <div class="flex items-center justify-center w-10 h-10 bg-green-100 rounded-lg mr-3">
+            <Icon name="fa-solid:language" class="text-green-600" />
+          </div>
+          <div>
+            <h2 class="text-xl font-semibold text-gray-900">Multi-Language Migration</h2>
+            <p class="text-sm text-gray-600">Convert existing single-language content to multi-language format</p>
+          </div>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
+          <div class="flex items-start">
+            <Icon name="fa-solid:exclamation-triangle" class="text-amber-500 mt-0.5 mr-2" />
+            <div class="text-sm text-amber-800">
+              <p class="font-medium mb-1">Important Migration Information</p>
+              <ul class="list-disc list-inside space-y-1 text-xs">
+                <li>This will convert all existing content to multi-language format</li>
+                <li>Existing content will be preserved in the selected source language</li>
+                <li>Other languages will be empty and need manual translation</li>
+                <li>This operation cannot be undone - backup your data first</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Source Language</label>
+            <select
+              v-model="migrationSourceLang"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ecbc85] focus:border-transparent outline-none transition"
+            >
+              <option value="en">English (EN)</option>
+              <option value="th">Thai (TH)</option>
+              <option value="zh">Chinese (ZH)</option>
+            </select>
+            <p class="text-xs text-gray-500 mt-1">Select the language of your existing content</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-gray-50 rounded-lg p-4">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-medium text-gray-700">Projects</span>
+                <Icon name="fa-solid:building" class="text-gray-400" />
+              </div>
+              <p class="text-2xl font-bold text-gray-900">{{ contentStats.projects || 0 }}</p>
+              <p class="text-xs text-gray-500">items to migrate</p>
+            </div>
+            
+            <div class="bg-gray-50 rounded-lg p-4">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-medium text-gray-700">Articles</span>
+                <Icon name="fa-solid:newspaper" class="text-gray-400" />
+              </div>
+              <p class="text-2xl font-bold text-gray-900">{{ contentStats.articles || 0 }}</p>
+              <p class="text-xs text-gray-500">items to migrate</p>
+            </div>
+            
+            <div class="bg-gray-50 rounded-lg p-4">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-medium text-gray-700">Carousel</span>
+                <Icon name="fa-solid:images" class="text-gray-400" />
+              </div>
+              <p class="text-2xl font-bold text-gray-900">{{ contentStats.carousel || 0 }}</p>
+              <p class="text-xs text-gray-500">items to migrate</p>
+            </div>
+          </div>
+
+          <button
+            @click="migrateToMultiLanguage"
+            :disabled="migrating"
+            class="w-full px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+          >
+            <Icon v-if="migrating" name="fa-solid:spinner" class="mr-2 animate-spin" />
+            <Icon v-else name="fa-solid:language" class="mr-2" />
+            {{ migrating ? 'Migrating Content...' : 'Migrate to Multi-Language' }}
+          </button>
+
+          <div v-if="migrationResult" class="mt-4 p-4 rounded-lg" :class="migrationResult.success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'">
+            <div class="flex items-start">
+              <Icon :name="migrationResult.success ? 'fa-solid:check-circle' : 'fa-solid:exclamation-circle'" 
+                    :class="migrationResult.success ? 'text-green-500' : 'text-red-500'" 
+                    class="mt-0.5 mr-2" />
+              <div>
+                <p :class="migrationResult.success ? 'text-green-800' : 'text-red-800'" class="font-medium">
+                  {{ migrationResult.message }}
+                </p>
+                <div v-if="migrationResult.details" class="mt-2 text-sm" :class="migrationResult.success ? 'text-green-700' : 'text-red-700'">
+                  <p>Projects: {{ migrationResult.details.projects }}</p>
+                  <p>Articles: {{ migrationResult.details.articles }}</p>
+                  <p>Carousel: {{ migrationResult.details.carousel }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Database Migration Section -->
       <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
         <div class="flex items-center mb-4">
@@ -173,6 +273,11 @@ const migrating = ref(false);
 const migrationResults = ref<MigrationResult[]>([]);
 const migrationStatus = ref<MigrationStatus>({});
 
+// Multi-language migration
+const migrationSourceLang = ref('en');
+const contentStats = ref({ projects: 0, articles: 0, carousel: 0 });
+const migrationResult = ref<any>(null);
+
 // Get runtime config for environment detection
 const config = useRuntimeConfig();
 const isProduction = ref(false);
@@ -180,11 +285,14 @@ const nodeEnv = ref('development');
 const isVercel = ref(false);
 
 // Check environment on client side
-onMounted(() => {
+onMounted(async () => {
   // Use a simple check that works in both client and server
   isProduction.value = window.location.hostname !== 'localhost' && !window.location.hostname.includes('127.0.0.1');
   nodeEnv.value = isProduction.value ? 'production' : 'development';
   isVercel.value = window.location.hostname.includes('vercel.app');
+  
+  // Load content statistics
+  await loadContentStats();
 });
 
 const getStatusIcon = (status: string) => {
@@ -197,6 +305,58 @@ const getStatusIcon = (status: string) => {
       return 'fa-solid:exclamation-triangle';
     default:
       return 'fa-solid:question-circle';
+  }
+};
+
+// Load content statistics
+const loadContentStats = async () => {
+  try {
+    const [projects, articles, carousel] = await Promise.all([
+      $fetch('/api/projects'),
+      $fetch('/api/articles'),
+      $fetch('/api/carousel')
+    ]);
+    
+    contentStats.value = {
+      projects: projects.length,
+      articles: articles.length,
+      carousel: carousel.length
+    };
+  } catch (error) {
+    console.error('Error loading content stats:', error);
+  }
+};
+
+// Multi-language migration
+const migrateToMultiLanguage = async () => {
+  if (!confirm('Are you sure you want to migrate all content to multi-language format? This cannot be undone.')) {
+    return;
+  }
+  
+  migrating.value = true;
+  migrationResult.value = null;
+  
+  try {
+    const result = await $fetch('/api/admin/migrate-to-multilang', {
+      method: 'POST',
+      body: {
+        sourceLanguage: migrationSourceLang.value
+      }
+    });
+    
+    migrationResult.value = result;
+    
+    // Reload content stats
+    await loadContentStats();
+    
+  } catch (error: any) {
+    console.error('Migration error:', error);
+    migrationResult.value = {
+      success: false,
+      message: error.data?.message || error.message || 'Migration failed'
+    };
+  } finally {
+    migrating.value = false;
   }
 };
 
